@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommend - Travel LOEI 360°</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@400;500;600;700&family=Sarabun:wght@400;500;700&family=Volkhov:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#DF6951',
+                            yellow: '#F1A501',
+                            navy: '#181E4B',
+                            light: '#FFF1DA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Sarabun', 'sans-serif'],
+                        serif: ['Volkhov', 'serif'],
+                        cursive: ['Dancing Script', 'cursive'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('./assets/hero.png')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #DF6951;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-navy antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 top-0 py-6 transition-all duration-300">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index-en.html" class="text-2xl font-bold flex items-center gap-2">
+                <img src="./assets/logo.png" alt="Logo" class="h-16 w-auto object-contain">
+                <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-12 font-medium text-xl">
+                <a href="index-en.html" class="hover:text-brand-orange transition-colors">Home</a>
+                <a href="recommend-en.html" class="text-brand-orange transition-colors">Recommend</a>
+                <a href="trip-planner-en.html" class="hover:text-brand-orange transition-colors">Trip Tips</a>
+                <a href="about-en.html" class="hover:text-brand-orange transition-colors">About</a>
+                <a href="contact-en.html" class="hover:text-brand-orange transition-colors">Contact</a>
+            </div>
+
+            <!-- Language Switcher -->
+            <!-- Language Switcher -->
+            <div class="hidden md:flex items-center gap-6">
+                <div class="relative group">
+                    <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')"
+                        class="flex items-center gap-2 font-medium text-xl hover:text-brand-orange transition-colors focus:outline-none">
+                        <span>EN</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div id="lang-dropdown"
+                        class="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl py-2 hidden border border-gray-100 z-50">
+                        <a href="recommend.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">ไทย</a>
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors text-brand-orange font-bold">English</a>
+                        <a href="index-cn.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">中文</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-brand-navy focus:outline-none"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full left-0 top-full p-6 space-y-4">
+            <a href="index-en.html" class="block hover:text-brand-orange">Home</a>
+            <a href="recommend-en.html" class="block text-brand-orange font-bold">Recommend</a>
+            <a href="trip-planner-en.html" class="block hover:text-brand-orange">Trip Tips</a>
+            <a href="about-en.html" class="block hover:text-brand-orange">About</a>
+            <a href="contact-en.html" class="block hover:text-brand-orange">Contact</a>
+
+            <!-- Mobile Language Switcher -->
+            <!-- Mobile Language Switcher -->
+            <div class="border-t border-gray-100 pt-4 flex items-center gap-4 font-medium">
+                <span class="text-gray-400 text-sm">Language:</span>
+                <a href="recommend.html" class="text-gray-500 hover:text-brand-orange">TH</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="text-brand-orange">EN</a>
+                <span class="text-gray-300">|</span>
+                <a href="index-cn.html" class="text-gray-500 hover:text-brand-orange">CN</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-40 pb-20 relative bg-brand-light/30">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="font-serif text-5xl lg:text-6xl font-bold text-brand-navy mb-6">Recommendations</h1>
+            <p class="text-gray-500 text-lg max-w-2xl mx-auto">Top Loei attractions, food, and must-do activities.</p>
+        </div>
+    </section>
+
+    <!-- 1. Top Attractions -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="font-serif text-3xl font-bold text-brand-navy mb-10 text-center">Popular Destinations</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Card 1: Phu Kradueng -->
+                <div
+                    class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 group bg-white border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="./assets/Recommended places to visit/1.jpg"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            alt="Phu Kradueng">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl text-brand-navy mb-2">🏷 Phu Kradueng</h3>
+                        <p class="text-gray-500 text-sm mb-4 truncate">Conquer the famous peak, touch nature</p>
+
+                        <div class="flex items-center gap-2 mb-6 mt-auto">
+                            <span
+                                class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">🌲
+                                Nature</span>
+                            <span
+                                class="bg-orange-100 text-orange-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">🥾
+                                Trekking</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2: Phu Rua -->
+                <div
+                    class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 group bg-white border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="./assets/Recommended places to visit/2.jpg"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            alt="Phu Rua">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl text-brand-navy mb-2">🏷 Phu Rua</h3>
+                        <p class="text-gray-500 text-sm mb-4 truncate">Coldest in Siam, beautiful flowers</p>
+
+                        <div class="flex items-center gap-2 mb-6 mt-auto">
+                            <span
+                                class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">❄️
+                                Cool Air</span>
+                            <span
+                                class="bg-pink-100 text-pink-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">🌸
+                                Flowers</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3: Chiang Khan -->
+                <div
+                    class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 group bg-white border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="./assets/Recommended places to visit/3.jpg"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            alt="Chiang Khan">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl text-brand-navy mb-2">🏷 Chiang Khan</h3>
+                        <p class="text-gray-500 text-sm mb-4 truncate">Walking Street, Mekong River, Slow life</p>
+
+                        <div class="flex items-center gap-2 mb-6 mt-auto">
+                            <span
+                                class="bg-orange-100 text-brand-orange text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">🏘️
+                                Old Town</span>
+                            <span
+                                class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">🌅
+                                Mekong</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4: Phu Thok -->
+                <div
+                    class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 group bg-white border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="./assets/Recommended places to visit/4.webp"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            alt="Phu Thok">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl text-brand-navy mb-2">🏷 Phu Thok</h3>
+                        <p class="text-gray-500 text-sm mb-4 truncate">Spectacular sea of mist viewpoint</p>
+
+                        <div class="flex items-center gap-2 mb-6 mt-auto">
+                            <span
+                                class="bg-sky-100 text-sky-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">🌫️
+                                Mist</span>
+                            <span
+                                class="bg-purple-100 text-purple-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">📸
+                                Photo Spot</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5: Phu Pa Poh -->
+                <div
+                    class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 group bg-white border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="./assets/Recommended places to visit/5.jpg"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            alt="Phu Pa Poh">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl text-brand-navy mb-2">🏷 Phu Pa Poh</h3>
+                        <p class="text-gray-500 text-sm mb-4 truncate">Fuji of Loei, 360 degree view</p>
+
+                        <div class="flex items-center gap-2 mb-6 mt-auto">
+                            <span
+                                class="bg-green-100 text-green-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">🗻
+                                Mountain</span>
+                            <span
+                                class="bg-yellow-100 text-yellow-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">🚜
+                                E-Tak</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6: Kaeng Khut Khu -->
+                <div
+                    class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 group bg-white border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="./assets/Recommended places to visit/6.webp"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            alt="Kaeng Khut Khu">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl text-brand-navy mb-2">🏷 Kaeng Khut Khu</h3>
+                        <p class="text-gray-500 text-sm mb-4 truncate">Islets in Mekong, Legend of Hunter</p>
+
+                        <div class="flex items-center gap-2 mb-6 mt-auto">
+                            <span
+                                class="bg-blue-100 text-blue-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">🚤
+                                Boating</span>
+                            <span
+                                class="bg-orange-100 text-orange-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">⛱️
+                                Relax</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 7: Phra That Sri Song Rak -->
+                <div
+                    class="rounded-3xl overflow-hidden shadow-lg hover:shadow-2xl transition-all hover:-translate-y-2 group bg-white border border-gray-100 flex flex-col h-full">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="./assets/Recommended places to visit/7.webp"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            alt="Phra That Sri Song Rak">
+                    </div>
+                    <div class="p-6 flex flex-col flex-grow">
+                        <h3 class="font-bold text-xl text-brand-navy mb-2">🏷 Phra That Sri Song Rak</h3>
+                        <p class="text-gray-500 text-sm mb-4 truncate">Worship the sacred stupa</p>
+
+                        <div class="flex items-center gap-2 mb-6 mt-auto">
+                            <span
+                                class="bg-amber-100 text-amber-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">🏯
+                                Culture</span>
+                            <span
+                                class="bg-indigo-100 text-indigo-700 text-xs font-bold px-3 py-1 rounded-full flex items-center gap-1">🙏
+                                Worship</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- See More Button -->
+                <a href="destinations-en.html"
+                    class="rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all hover:-translate-y-2 bg-gray-50 border-2 border-dashed border-gray-300 flex flex-col h-full items-center justify-center min-h-[300px] group cursor-pointer">
+                    <div
+                        class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center text-brand-orange text-2xl mb-4 group-hover:bg-brand-orange group-hover:text-white transition-colors">
+                        ➜
+                    </div>
+                    <h3 class="font-bold text-xl text-brand-navy group-hover:text-brand-orange transition-colors">
+                        See More</h3>
+                    <p class="text-gray-400 text-sm">Other Destinations</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. Travel Routes -->
+    <section class="py-20 bg-brand-light/20">
+        <div class="container mx-auto px-6">
+            <h2 class="font-serif text-3xl font-bold text-brand-navy mb-10 text-center">🗺️ Recommended Routes</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Plan 1 -->
+                <a href="trip-planner-en.html"
+                    class="block bg-white p-8 rounded-[2rem] shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all border border-brand-light">
+                    <div
+                        class="w-16 h-16 bg-brand-orange/10 rounded-full flex items-center justify-center text-3xl mb-6">
+                        🌤️</div>
+                    <h3 class="font-bold text-2xl text-brand-navy mb-4">1 Day Trip</h3>
+                    <p class="text-gray-500 mb-6">One Day Trip to collect main check-ins, chill at cafes</p>
+                    <span class="text-brand-orange font-bold flex items-center gap-2">View Plan <svg class="w-4 h-4"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg></span>
+                </a>
+                <!-- Plan 2 -->
+                <a href="trip-planner-en.html"
+                    class="block bg-white p-8 rounded-[2rem] shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all border border-brand-light">
+                    <div class="w-16 h-16 bg-brand-navy/10 rounded-full flex items-center justify-center text-3xl mb-6">
+                        🌙</div>
+                    <h3 class="font-bold text-2xl text-brand-navy mb-4">2 Days 1 Night</h3>
+                    <p class="text-gray-500 mb-6">Sleep in Chiang Khan, Mekong vibe, wake up to sea of mist</p>
+                    <span class="text-brand-orange font-bold flex items-center gap-2">View Plan <svg class="w-4 h-4"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg></span>
+                </a>
+                <!-- Plan 3 -->
+                <a href="trip-planner-en.html"
+                    class="block bg-white p-8 rounded-[2rem] shadow-xl hover:shadow-2xl transform hover:-translate-y-2 transition-all border border-brand-light relative overflow-hidden">
+                    <div
+                        class="absolute top-0 right-0 bg-brand-orange text-white text-xs font-bold px-3 py-1 rounded-bl-xl">
+                        Recommended</div>
+                    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center text-3xl mb-6">🌲
+                    </div>
+                    <h3 class="font-bold text-2xl text-brand-navy mb-4">3 Days 2 Nights</h3>
+                    <p class="text-gray-500 mb-6">Deep travel, climb mountains, touch nature, buy souvenirs</p>
+                    <span class="text-brand-orange font-bold flex items-center gap-2">View Plan <svg class="w-4 h-4"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+                        </svg></span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. Best Time -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="font-serif text-3xl font-bold text-brand-navy mb-10 text-center">📅 When to visit?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="bg-blue-50 rounded-3xl p-8 text-left hover:bg-blue-100 transition-colors h-full">
+                    <span class="text-5xl block mb-4 text-center">🌬️</span>
+                    <h3 class="text-xl font-bold text-brand-navy mb-4 text-center">Nov – Feb (Peak / Best)</h3>
+                    <div class="text-gray-600 text-sm space-y-3">
+                        <p><strong>Weather:</strong> Cool 10–20°C, some places colder</p>
+                        <p><strong>Highlights:</strong> Morning mist + Sea of mist (Phu Rua, Phu Kradueng, Phu Pa Poh)
+                            Winter flowers bloom nicely, great photos</p>
+                        <p><strong>Cons:</strong> Crowded, accommodation more expensive, need to book in advance</p>
+                        <p class="bg-white/50 p-2 rounded-lg text-brand-navy"><strong>Suitable for:</strong>
+                            Mountain lovers, real cold, romantic</p>
+                    </div>
+                </div>
+                <div class="bg-green-50 rounded-3xl p-8 text-left hover:bg-green-100 transition-colors h-full">
+                    <span class="text-5xl block mb-4 text-center">🌧️</span>
+                    <h3 class="text-xl font-bold text-brand-navy mb-4 text-center">Jul – Oct (Nature Lover)</h3>
+                    <div class="text-gray-600 text-sm space-y-3">
+                        <p><strong>Weather:</strong> Rain sometimes, but green forests, beautiful waterfalls</p>
+                        <p><strong>Pros:</strong> Few people, quiet, peaceful, cheaper accommodation</p>
+                        <p><strong>Cons:</strong> Check weather, mountain paths might be slippery</p>
+                        <p class="bg-white/50 p-2 rounded-lg text-brand-navy"><strong>Suitable for:</strong> Chill vibe,
+                            nature photography, dislike crowds</p>
+                    </div>
+                </div>
+                <div class="bg-orange-50 rounded-3xl p-8 text-left hover:bg-orange-100 transition-colors h-full">
+                    <span class="text-5xl block mb-4 text-center">☀️</span>
+                    <h3 class="text-xl font-bold text-brand-navy mb-4 text-center">Mar – May (Hot but OK)</h3>
+                    <div class="text-gray-600 text-sm space-y-3">
+                        <p><strong>Weather:</strong> Really hot 30°C+</p>
+                        <p><strong>Atmosphere:</strong> No mist, dry views</p>
+                        <p><strong>Pros:</strong> Not many people, easy travel, no need to fight for spots</p>
+                        <p class="bg-white/50 p-2 rounded-lg text-brand-navy"><strong>Suitable for:</strong> Low budget,
+                            don't mind heat, city tour, cafes, temples</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Festivals -->
+    <section id="festivals" class="py-20 bg-white overflow-hidden relative">
+        <div class="container mx-auto px-6 relative z-10">
+            <h2 class="font-serif text-3xl font-bold mb-10 text-center text-brand-navy">🎉 Festivals Not to Miss</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Card 1: Phi Ta Khon -->
+                <div
+                    class="bg-brand-navy text-white rounded-2xl p-6 border border-brand-orange/20 shadow-lg relative overflow-hidden group hover:-translate-y-1 transition-transform">
+                    <div
+                        class="absolute top-0 right-0 w-32 h-32 bg-brand-orange/20 rounded-full blur-2xl -translate-y-1/2 translate-x-1/2">
+                    </div>
+                    <div class="text-4xl mb-4">👻</div>
+                    <h3 class="text-xl font-bold mb-2">Phi Ta Khon Festival (Dan Sai)</h3>
+                    <p class="text-gray-300 text-sm mb-4">National famous event you must visit once 💀</p>
+                    <ul class="space-y-2 text-sm text-gray-200">
+                        <li><strong>When:</strong> Late <strong>Jun – Early Jul</strong></li>
+                        <li><strong>Highlights:</strong> Colorful ghost mask procesion, dancing on streets 🎭</li>
+                    </ul>
+                    <p class="mt-4 text-xs text-brand-orange font-bold italic">“Highlight of Loei” ✨</p>
+                </div>
+
+                <!-- Card 2: Red Cross Fair -->
+                <div
+                    class="bg-white text-brand-navy rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="text-4xl mb-4">🎪</div>
+                    <h3 class="text-xl font-bold mb-2">Red Cross & Cotton Blossom Fair</h3>
+                    <p class="text-gray-500 text-sm mb-4">Sweet Tamarind of Loei</p>
+                    <ul class="space-y-2 text-sm text-gray-600">
+                        <li><strong>When:</strong> <strong>1–9 February</strong> annually</li>
+                        <li><strong>Highlights:</strong> Parades, folk performances, local product booths — lively vibe
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 3: Songkran -->
+                <div
+                    class="bg-white text-brand-navy rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="text-4xl mb-4">💦</div>
+                    <h3 class="text-xl font-bold mb-2">Songkran Thai-Lao (Tha Li)</h3>
+                    <ul class="space-y-2 text-sm text-gray-600 mt-4">
+                        <li><strong>When:</strong> <strong>12–15 April</strong></li>
+                        <li><strong>Highlights:</strong> Mixed Thai-Lao culture Songkran, fun water splashing ☀️</li>
+                    </ul>
+                </div>
+
+                <!-- Card 4: Rocket Festival -->
+                <div
+                    class="bg-white text-brand-navy rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="text-4xl mb-4">🚀</div>
+                    <h3 class="text-xl font-bold mb-2">Million Rocket Festival (Erawan)</h3>
+                    <ul class="space-y-2 text-sm text-gray-600 mt-4">
+                        <li><strong>When:</strong> <strong>May</strong> (Full moon of 6th lunar month)</li>
+                        <li><strong>Highlights:</strong> Rocket parade competition for rain, fun and traditional 🌧️🔥
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Card 5: Phra That Sri Song Rak -->
+                <div
+                    class="bg-white text-brand-navy rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="text-4xl mb-4">🛕</div>
+                    <h3 class="text-xl font-bold mb-2">Phra That Sri Song Rak Worship</h3>
+                    <ul class="space-y-2 text-sm text-gray-600 mt-4">
+                        <li><strong>When:</strong> Late <strong>Apr – Early May</strong></li>
+                        <li><strong>Highlights:</strong> Big merit event at Thai-Lao border, worship stupa, cultural
+                            market 🙏</li>
+                    </ul>
+                </div>
+
+                <!-- Card 6: Flower Festival -->
+                <div
+                    class="bg-white text-brand-navy rounded-2xl p-6 border border-gray-100 shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
+                    <div class="text-4xl mb-4">🌸</div>
+                    <h3 class="text-xl font-bold mb-2">Mist & Flower Festival Phu Rua</h3>
+                    <ul class="space-y-2 text-sm text-gray-600 mt-4">
+                        <li><strong>When:</strong> Late <strong>Dec – Early Jan</strong></li>
+                        <li><strong>Highlights:</strong> View winter flower fields and sea of mist at Phu Rua 📸</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Food & Souvenirs -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <h2 class="font-serif text-3xl font-bold text-brand-navy mb-10 text-center">🍜 Food & Souvenirs</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Restaurants -->
+                <div>
+                    <h3 class="text-2xl font-bold text-brand-navy mb-6 flex items-center gap-2">
+                        🍽️ Recommended Restaurants
+                    </h3>
+                    <div class="space-y-3">
+                        <a href="https://www.google.com/maps/search/?api=1&query=ร้านนาเรากว้าง+จังหวัดเลย"
+                            target="_blank"
+                            class="block bg-gray-50 p-4 rounded-xl hover:bg-brand-orange/10 transition-colors group border border-gray-100">
+                            <h4 class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors">
+                                Na Rao Kwang</h4>
+                            <p class="text-sm text-gray-500">Local food, field view</p>
+                        </a>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=บ้านต้นหลิว+ร้านอาหาร+เลย"
+                            target="_blank"
+                            class="block bg-gray-50 p-4 rounded-xl hover:bg-brand-orange/10 transition-colors group border border-gray-100">
+                            <h4 class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors">
+                                Baan Ton Liu</h4>
+                            <p class="text-sm text-gray-500">Good atmosphere, local menu</p>
+                        </a>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=เป็ดย่างคุณอิ๋ว+เมืองเลย"
+                            target="_blank"
+                            class="block bg-gray-50 p-4 rounded-xl hover:bg-brand-orange/10 transition-colors group border border-gray-100">
+                            <h4 class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors">
+                                Khun Ew Roasted Duck</h4>
+                            <p class="text-sm text-gray-500">Famous roasted duck</p>
+                        </a>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=แพง้วน+อาหารเช้า+เลย" target="_blank"
+                            class="block bg-gray-50 p-4 rounded-xl hover:bg-brand-orange/10 transition-colors group border border-gray-100">
+                            <h4 class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors">
+                                Pae Nguan Breakfast</h4>
+                            <p class="text-sm text-gray-500">Legendary breakfast shop</p>
+                        </a>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=เฝอเดอเลย+เชียงคาน" target="_blank"
+                            class="block bg-gray-50 p-4 rounded-xl hover:bg-brand-orange/10 transition-colors group border border-gray-100">
+                            <h4 class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors">
+                                Pho de Loei (Chiang Khan)</h4>
+                            <p class="text-sm text-gray-500">Vietnamese food</p>
+                        </a>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=Lan+Chang+Restaurant+Loei"
+                            target="_blank"
+                            class="block bg-gray-50 p-4 rounded-xl hover:bg-brand-orange/10 transition-colors group border border-gray-100">
+                            <h4 class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors">Lan
+                                Chang Restaurant</h4>
+                            <p class="text-sm text-gray-500">Famous restaurant in city center</p>
+                        </a>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=Song+Pe+La+Loei" target="_blank"
+                            class="block bg-gray-50 p-4 rounded-xl hover:bg-brand-orange/10 transition-colors group border border-gray-100">
+                            <h4 class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors">Song
+                                Pe La</h4>
+                            <p class="text-sm text-gray-500">Good atmosphere restaurant</p>
+                        </a>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=The+Witch-T+Cafe+Loei" target="_blank"
+                            class="block bg-gray-50 p-4 rounded-xl hover:bg-brand-orange/10 transition-colors group border border-gray-100">
+                            <h4 class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors">The
+                                Witch-T Cafe</h4>
+                            <p class="text-sm text-gray-500">Witch theme cafe</p>
+                        </a>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=Khao+Piak+Restaurant+Loei"
+                            target="_blank"
+                            class="block bg-gray-50 p-4 rounded-xl hover:bg-brand-orange/10 transition-colors group border border-gray-100">
+                            <h4 class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors">Khao
+                                Piak Restaurant</h4>
+                            <p class="text-sm text-gray-500">Khao Piak Sen</p>
+                        </a>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=ร้านริมเมย+เมืองเลย" target="_blank"
+                            class="block bg-gray-50 p-4 rounded-xl hover:bg-brand-orange/10 transition-colors group border border-gray-100">
+                            <h4 class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors">
+                                Rim Moei Restaurant</h4>
+                            <p class="text-sm text-gray-500">Local restaurant</p>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Souvenirs -->
+                <div>
+                    <h3 class="text-2xl font-bold text-brand-navy mb-6 flex items-center gap-2">
+                        🛍️ Souvenir Shops / OTOP
+                    </h3>
+                    <div class="space-y-3">
+                        <a href="https://www.google.com/maps/search/?api=1&query=OTOP+เมืองเลย" target="_blank"
+                            class="block bg-gray-50 p-4 rounded-xl hover:bg-brand-orange/10 transition-colors group border border-gray-100">
+                            <h4 class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors">Loei
+                                OTOP Center</h4>
+                            <p class="text-sm text-gray-500">Provincial OTOP products</p>
+                        </a>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=ร้านจันทร์แดง+ของฝาก+เลย"
+                            target="_blank"
+                            class="block bg-gray-50 p-4 rounded-xl hover:bg-brand-orange/10 transition-colors group border border-gray-100">
+                            <h4 class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors">
+                                Chan Daeng Souvenir Shop</h4>
+                            <p class="text-sm text-gray-500">Famous souvenir center</p>
+                        </a>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=ของฝาก+เชียงคาน" target="_blank"
+                            class="block bg-gray-50 p-4 rounded-xl hover:bg-brand-orange/10 transition-colors group border border-gray-100">
+                            <h4 class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors">
+                                Chiang Khan Walking Street Souvenirs</h4>
+                            <p class="text-sm text-gray-500">Coconut glass, quilts, souvenirs</p>
+                        </a>
+
+                        <a href="https://www.google.com/maps/search/?api=1&query=ของฝาก+ภูกระดึง" target="_blank"
+                            class="block bg-gray-50 p-4 rounded-xl hover:bg-brand-orange/10 transition-colors group border border-gray-100">
+                            <h4 class="font-bold text-brand-navy group-hover:text-brand-orange transition-colors">
+                                Phu Kradueng Souvenir Shop</h4>
+                            <p class="text-sm text-gray-500">Souvenirs from the park</p>
+                        </a>
+                    </div>
+
+                    <div class="mt-8 bg-brand-orange/10 rounded-2xl p-6 border border-brand-orange/20">
+                        <h4 class="font-bold text-brand-orange mb-2">💡 Tips</h4>
+                        <p class="text-sm text-gray-600">Click on the shop name to view map and directions in Google
+                            Maps!
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="pt-20 pb-10">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-20">
+            <!-- Brand -->
+            <div class="lg:col-span-2 space-y-6">
+                <a href="index-en.html" class="text-3xl font-bold flex items-center gap-2 mb-4">
+                    <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+                </a>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
+                    This website was created for a Vocational Certificate graduation project.
+                </p>
+            </div>
+
+            <!-- Links 1 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">About Website</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="about-en.html" class="hover:text-brand-orange transition-colors">About Us</a></li>
+                    <li><a href="destinations-en.html" class="hover:text-brand-orange transition-colors">Recommended
+                            Destinations</a>
+                    </li>
+                    <li><a href="trip-planner-en.html" class="hover:text-brand-orange transition-colors">Tips</a></li>
+                </ul>
+            </div>
+
+            <!-- Links 2 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">Contact</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="contact-en.html" class="hover:text-brand-orange transition-colors">Contact Us</a></li>
+                    <li><a href="contact-en.html" class="hover:text-brand-orange transition-colors">Report Issues</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Links 3 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">Credits & Resources</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+
+                    <li><a href="#" class="hover:text-brand-orange transition-colors">Image Credits</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center border-t border-gray-100 pt-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-gray-400 text-sm">© 2025 Travel Loei360° | Travel Loei360°</span>
+                <div class="flex gap-8">
+                    <a href="terms-en.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">Terms of
+                        Use</a>
+                    <a href="privacy-en.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">Privacy
+                        Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="imageModal" class="fixed inset-0 z-[60] bg-black/90 hidden flex items-center justify-center p-4"
+        onclick="closeModal()">
+        <span class="absolute top-5 right-5 text-white text-4xl cursor-pointer hover:text-brand-orange">&times;</span>
+        <img id="expandedImg"
+            class="max-w-full max-h-screen rounded-lg shadow-2xl transform scale-95 transition-transform duration-300"
+            src="" alt="Expanded Image">
+    </div>
+
+    <script>
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const expandedImg = document.getElementById('expandedImg');
+            expandedImg.src = imgSrc;
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                expandedImg.classList.remove('scale-95');
+                expandedImg.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            const expandedImg = document.getElementById('expandedImg');
+            expandedImg.classList.remove('scale-100');
+            expandedImg.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+    </script>
+    <!-- Scroll Script -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.add('py-6');
+            }
+        });
+    </script>
+</body>
+
+</html>

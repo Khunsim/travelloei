@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>黎府信息 - Travel LOEI 360°</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@400;500;600;700&family=Sarabun:wght@400;500;700&family=Volkhov:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#DF6951',
+                            yellow: '#F1A501',
+                            navy: '#181E4B',
+                            light: '#FFF1DA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Sarabun', 'sans-serif'],
+                        serif: ['Volkhov', 'serif'],
+                        cursive: ['Dancing Script', 'cursive'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #DF6951;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-navy antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 top-0 py-6 transition-all duration-300">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index-cn.html" class="text-2xl font-bold flex items-center gap-2">
+                <img src="./assets/logo.png" alt="Logo" class="h-16 w-auto object-contain">
+                <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-12 font-medium text-xl">
+                <a href="index-cn.html" class="hover:text-brand-orange transition-colors">首页</a>
+                <a href="recommend-cn.html" class="hover:text-brand-orange transition-colors">推荐景点</a>
+                <a href="trip-planner-cn.html" class="hover:text-brand-orange transition-colors">旅游攻略</a>
+                <a href="about-cn.html" class="hover:text-brand-orange transition-colors">关于我们</a>
+                <a href="contact-cn.html" class="hover:text-brand-orange transition-colors">联系我们</a>
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="hidden md:flex items-center gap-6">
+                <div class="relative group">
+                    <button class="flex items-center gap-2 font-medium text-xl text-brand-orange transition-colors">
+                        <span>CN</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown -->
+                    <div
+                        class="absolute right-0 top-full mt-2 w-32 bg-white rounded-xl shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right z-50">
+                        <a href="loei-info.html"
+                            class="block px-6 py-3 hover:bg-orange-50 hover:text-brand-orange transition-colors text-gray-600">TH
+                            - Thai</a>
+                        <a href="loei-info-en.html"
+                            class="block px-6 py-3 hover:bg-orange-50 hover:text-brand-orange transition-colors text-gray-600">EN
+                            - English</a>
+                        <a href="loei-info-cn.html"
+                            class="block px-6 py-3 bg-orange-50 text-brand-orange font-medium">CN
+                            - Chinese</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-brand-navy focus:outline-none"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full left-0 top-full p-6 space-y-4">
+            <a href="index-cn.html" class="block hover:text-brand-orange">首页</a>
+            <a href="recommend-cn.html" class="block hover:text-brand-orange">推荐景点</a>
+            <a href="trip-planner-cn.html" class="block hover:text-brand-orange">旅游攻略</a>
+            <a href="about-cn.html" class="block hover:text-brand-orange">关于我们</a>
+            <a href="contact-cn.html" class="block hover:text-brand-orange">联系我们</a>
+
+            <!-- Mobile Language Switcher -->
+            <div class="border-t border-gray-100 pt-4 flex items-center gap-4 font-medium">
+                <span class="text-gray-400 text-sm">语言:</span>
+                <a href="loei-info.html" class="text-gray-500 hover:text-brand-orange">TH</a>
+                <span class="text-gray-300">|</span>
+                <a href="loei-info-en.html" class="text-gray-500 hover:text-brand-orange">EN</a>
+                <span class="text-gray-300">|</span>
+                <a href="loei-info-cn.html" class="text-brand-orange">CN</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Scroll Script -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.add('py-6');
+            }
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="pt-40 pb-20 relative bg-brand-light/30">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="font-serif text-5xl lg:text-6xl font-bold text-brand-navy mb-6">黎府信息</h1>
+            <p class="text-gray-500 text-lg max-w-2xl mx-auto">更好地了解黎府，这片山脉与文化交织的土地。</p>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl space-y-20">
+
+            <!-- Intro -->
+            <div class="space-y-6">
+                <h2 class="font-serif text-3xl font-bold text-brand-navy border-l-4 border-brand-orange pl-4">
+                    黎府简介</h2>
+                <p class="text-gray-600 leading-relaxed text-lg text-justify">
+                    黎府以其杰出的自然风光、群山和清新的空气而闻名，提供一种宁静的氛围，
+                    非常适合放松身心和体验当地社区的简单生活方式。
+                    黎府还拥有多样化的旅游景点，包括自然、文化和独特的传统，
+                    反映了这个充满温暖和美丽的小镇的魅力。
+                </p>
+            </div>
+
+            <!-- Attractions -->
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div class="space-y-6">
+                    <h2 class="font-serif text-3xl font-bold text-brand-navy border-l-4 border-brand-orange pl-4">
+                        有趣景点</h2>
+                    <p class="text-gray-600 leading-relaxed text-lg text-justify">
+                        黎府拥有适合所有旅行者群体的各种景点，
+                        无论是自然景点、观景点还是文化旅游景点。
+                        大多数景点自然资源丰富，环境幽静，
+                        非常适合放松、摄影和了解当地故事。
+                    </p>
+                </div>
+                <div class="rounded-3xl overflow-hidden shadow-xl h-64">
+                    <img src="./assets/Recommended places to visit/1.jpg" alt="Phu Kradueng"
+                        class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Culture -->
+            <div class="grid md:grid-cols-2 gap-10 items-center md:flex-row-reverse">
+                <div class="rounded-3xl overflow-hidden shadow-xl h-64 order-2 md:order-1">
+                    <img src="./assets/Phi Ta Khon.webp" alt="Phi Ta Khon" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-6 order-1 md:order-2">
+                    <h2 class="font-serif text-3xl font-bold text-brand-navy border-l-4 border-brand-orange pl-4">
+                        文化与当地生活方式</h2>
+                    <p class="text-gray-600 leading-relaxed text-lg text-justify">
+                        黎府的文化朴实无华，反映了当地社区的生活方式。
+                        人们很友好，仍然保留着传统的习俗，如当地传统、信仰，
+                        并过着亲近自然的生活。
+                        这些文化是帮助黎府创造独特身份并吸引游客学习和体验新事物的重要魅力。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Nature -->
+            <div class="space-y-6">
+                <h2 class="font-serif text-3xl font-bold text-brand-navy border-l-4 border-brand-orange pl-4">
+                    自然与环境</h2>
+                <p class="text-gray-600 leading-relaxed text-lg text-justify">
+                    黎府拥有丰富的自然资源，包括山脉、森林和美丽的自然景点，
+                    适合生态旅游。游客可以体验新鲜空气，
+                    欣赏山脉和云海的美景，
+                    并了解考虑环境和自然资源保护的旅游方式。
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <img src="./assets/Recommended places to visit/2.jpg"
+                        class="rounded-xl shadow-md h-48 w-full object-cover">
+                    <img src="./assets/Recommended places to visit/4.webp"
+                        class="rounded-xl shadow-md h-48 w-full object-cover">
+                    <img src="./assets/Recommended places to visit/5.jpg"
+                        class="rounded-xl shadow-md h-48 w-full object-cover">
+                </div>
+            </div>
+
+            <!-- Travel Info & Best Time -->
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="bg-brand-light/30 p-8 rounded-3xl space-y-4">
+                    <h3 class="font-bold text-2xl text-brand-navy">🚗 基本旅游信息</h3>
+                    <p class="text-gray-600 leading-relaxed text-justify">
+                        游客可以乘坐私家车或公共巴士前往黎府，
+                        从附近的省份或曼谷出发都很方便。
+                        在省内，有连接主要旅游景点的交通路线，
+                        方便游客合理规划行程。
+                    </p>
+                </div>
+                <div class="bg-blue-50 p-8 rounded-3xl space-y-4">
+                    <h3 class="font-bold text-2xl text-brand-navy">📅 最佳旅游时间</h3>
+                    <p class="text-gray-600 leading-relaxed text-justify">
+                        黎府一年四季都可以游览，但最受欢迎的时间是冬季，
+                        因为天气凉爽，而且许多地区都有机会看到云海。
+                        在雨季，大自然郁郁葱葱，适合那些热爱自然和宁静的人。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Objective -->
+            <div class="bg-[#2581c4] text-white p-10 rounded-[2.5rem] text-center space-y-4 relative overflow-hidden">
+                <!-- Decor -->
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
+                </div>
+
+                <h2 class="font-serif text-3xl font-bold relative z-10">网站目标</h2>
+                <p class="text-gray-300 leading-relaxed text-lg max-w-2xl mx-auto relative z-10">
+                    本网站旨在推广黎府旅游，
+                    重点传播有关旅游景点、
+                    文化和自然的信息，以便感兴趣的人可以轻松访问信息
+                    并将其用于旅行规划，
+                    同时也帮助宣传黎府的魅力，使其广为人知。
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="pt-20 pb-10">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-20">
+            <!-- Brand -->
+            <div class="lg:col-span-2 space-y-6">
+                <a href="index-cn.html" class="text-3xl font-bold flex items-center gap-2 mb-4">
+                    <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+                </a>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
+                    本网站是职业证书毕业项目的一部分。
+                </p>
+            </div>
+
+            <!-- Links 1 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">关于网站</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="about-cn.html" class="hover:text-brand-orange transition-colors">关于我们</a></li>
+                    <li><a href="destinations-cn.html" class="hover:text-brand-orange transition-colors">推荐目的地</a>
+                    </li>
+                    <li><a href="trip-planner-cn.html" class="hover:text-brand-orange transition-colors">旅游攻略</a></li>
+                </ul>
+            </div>
+
+            <!-- Links 2 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">联系</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="contact-cn.html" class="hover:text-brand-orange transition-colors">联系我们</a></li>
+                    <li><a href="contact-cn.html" class="hover:text-brand-orange transition-colors">报告问题</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Links 3 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">资源与来源</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+
+                    <li><a href="#" class="hover:text-brand-orange transition-colors">图片来源</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center border-t border-gray-100 pt-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-gray-400 text-sm">© 2025 Travel Loei360° | Travel Loei360°</span>
+                <div class="flex gap-8">
+                    <a href="terms-cn.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">使用条款</a>
+                    <a href="privacy-cn.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">隐私政策</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

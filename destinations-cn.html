@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>旅游目的地 - Travel LOEI 360°</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700&family=Volkhov:wght@700&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#DF6951',
+                            yellow: '#F1A501',
+                            navy: '#181E4B',
+                            light: '#FFF1DA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Sarabun', 'sans-serif'],
+                        serif: ['Volkhov', 'serif'],
+                        cursive: ['Dancing Script', 'cursive'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #DF6951;
+            border-radius: 4px;
+        }
+
+        .detail-label {
+            font-weight: 700;
+            color: #181E4B;
+            min-width: 100px;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-navy antialiased">
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 top-0 py-6 transition-all duration-300">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="index-cn.html" class="text-2xl font-bold flex items-center gap-2">
+                <img src="./assets/logo.png" alt="Logo" class="h-16 w-auto object-contain">
+                <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-12 font-medium text-xl">
+                <a href="index-cn.html" class="hover:text-brand-orange transition-colors">首页</a>
+                <a href="recommend-cn.html" class="hover:text-brand-orange transition-colors">推荐景点</a>
+                <a href="trip-planner-cn.html" class="hover:text-brand-orange transition-colors">旅游攻略</a>
+                <a href="about-cn.html" class="hover:text-brand-orange transition-colors">关于我们</a>
+                <a href="contact-cn.html" class="hover:text-brand-orange transition-colors">联系我们</a>
+            </div>
+            <div class="hidden md:flex items-center gap-6">
+                <div class="relative group">
+                    <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')"
+                        class="flex items-center gap-2 font-medium text-xl hover:text-brand-orange transition-colors focus:outline-none">
+                        <span>CN</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div id="lang-dropdown"
+                        class="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl py-2 hidden border border-gray-100 z-50">
+                        <a href="destinations.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">ไทย</a>
+                        <a href="destinations-en.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">English</a>
+                        <a href="destinations-cn.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors text-brand-orange font-bold">中文</a>
+                    </div>
+                </div>
+            </div>
+            <button class="md:hidden text-brand-navy focus:outline-none"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full left-0 top-full p-6 space-y-4">
+            <a href="index-cn.html" class="block hover:text-brand-orange">首页</a>
+            <a href="recommend-cn.html" class="block hover:text-brand-orange">推荐景点</a>
+            <a href="trip-planner-cn.html" class="block hover:text-brand-orange">旅游攻略</a>
+            <a href="about-cn.html" class="block hover:text-brand-orange">关于我们</a>
+            <a href="contact-cn.html" class="block hover:text-brand-orange">联系我们</a>
+            <div class="border-t border-gray-100 pt-4 flex items-center gap-4 font-medium">
+                <span class="text-gray-400 text-sm">语言:</span>
+                <a href="destinations.html" class="text-gray-500 hover:text-brand-orange">TH</a>
+                <span class="text-gray-300">|</span>
+                <a href="destinations-en.html" class="text-gray-500 hover:text-brand-orange">EN</a>
+                <span class="text-gray-300">|</span>
+                <a href="destinations-cn.html" class="text-brand-orange">CN</a>
+            </div>
+        </div>
+    </nav>
+    <section class="pt-40 pb-20 relative bg-brand-light/30">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="font-serif text-5xl lg:text-6xl font-bold text-brand-navy mb-6">所有景点</h1>
+            <p class="text-gray-500 text-lg max-w-2xl mx-auto">汇集旅游景点、开放时间和交通指南的综合信息，尽在这里。</p>
+        </div>
+    </section>
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- 1. Chiang Khan Walking Street -->
+                <div id="chiang-khan" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/3.jpg')">
+                        <img src="./assets/Recommended places to visit/3.jpg" alt="Chiang Khan Walking Street"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">1. 清坎步行街</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">清坎步行街，位于清坎县，距离黎府市区约 47 公里。这是一个位于湄公河畔的夜市，两旁是拥有 100
+                            多年历史的木屋。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 每天 17.00-22.00</p>
+                            <p><span class="font-bold">地址:</span> Chai Khong Rd, Chiang Khan, Loei 42110</p>
+                            <p><span class="font-bold">停车:</span> Tha Khok 寺或附近的私人停车场</p>
+                            <p><span class="font-bold">地图:</span> <a href="https://maps.google.com/?q=ถนนคนเดินเชียงคาน"
+                                    target="_blank" class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 47 公里</p>
+                            <p><span class="font-bold">车程:</span> 50 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 2. Phu Thok -->
+                <div id="phu-thok" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/4.webp')">
+                        <img src="./assets/Recommended places to visit/4.webp" alt="Phu Thok"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">2. 普拓山 (清坎)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">普拓山是位于湄公河畔的高山。这里是清坎最美丽的云海观景点之一，非常适合观看日出和河景全景。
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 每天 05.00-17.00</p>
+                            <p><span class="font-bold">地址:</span> Chiang Khan, Loei 42110</p>
+                            <p><span class="font-bold">费用:</span> 接驳车 20-30 泰铢/人</p>
+                            <p><span class="font-bold">地图:</span> <a href="https://maps.google.com/?q=ภูทอก+เชียงคาน"
+                                    target="_blank" class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 52 公里</p>
+                            <p><span class="font-bold">车程:</span> 55 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 3. Skywalk Chiang Khan -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/3. Skywalk Chiang Khan.jpg')">
+                        <img src="./assets/destinations/3. Skywalk Chiang Khan.jpg" alt="Skywalk Chiang Khan"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">3. 清坎天空步道</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">位于清坎县 Pak Tom，Hueang 河与湄公河的交汇处。玻璃栈道高出湄公河水位约
+                            80 米。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 每天 07.00-18.00</p>
+                            <p><span class="font-bold">地址:</span> Ban Tha Di Mi, Pak Tom, Chiang Khan, Loei</p>
+                            <p><span class="font-bold">费用:</span> 接驳车 + 鞋套 60 泰铢</p>
+                            <p><span class="font-bold">地图:</span> <a href="https://maps.google.com/?q=Skywalk+เชียงคาน"
+                                    target="_blank" class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 70 公里</p>
+                            <p><span class="font-bold">车程:</span> 1 小时 10 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 4. Kaeng Khut Khu -->
+                <div id="kaeng-khut-khu" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/6.webp')">
+                        <img src="./assets/Recommended places to visit/6.webp" alt="Kaeng Khut Khu"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">4. 库库急流</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            湄公河中的大型急流区，拥有许多巨大的岩石。强劲的水流使其成为一处壮观的景象。最适合在旱季（2月-5月）乘坐游船。
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 08.00-18.00</p>
+                            <p><span class="font-bold">地址:</span> Chiang Khan, Loei</p>
+                            <p><span class="font-bold">停车:</span> 有充足的停车位</p>
+                            <p><span class="font-bold">地图:</span> <a href="https://maps.google.com/?q=แก่งคุดคู้"
+                                    target="_blank" class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 50 公里</p>
+                            <p><span class="font-bold">车程:</span> 55 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 5. Phu Ruea National Park -->
+                <div id="phu-ruea" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/2.jpg')">
+                        <img src="./assets/Recommended places to visit/2.jpg" alt="Phu Ruea National Park"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">5. 普惹国家公园</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">"暹罗最冷的地方"。山顶终年寒冷，是美丽的日出观赏点，种有许多冬季花卉。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 05.00-18.00 (观景点)</p>
+                            <p><span class="font-bold">地址:</span> Phu Ruea, Loei</p>
+                            <p><span class="font-bold">费用:</span> 成人 40 泰铢, 儿童 20 泰铢 (仅参考)</p>
+                            <p><span class="font-bold">地图:</span> <a
+                                    href="https://maps.google.com/?q=อุทยานแห่งชาติภูเรือ" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 50 公里</p>
+                            <p><span class="font-bold">车程:</span> 1 小时</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 6. Phu Kradueng -->
+                <div id="phu-kradueng" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/1.jpg')">
+                        <img src="./assets/Recommended places to visit/1.jpg" alt="Phu Kradueng"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">6. 普卡敦国家公园</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">徒步旅行者的传奇山峰。攀登是对体力的考验。以 Nok Aen 悬崖的日出和 Lom Sak
+                            悬崖的日落而闻名。
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 10月 - 5月 (雨季关闭)</p>
+                            <p><span class="font-bold">地址:</span> Phu Kradueng, Loei</p>
+                            <p><span class="font-bold">费用:</span> 门票 + 搬运费 (可选)</p>
+                            <p><span class="font-bold">地图:</span> <a
+                                    href="https://maps.google.com/?q=อุทยานแห่งชาติภูกระดึง" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 75 公里</p>
+                            <p><span class="font-bold">车程:</span> 1 小时 15 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 7. Suan Hin Pha Ngam -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/7. สวนหินผางาม.jpg')">
+                        <img src="./assets/destinations/7. สวนหินผางาม.jpg" alt="Suan Hin Pha Ngam"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">7. 石林 (昆明 - 黎府)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">被称为“黎府昆明”，拥有复杂而美丽的石灰岩悬崖，宛如童话般的山脉，还有令人兴奋的自然步道。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 08.00-18.00</p>
+                            <p><span class="font-bold">地址:</span> Nong Hin, Loei</p>
+                            <p><span class="font-bold">费用:</span> 拖拉机接驳车 20-30 泰铢</p>
+                            <p><span class="font-bold">地图:</span> <a href="https://maps.google.com/?q=สวนหินผางาม"
+                                    target="_blank" class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 45 公里</p>
+                            <p><span class="font-bold">车程:</span> 45 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 8. Phu Pa Poh -->
+                <div id="phu-pa-po" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/5.jpg')">
+                        <img src="./assets/Recommended places to visit/5.jpg" alt="Phu Pa Poh"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">8. 普帕波 (黎府富士山)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">一个俯瞰 Phu Ho 山的观景点，外形酷似富士山。游客乘坐当地拖拉机上去观看 360 度全景。
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 05.00-18.00</p>
+                            <p><span class="font-bold">地址:</span> Puan Phu, Nong Hin, Loei</p>
+                            <p><span class="font-bold">费用:</span> 拖拉机费用 50-60 泰铢</p>
+                            <p><span class="font-bold">地图:</span> <a href="https://maps.google.com/?q=ภูป่าเปาะ"
+                                    target="_blank" class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 45 公里</p>
+                            <p><span class="font-bold">车程:</span> 45 分钟 (靠近石林)</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 9. Phra That Sri Song Rak -->
+                <div id="phra-that-si-song-rak" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/7.webp')">
+                        <img src="./assets/Recommended places to visit/7.webp" alt="Phra That Sri Song Rak"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">9. 斯里两爱佛塔</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">象征友谊和团结的神圣佛塔。注意：佛塔区域内禁止穿红色衣服。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 08.00-16.30</p>
+                            <p><span class="font-bold">地址:</span> Dan Sai, Loei</p>
+                            <p><span class="font-bold">规定:</span> 禁止穿红色衣服</p>
+                            <p><span class="font-bold">地图:</span> <a href="https://maps.google.com/?q=พระธาตุศรีสองรัก"
+                                    target="_blank" class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 83 公里</p>
+                            <p><span class="font-bold">车程:</span> 1 小时 20 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 10. Phi Ta Khon Museum -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/10. พิพิธภัณฑ์ผีตาโขน.jpg')">
+                        <img src="./assets/destinations/10. พิพิธภัณฑ์ผีตาโขน.jpg" alt="Phi Ta Khon Museum"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">10. 鬼面节博物馆</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">位于丹塞的 Wat Phon Chai (蓬猜寺)。展示了鬼面节的历史、模型和面具绘制演示。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 08.00-17.00</p>
+                            <p><span class="font-bold">地址:</span> Wat Phon Chai, Dan Sai, Loei</p>
+                            <p><span class="font-bold">费用:</span> 免费入场</p>
+                            <p><span class="font-bold">地图:</span> <a
+                                    href="https://maps.google.com/?q=พิพิธภัณฑ์ผีตาโขน+วัดโพนชัย" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 83 公里</p>
+                            <p><span class="font-bold">车程:</span> 1 小时 20 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 11. Huai Krathing -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/11. อ่างเก็บน้ำห้วยกระทิง.jpg')">
+                        <img src="./assets/destinations/11. อ่างเก็บน้ำห้วยกระทิง.jpg" alt="Huai Krathing"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">11. 惠克拉廷水库 (Huai Krathing)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">一个气氛宁静的自然旅游景点。非常适合竹筏漂流、用餐和与家人一起放松。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 09.00-18.00</p>
+                            <p><span class="font-bold">地址:</span> Mueang Loei, Loei</p>
+                            <p><span class="font-bold">活动:</span> 漂流, 用餐</p>
+                            <p><span class="font-bold">地图:</span> <a
+                                    href="https://maps.google.com/?q=อ่างเก็บน้ำห้วยกระทิง" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 25 公里</p>
+                            <p><span class="font-bold">车程:</span> 30 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 12. Wat Neramit Wipatsana -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/12. วัดเนรมิตวิปัสสนา.jpg')">
+                        <img src="./assets/destinations/12. วัดเนรมิตวิปัสสนา.jpg" alt="Wat Neramit Wipatsana"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">12. 涅拉米特维帕萨纳寺</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">山上的一座美丽寺庙，完全由红土石建成。内部供奉着一尊成功佛的复制品。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 06.00-18.00</p>
+                            <p><span class="font-bold">地址:</span> Dan Sai, Loei</p>
+                            <p><span class="font-bold">地图:</span> <a href="https://maps.google.com/?q=วัดเนรมิตวิปัสสนา"
+                                    target="_blank" class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 82 公里</p>
+                            <p><span class="font-bold">车程:</span> 1 小时 20 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 13. Phu Luang -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/13. เขตรักษาพันธุ์สัตว์ป่าภูหลวง.jpeg')">
+                        <img src="./assets/destinations/13. เขตรักษาพันธุ์สัตว์ป่าภูหลวง.jpeg" alt="Phu Luang"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">13. 普銮野生动物保护区</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">被称为“依善翡翠”，拥有丰富的大自然、茂密的森林和各种野生兰花（特别是白色杜鹃花）。终年气候凉爽。
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 08.00-16.00 (请检查季节)</p>
+                            <p><span class="font-bold">地址:</span> Phu Ruea, Loei</p>
+                            <p><span class="font-bold">地图:</span> <a
+                                    href="https://maps.google.com/?q=เขตรักษาพันธุ์สัตว์ป่าภูหลวง" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 40 公里</p>
+                            <p><span class="font-bold">车程:</span> 45 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 14. Namtok Pla Ba -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/14. น้ำตกปลาบ่า.jpg')">
+                        <img src="./assets/destinations/14. น้ำตกปลาบ่า.jpg" alt="Pla Ba Waterfall"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">14. Pla Ba 瀑布</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">被大自然环绕的美丽瀑布，适合游泳和野餐。位于普惹附近，气氛宁静。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 08.00-17.00</p>
+                            <p><span class="font-bold">地址:</span> Ban Pla Ba, Phu Ruea, Loei</p>
+                            <p><span class="font-bold">地图:</span> <a href="https://maps.google.com/?q=น้ำตกปลาบ่า"
+                                    target="_blank" class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 60 公里</p>
+                            <p><span class="font-bold">车程:</span> 1 小时</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 15. Phu Pha Man -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/15. อุทยานแห่งชาติภูผาม่าน.jpg')">
+                        <img src="./assets/destinations/15. อุทยานแห่งชาติภูผาม่าน.jpg" alt="Phu Pha Man National Park"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">15. 普帕曼国家公园</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">突出的石灰岩悬崖映衬着天空。亮点是蝙蝠洞，傍晚时分会有数百万只蝙蝠飞出，连绵不绝。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 06.00-18.00</p>
+                            <p><span class="font-bold">地址:</span> Phu Pha Man, Khon Kaen (连接黎府)</p>
+                            <p><span class="font-bold">地图:</span> <a
+                                    href="https://maps.google.com/?q=อุทยานแห่งชาติภูผาม่าน" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 80 公里</p>
+                            <p><span class="font-bold">车程:</span> 1 小时 15 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 16. Phra That Satja -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/16. พระธาตุสัจจะ.jpg')">
+                        <img src="./assets/destinations/16. พระธาตุสัจจะ.jpg" alt="Phra That Satja"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">16. 萨贾佛塔 (Phra That Satja)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Tha Li 人民的神圣佛塔，仿照帕那侬佛塔风格建造。白色的佛塔配上金色图案，非常美丽。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 06.00-18.00</p>
+                            <p><span class="font-bold">地址:</span> Wat Lat Pu Song Tham, Tha Li, Loei</p>
+                            <p><span class="font-bold">地图:</span> <a
+                                    href="https://maps.google.com/?q=พระธาตุสัจจะ+ท่าลี่" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 45 公里</p>
+                            <p><span class="font-bold">车程:</span> 50 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 17. Wat Pa Huay Lad -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/17. วัดป่าห้วยลาด.jpg')">
+                        <img src="./assets/destinations/17. วัดป่าห้วยลาด.jpg" alt="Wat Pa Huay Lad"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">17. 帕惠拉德寺 (Wat Pa Huay Lad)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">一座拥有许多精美雕塑的寺院，包括那伽、三相神和各种神圣物品。气氛宁静。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 07.00-18.00</p>
+                            <p><span class="font-bold">地址:</span> Phu Ruea, Loei</p>
+                            <p><span class="font-bold">地图:</span> <a
+                                    href="https://maps.google.com/?q=วัดป่าห้วยลาด+ภูเรือ" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 55 公里</p>
+                            <p><span class="font-bold">车程:</span> 1 小时</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 18. TSA Flower Garden -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/18. สวนดาว TSA Flower Garden.jpg')">
+                        <img src="./assets/destinations/18. สวนดาว TSA Flower Garden.jpg" alt="TSA Flower Garden"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">18. TSA 花园</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">种有各种花卉的冬季花园。冬季热门的拍照打卡点（仅在季节性开放）。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 08.00-17.00 (请在访问前检查)</p>
+                            <p><span class="font-bold">地址:</span> Phu Ruea, Loei</p>
+                            <p><span class="font-bold">地图:</span> <a href="https://maps.google.com/?q=TSA+Flower+Garden"
+                                    target="_blank" class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 52 公里</p>
+                            <p><span class="font-bold">车程:</span> 55 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 19. Suan Kut Pong -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/19. สวนสาธารณะกุดป่อง.webp')">
+                        <img src="./assets/destinations/19. สวนสาธารณะกุดป่อง.webp" alt="Kut Pong Public Park"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">19. 库蓬公园</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">城市的绿肺。大树遮荫，气氛凉爽。适合傍晚散步、锻炼或野餐。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 05.00-20.00</p>
+                            <p><span class="font-bold">地址:</span> Kut Pong, Mueang Loei (城柱神社后面)</p>
+                            <p><span class="font-bold">地图:</span> <a href="https://maps.google.com/?q=สวนสาธารณะกุดป่อง"
+                                    target="_blank" class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 0 公里</p>
+                            <p><span class="font-bold">车程:</span> 1-5 分钟</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 20. Loei Night Bazaar -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/20. ตลาดไนท์บาซาร์เมืองเลย.webp')">
+                        <img src="./assets/destinations/20. ตลาดไนท์บาซาร์เมืองเลย.webp" alt="Loei Night Bazaar"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">20. 黎府夜市</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">汇集当地美食、服装和纪念品的中心，价格亲民。位于市中心，夜晚气氛热闹。</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">开放时间:</span> 17.00-22.00</p>
+                            <p><span class="font-bold">地址:</span> Mueang Loei, Loei</p>
+                            <p><span class="font-bold">地图:</span> <a
+                                    href="https://maps.google.com/?q=ตลาดไนท์บาซาร์+เมืองเลย" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">查看地图</a></p>
+                            <p><span class="font-bold">距离市区:</span> 0 公里</p>
+                            <p><span class="font-bold">车程:</span> 5 分钟</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="pt-20 pb-10">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-20">
+            <div class="lg:col-span-2 space-y-6">
+                <a href="index-cn.html" class="text-3xl font-bold flex items-center gap-2 mb-4">
+                    <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+                </a>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-xs">本网站是职业证书毕业项目的一部分。</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">关于网站</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="about-cn.html" class="hover:text-brand-orange transition-colors">关于我们</a></li>
+                    <li><a href="destinations-cn.html" class="hover:text-brand-orange transition-colors">推荐目的地</a></li>
+                    <li><a href="trip-planner-cn.html" class="hover:text-brand-orange transition-colors">旅游攻略</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">联系</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="contact-cn.html" class="hover:text-brand-orange transition-colors">联系我们</a></li>
+                    <li><a href="contact-cn.html" class="hover:text-brand-orange transition-colors">报告问题</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">资源与来源</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="#" class="hover:text-brand-orange transition-colors">图片来源</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 text-center border-t border-gray-100 pt-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-gray-400 text-sm">© 2025 Travel Loei360°</span>
+                <div class="flex gap-8">
+                    <a href="terms-cn.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">使用条款</a>
+                    <a href="privacy-cn.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">隐私政策</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="imageModal" class="fixed inset-0 z-[60] bg-black/90 hidden flex items-center justify-center p-4"
+        onclick="closeModal()">
+        <span class="absolute top-5 right-5 text-white text-4xl cursor-pointer hover:text-brand-orange">&times;</span>
+        <img id="expandedImg"
+            class="max-w-full max-h-screen rounded-lg shadow-2xl transform scale-95 transition-transform duration-300"
+            src="" alt="Expanded Image">
+    </div>
+    <script>
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const expandedImg = document.getElementById('expandedImg');
+            expandedImg.src = imgSrc;
+            modal.classList.remove('hidden');
+            setTimeout(() => { expandedImg.classList.remove('scale-95'); expandedImg.classList.add('scale-100'); }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            const expandedImg = document.getElementById('expandedImg');
+            expandedImg.classList.remove('scale-100');
+            expandedImg.classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; }, 300);
+        }
+    </script>
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) { navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3'); navbar.classList.remove('py-6'); }
+            else { navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3'); navbar.classList.add('py-6'); }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Loei Province Info - Travel LOEI 360°</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@400;500;600;700&family=Sarabun:wght@400;500;700&family=Volkhov:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#DF6951',
+                            yellow: '#F1A501',
+                            navy: '#181E4B',
+                            light: '#FFF1DA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Sarabun', 'sans-serif'],
+                        serif: ['Volkhov', 'serif'],
+                        cursive: ['Dancing Script', 'cursive'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #DF6951;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-navy antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 top-0 py-6 transition-all duration-300">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index-en.html" class="text-2xl font-bold flex items-center gap-2">
+                <img src="./assets/logo.png" alt="Logo" class="h-16 w-auto object-contain">
+                <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-12 font-medium text-xl">
+                <a href="index-en.html" class="hover:text-brand-orange transition-colors">Home</a>
+                <a href="recommend-en.html" class="hover:text-brand-orange transition-colors">Recommend</a>
+                <a href="trip-planner-en.html" class="hover:text-brand-orange transition-colors">Trip Tips</a>
+                <a href="about-en.html" class="hover:text-brand-orange transition-colors">About</a>
+                <a href="contact-en.html" class="hover:text-brand-orange transition-colors">Contact</a>
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="hidden md:flex items-center gap-6">
+                <div class="relative group">
+                    <button class="flex items-center gap-2 font-medium text-xl text-brand-orange transition-colors">
+                        <span>EN</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown -->
+                    <div
+                        class="absolute right-0 top-full mt-2 w-32 bg-white rounded-xl shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right z-50">
+                        <a href="loei-info.html"
+                            class="block px-6 py-3 hover:bg-orange-50 hover:text-brand-orange transition-colors text-gray-600">TH
+                            - Thai</a>
+                        <a href="loei-info-en.html"
+                            class="block px-6 py-3 bg-orange-50 text-brand-orange font-medium">EN - English</a>
+                        <a href="index-cn.html"
+                            class="block px-6 py-3 hover:bg-orange-50 hover:text-brand-orange transition-colors text-gray-600">CN
+                            - Chinese</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-brand-navy focus:outline-none"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full left-0 top-full p-6 space-y-4">
+            <a href="index-en.html" class="block hover:text-brand-orange">Home</a>
+            <a href="recommend-en.html" class="block hover:text-brand-orange">Recommend</a>
+            <a href="trip-planner-en.html" class="block hover:text-brand-orange">Trip Tips</a>
+            <a href="about-en.html" class="block hover:text-brand-orange">About</a>
+            <a href="contact-en.html" class="block hover:text-brand-orange">Contact</a>
+
+            <!-- Mobile Language Switcher -->
+            <div class="border-t border-gray-100 pt-4 flex items-center gap-4 font-medium">
+                <span class="text-gray-400 text-sm">Language:</span>
+                <a href="loei-info.html" class="text-gray-500 hover:text-brand-orange">TH</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="text-brand-orange">EN</a>
+                <span class="text-gray-300">|</span>
+                <a href="index-cn.html" class="text-gray-500 hover:text-brand-orange">CN</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Scroll Script -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.add('py-6');
+            }
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="pt-40 pb-20 relative bg-brand-light/30">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="font-serif text-5xl lg:text-6xl font-bold text-brand-navy mb-6">Loei Province Info</h1>
+            <p class="text-gray-500 text-lg max-w-2xl mx-auto">Get to know Loei better, the land of mountains and
+                culture.</p>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl space-y-20">
+
+            <!-- Intro -->
+            <div class="space-y-6">
+                <h2 class="font-serif text-3xl font-bold text-brand-navy border-l-4 border-brand-orange pl-4">
+                    Introduction to Loei</h2>
+                <p class="text-gray-600 leading-relaxed text-lg text-justify">
+                    Loei is a province known for its outstanding nature, mountains, and fresh air, offering a peaceful
+                    atmosphere
+                    suitable for relaxing and experiencing the simple lifestyle of the local community.
+                    Loei also has diverse tourist attractions, including nature, culture, and unique traditions,
+                    reflecting the charm of a small town full of warmth and beauty.
+                </p>
+            </div>
+
+            <!-- Attractions -->
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div class="space-y-6">
+                    <h2 class="font-serif text-3xl font-bold text-brand-navy border-l-4 border-brand-orange pl-4">
+                        Interesting Attractions</h2>
+                    <p class="text-gray-600 leading-relaxed text-lg text-justify">
+                        Loei has a variety of attractions suitable for all groups of travelers,
+                        whether it be natural attractions, viewpoints, or cultural tourism sites.
+                        Most attractions are rich in nature and have a quiet atmosphere,
+                        perfect for relaxation, photography, and learning about local stories.
+                    </p>
+                </div>
+                <div class="rounded-3xl overflow-hidden shadow-xl h-64">
+                    <img src="./assets/Recommended places to visit/1.jpg" alt="Phu Kradueng"
+                        class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Culture -->
+            <div class="grid md:grid-cols-2 gap-10 items-center md:flex-row-reverse">
+                <div class="rounded-3xl overflow-hidden shadow-xl h-64 order-2 md:order-1">
+                    <img src="./assets/Phi Ta Khon.webp" alt="Phi Ta Khon" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-6 order-1 md:order-2">
+                    <h2 class="font-serif text-3xl font-bold text-brand-navy border-l-4 border-brand-orange pl-4">
+                        Culture and Local Lifestyle</h2>
+                    <p class="text-gray-600 leading-relaxed text-lg text-justify">
+                        The culture of Loei is simple and reflects the way of life of the local community.
+                        People are friendly and still preserve traditional customs such as local traditions, beliefs,
+                        and living close to nature.
+                        These cultures are important charms that help create a unique identity for Loei and attract
+                        tourists to learn and experience new things.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Nature -->
+            <div class="space-y-6">
+                <h2 class="font-serif text-3xl font-bold text-brand-navy border-l-4 border-brand-orange pl-4">
+                    Nature and Environment</h2>
+                <p class="text-gray-600 leading-relaxed text-lg text-justify">
+                    Loei has abundant natural resources, including mountains, forests, and beautiful natural attractions
+                    suitable for ecotourism. Tourists can experience fresh air,
+                    enjoy views of mountains and sea of mist,
+                    and learn about tourism that considers environmental and natural resource conservation.
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <img src="./assets/Recommended places to visit/2.jpg"
+                        class="rounded-xl shadow-md h-48 w-full object-cover">
+                    <img src="./assets/Recommended places to visit/4.webp"
+                        class="rounded-xl shadow-md h-48 w-full object-cover">
+                    <img src="./assets/Recommended places to visit/5.jpg"
+                        class="rounded-xl shadow-md h-48 w-full object-cover">
+                </div>
+            </div>
+
+            <!-- Travel Info & Best Time -->
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="bg-brand-light/30 p-8 rounded-3xl space-y-4">
+                    <h3 class="font-bold text-2xl text-brand-navy">🚗 Basic Travel Info</h3>
+                    <p class="text-gray-600 leading-relaxed text-justify">
+                        Tourists can travel to Loei by private car or public bus,
+                        traveling conveniently from nearby provinces or Bangkok.
+                        Within the province, there are transportation routes that easily connect to major tourist
+                        attractions,
+                        allowing tourists to plan their trips appropriately.
+                    </p>
+                </div>
+                <div class="bg-blue-50 p-8 rounded-3xl space-y-4">
+                    <h3 class="font-bold text-2xl text-brand-navy">📅 Best Time to Visit</h3>
+                    <p class="text-gray-600 leading-relaxed text-justify">
+                        Loei can be visited all year round, but the most popular time is winter
+                        due to the cool weather and the chance to see the sea of mist in many areas.
+                        In the rainy season, nature is lush green, suitable for those who love nature and tranquility.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Objective -->
+            <div class="bg-[#2581c4] text-white p-10 rounded-[2.5rem] text-center space-y-4 relative overflow-hidden">
+                <!-- Decor -->
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
+                </div>
+
+                <h2 class="font-serif text-3xl font-bold relative z-10">Website Objective</h2>
+                <p class="text-gray-300 leading-relaxed text-lg max-w-2xl mx-auto relative z-10">
+                    This website was created to promote tourism in Loei,
+                    focusing on disseminating information about tourist attractions,
+                    culture, and nature so that interested people can easily access information
+                    and use it for travel planning,
+                    as well as helping to publicize the charm of Loei to be more widely known.
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="pt-20 pb-10">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-20">
+            <!-- Brand -->
+            <div class="lg:col-span-2 space-y-6">
+                <a href="index-en.html" class="text-3xl font-bold flex items-center gap-2 mb-4">
+                    <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+                </a>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
+                    This website was created for a Vocational Certificate graduation project.
+                </p>
+            </div>
+
+            <!-- Links 1 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">About Website</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="about-en.html" class="hover:text-brand-orange transition-colors">About Us</a></li>
+                    <li><a href="destinations-en.html" class="hover:text-brand-orange transition-colors">Recommended
+                            Destinations</a>
+                    </li>
+                    <li><a href="trip-planner-en.html" class="hover:text-brand-orange transition-colors">Tips</a></li>
+                </ul>
+            </div>
+
+            <!-- Links 2 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">Contact</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="contact-en.html" class="hover:text-brand-orange transition-colors">Contact Us</a></li>
+                    <li><a href="contact-en.html" class="hover:text-brand-orange transition-colors">Report Issues</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Links 3 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">Credits & Resources</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+
+                    <li><a href="#" class="hover:text-brand-orange transition-colors">Image Credits</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center border-t border-gray-100 pt-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-gray-400 text-sm">© 2025 Travel Loei360° | Travel Loei360°</span>
+                <div class="flex gap-8">
+                    <a href="terms-en.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">Terms of
+                        Use</a>
+                    <a href="privacy-en.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">Privacy
+                        Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - TravelLOEI 360°</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@400;500;600;700&family=Sarabun:wght@400;500;700&family=Volkhov:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#DF6951',
+                            yellow: '#F1A501',
+                            navy: '#181E4B',
+                            light: '#FFF1DA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Sarabun', 'sans-serif'],
+                        serif: ['Volkhov', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #DF6951;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-navy antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 top-0 py-6 transition-all duration-300">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index-en.html" class="text-2xl font-bold flex items-center gap-2">
+                <img src="./assets/logo.png" alt="Logo" class="h-16 w-auto object-contain">
+                <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-12 font-medium text-xl">
+                <a href="index-en.html" class="hover:text-brand-orange transition-colors">Home</a>
+                <a href="recommend-en.html" class="hover:text-brand-orange transition-colors">Recommend</a>
+                <a href="trip-planner-en.html" class="hover:text-brand-orange transition-colors">Tips</a>
+                <a href="about-en.html" class="text-brand-orange transition-colors">About</a>
+                <a href="contact-en.html" class="hover:text-brand-orange transition-colors">Contact</a>
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="hidden md:flex items-center gap-6">
+                <div class="relative group">
+                    <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')"
+                        class="flex items-center gap-2 font-medium text-xl hover:text-brand-orange transition-colors focus:outline-none">
+                        <span>EN</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div id="lang-dropdown"
+                        class="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl py-2 hidden border border-gray-100 z-50">
+                        <a href="about.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">ไทย</a>
+                        <a href="about-en.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors text-brand-orange font-bold">English</a>
+                        <a href="index-cn.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">中文</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-brand-navy focus:outline-none"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full left-0 top-full p-6 space-y-4">
+            <a href="index-en.html" class="block hover:text-brand-orange">Home</a>
+            <a href="recommend-en.html" class="block hover:text-brand-orange">Recommend</a>
+            <a href="trip-planner-en.html" class="block hover:text-brand-orange">Tips</a>
+            <a href="about-en.html" class="block text-brand-orange font-bold">About</a>
+            <a href="contact-en.html" class="block hover:text-brand-orange">Contact</a>
+
+            <!-- Mobile Language Switcher -->
+            <!-- Mobile Language Switcher -->
+            <div class="border-t border-gray-100 pt-4 flex items-center gap-4 font-medium">
+                <span class="text-gray-400 text-sm">Language:</span>
+                <a href="about.html" class="text-gray-500 hover:text-brand-orange">TH</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="text-brand-orange">EN</a>
+                <span class="text-gray-300">|</span>
+                <a href="index-cn.html" class="text-gray-500 hover:text-brand-orange">CN</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section (About) -->
+    <section class="relative h-[60vh] flex items-center justify-center overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="/assets/Recommended places to visit/1.jpg" alt="Resort" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/30"></div>
+        </div>
+        <div class="relative z-10 text-center">
+            <h1 class="font-serif text-6xl lg:text-8xl font-bold text-white drop-shadow-lg">
+                About <span class="text-brand-orange">Us</span>
+            </h1>
+        </div>
+    </section>
+
+    <!-- Who We Are Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+            <!-- Left: Text -->
+            <div class="space-y-8">
+                <div>
+                    <h2 class="font-serif text-4xl lg:text-5xl font-bold text-brand-navy mb-4">
+                        Who Are <span class="text-brand-orange">We?</span>
+                    </h2>
+                    <p class="text-gray-500 leading-relaxed text-lg">
+                        3rd Year Vocational Certificate Students, Business Computer Major, Mahanakhon Loei-Asia
+                        Technological College <br>
+                        Project Advisor: Pornpairin Raksee
+                    </p>
+                </div>
+
+                <div>
+                    <h2 class="font-serif text-4xl lg:text-5xl font-bold text-brand-navy mb-4">
+                        About the <span class="text-brand-orange">Website</span>
+                    </h2>
+                    <p class="text-gray-500 leading-relaxed text-lg">
+                        The "Travel Loei" website was created to be a comprehensive source of tourism information in
+                        Loei province,
+                        which is distinguished by its nature, culture, and interesting local way of life.
+                        The content covers over 20 interesting tourist attractions,
+                        including popular natural sites, temples, community markets,
+                        and viewpoints known among tourists.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Right: Image -->
+            <div class="relative">
+                <img src="./assets/about-us.jpg"
+                    class="rounded-[2rem] shadow-2xl w-full h-[500px] object-cover cursor-zoom-in hover:opacity-95 transition-opacity"
+                    alt="Travel Boat" onclick="openModal(this.src)">
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Footer -->
+    <footer class="pt-20 pb-10">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-20">
+            <!-- Brand -->
+            <div class="lg:col-span-2 space-y-6">
+                <a href="index-en.html" class="text-3xl font-bold flex items-center gap-2 mb-4">
+                    <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+                </a>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
+                    This website was created as part of a vocational certificate graduation project.
+                </p>
+            </div>
+
+            <!-- Links 1 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">About Website</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="about-en.html" class="hover:text-brand-orange transition-colors">About Us</a></li>
+                    <li><a href="destinations-en.html"
+                            class="hover:text-brand-orange transition-colors">Destinations</a>
+                    </li>
+                    <li><a href="trip-planner-en.html" class="hover:text-brand-orange transition-colors">Tips</a></li>
+                </ul>
+            </div>
+
+            <!-- Links 2 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">Contact</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="contact-en.html" class="hover:text-brand-orange transition-colors">Contact Us</a></li>
+                    <li><a href="contact-en.html" class="hover:text-brand-orange transition-colors">Report Data
+                            Correction</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Links 3 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">Credits & Sources</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+
+                    <li><a href="#" class="hover:text-brand-orange transition-colors">Image Credits</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center border-t border-gray-100 pt-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-gray-400 text-sm">© 2025 Travel Loei360°</span>
+                <div class="flex gap-8">
+                    <a href="terms-en.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">Terms of
+                        Service</a>
+                    <a href="privacy-en.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">Privacy
+                        Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Lightbox Modal -->
+    <div id="imageModal" class="fixed inset-0 z-[60] bg-black/90 hidden flex items-center justify-center p-4"
+        onclick="closeModal()">
+        <span class="absolute top-5 right-5 text-white text-4xl cursor-pointer hover:text-brand-orange">&times;</span>
+        <img id="expandedImg"
+            class="max-w-full max-h-screen rounded-lg shadow-2xl transform scale-95 transition-transform duration-300"
+            src="" alt="Expanded Image">
+    </div>
+
+    <script>
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const expandedImg = document.getElementById('expandedImg');
+            expandedImg.src = imgSrc;
+            modal.classList.remove('hidden');
+            // Small timeout for animation reflow
+            setTimeout(() => {
+                expandedImg.classList.remove('scale-95');
+                expandedImg.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            const expandedImg = document.getElementById('expandedImg');
+
+            expandedImg.classList.remove('scale-100');
+            expandedImg.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = ''; // Restore scrolling
+            }, 300);
+        }
+    </script>
+    <!-- Scroll Script -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.add('py-6');
+            }
+        });
+    </script>
+</body>
+
+</html>

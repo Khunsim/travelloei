@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Destinations - Travel LOEI 360°</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700&family=Volkhov:wght@700&display=swap"
+        rel="stylesheet">
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#DF6951',
+                            yellow: '#F1A501',
+                            navy: '#181E4B',
+                            light: '#FFF1DA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Sarabun', 'sans-serif'],
+                        serif: ['Volkhov', 'serif'],
+                        cursive: ['Dancing Script', 'cursive'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #DF6951;
+            border-radius: 4px;
+        }
+
+        .detail-label {
+            font-weight: 700;
+            color: #181E4B;
+            min-width: 100px;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-navy antialiased">
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 top-0 py-6 transition-all duration-300">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <a href="index-en.html" class="text-2xl font-bold flex items-center gap-2">
+                <img src="./assets/logo.png" alt="Logo" class="h-16 w-auto object-contain">
+                <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+            </a>
+            <div class="hidden md:flex items-center space-x-12 font-medium text-xl">
+                <a href="index-en.html" class="hover:text-brand-orange transition-colors">Home</a>
+                <a href="recommend-en.html" class="hover:text-brand-orange transition-colors">Recommend</a>
+                <a href="trip-planner-en.html" class="hover:text-brand-orange transition-colors">Trip Planner</a>
+                <a href="about-en.html" class="hover:text-brand-orange transition-colors">About</a>
+                <a href="contact-en.html" class="hover:text-brand-orange transition-colors">Contact</a>
+            </div>
+            <div class="hidden md:flex items-center gap-6">
+                <div class="relative group">
+                    <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')"
+                        class="flex items-center gap-2 font-medium text-xl hover:text-brand-orange transition-colors focus:outline-none">
+                        <span>EN</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div id="lang-dropdown"
+                        class="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl py-2 hidden border border-gray-100 z-50">
+                        <a href="destinations.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">ไทย</a>
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors text-brand-orange font-bold">English</a>
+                        <a href="index-cn.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">中文</a>
+                    </div>
+                </div>
+            </div>
+            <button class="md:hidden text-brand-navy focus:outline-none"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full left-0 top-full p-6 space-y-4">
+            <a href="index-en.html" class="block hover:text-brand-orange">Home</a>
+            <a href="recommend-en.html" class="block hover:text-brand-orange">Recommend</a>
+            <a href="trip-planner-en.html" class="block hover:text-brand-orange">Trip Planner</a>
+            <a href="about-en.html" class="block hover:text-brand-orange">About</a>
+            <a href="contact-en.html" class="block hover:text-brand-orange">Contact</a>
+            <div class="border-t border-gray-100 pt-4 flex items-center gap-4 font-medium">
+                <span class="text-gray-400 text-sm">Language:</span>
+                <a href="destinations.html" class="text-gray-500 hover:text-brand-orange">TH</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="text-brand-orange">EN</a>
+                <span class="text-gray-300">|</span>
+                <a href="index-cn.html" class="text-gray-500 hover:text-brand-orange">CN</a>
+            </div>
+        </div>
+    </nav>
+    <section class="pt-40 pb-20 relative bg-brand-light/30">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="font-serif text-5xl lg:text-6xl font-bold text-brand-navy mb-6">All Attractions</h1>
+            <p class="text-gray-500 text-lg max-w-2xl mx-auto">Comprehensive information on tourist attractions, opening
+                hours, and travel directions, all in one place.</p>
+        </div>
+    </section>
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+                <!-- 1. Chiang Khan Walking Street -->
+                <div id="chiang-khan" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/3.jpg')">
+                        <img src="./assets/Recommended places to visit/3.jpg" alt="Chiang Khan Walking Street"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">1. Chiang Khan Walking Street</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Chiang Khan Walking Street, or Chai Khong Road, is
+                            located in Chiang Khan district, about 47 km from Loei city. It is a night market along the
+                            Mekong River, lined with wooden houses over 100 years old.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> Daily 17.00-22.00</p>
+                            <p><span class="font-bold">Address:</span> Chai Khong Rd, Chiang Khan, Loei 42110</p>
+                            <p><span class="font-bold">Parking:</span> Wat Tha Khok or nearby private lots</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=ถนนคนเดินเชียงคาน" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 47 km</p>
+                            <p><span class="font-bold">Travel time:</span> 50 mins by car</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 2. Phu Tok -->
+                <div id="phu-thok" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/4.webp')">
+                        <img src="./assets/Recommended places to visit/4.webp" alt="Phu Thok"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">2. Phu Thok (Chiang Khan)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Phu Thok involves a high mountain located by the
+                            Mekong River. It is one of the most beautiful viewpoints for the sea of mist in Chiang Khan,
+                            perfect for sunrise and panoramic river views.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> Daily 05.00-17.00</p>
+                            <p><span class="font-bold">Address:</span> Chiang Khan, Loei 42110</p>
+                            <p><span class="font-bold">Fee:</span> Shuttle bus 20-30 THB/person</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=ภูทอก+เชียงคาน" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 52 km</p>
+                            <p><span class="font-bold">Travel time:</span> 55 mins by car</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 3. Skywalk Chiang Khan -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/3. Skywalk Chiang Khan.jpg')">
+                        <img src="./assets/destinations/3. Skywalk Chiang Khan.jpg" alt="Skywalk Chiang Khan"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">3. Skywalk Chiang Khan (Phu Khok Ngio)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Located in Pak Tom, Chiang Khan, at the meeting
+                            point of the Hueang and Mekong rivers. The glass walkway is about 80 meters above the Mekong
+                            River level.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> Daily 07.00-18.00</p>
+                            <p><span class="font-bold">Address:</span> Ban Tha Di Mi, Pak Tom, Chiang Khan, Loei</p>
+                            <p><span class="font-bold">Fee:</span> Shuttle + Shoe covers 60 THB</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=Skywalk+เชียงคาน" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 70 km</p>
+                            <p><span class="font-bold">Travel time:</span> 1 hour 10 mins</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 4. Kaeng Khut Khu -->
+                <div id="kaeng-khut-khu" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/6.webp')">
+                        <img src="./assets/Recommended places to visit/6.webp" alt="Kaeng Khut Khu"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">4. Kaeng Khut Khu</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">A large rapid area in the Mekong River with many
+                            large rocks. The strong currents make it a sight to behold. Best visited in the dry season
+                            (Feb-May) for boat trips.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 08.00-18.00</p>
+                            <p><span class="font-bold">Address:</span> Chiang Khan, Loei</p>
+                            <p><span class="font-bold">Parking:</span> Ample parking available</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=แก่งคุดคู้" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 50 km</p>
+                            <p><span class="font-bold">Travel time:</span> 55 mins</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 5. Phu Ruea National Park -->
+                <div id="phu-ruea" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/2.jpg')">
+                        <img src="./assets/Recommended places to visit/2.jpg" alt="Phu Ruea National Park"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">5. Phu Ruea National Park</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">"The coldest place in Siam." The summit offers
+                            cold weather year-round and is a beautiful sunrise spot with many winter flowers.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 05.00-18.00 (Viewpoint)</p>
+                            <p><span class="font-bold">Address:</span> Phu Ruea, Loei</p>
+                            <p><span class="font-bold">Fee:</span> Adult 40 THB, Child 20 THB</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=อุทยานแห่งชาติภูเรือ" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 50 km</p>
+                            <p><span class="font-bold">Travel time:</span> 1 hour</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 6. Phu Kradueng -->
+                <div id="phu-kradueng" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/1.jpg')">
+                        <img src="./assets/Recommended places to visit/1.jpg" alt="Phu Kradueng"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">6. Phu Kradueng</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">A legendary mountain for trekkers. A test of
+                            strength to hike up. Famous for sunrise at Pha Nok Aen and sunset at Pha Lom Sak.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> Oct - May (Closed in rainy season)</p>
+                            <p><span class="font-bold">Address:</span> Phu Kradueng, Loei</p>
+                            <p><span class="font-bold">Fee:</span> Park fee + Porter fee (optional)</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=อุทยานแห่งชาติภูกระดึง" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 75 km</p>
+                            <p><span class="font-bold">Travel time:</span> 1 hour 15 mins</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 7. Suan Hin Pha Ngam -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/7. สวนหินผางาม.jpg')">
+                        <img src="./assets/destinations/7. สวนหินผางาม.jpg" alt="Suan Hin Pha Ngam"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">7. Suan Hin Pha Ngam</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Known as "Kunming of Loei," featuring complex and
+                            beautiful limestone cliffs like a fairytale mountain, with exciting nature trails.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 08.00-18.00</p>
+                            <p><span class="font-bold">Address:</span> Nong Hin, Loei</p>
+                            <p><span class="font-bold">Fee:</span> Shuttle tractor 20-30 THB</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=สวนหินผางาม" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 45 km</p>
+                            <p><span class="font-bold">Travel time:</span> 45 mins</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 8. Phu Pa Poh -->
+                <div id="phu-pa-po" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/5.jpg')">
+                        <img src="./assets/Recommended places to visit/5.jpg" alt="Phu Pa Poh"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">8. Phu Pa Poh (Fuji of Loei)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">A viewpoint overlooking Phu Ho, which resembles
+                            Mount Fuji. Visitors take a local tractor up to see the 360-degree view.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 05.00-18.00</p>
+                            <p><span class="font-bold">Address:</span> Puan Phu, Nong Hin, Loei</p>
+                            <p><span class="font-bold">Fee:</span> Tractor fee 50-60 THB</p>
+                            <p><span class="font-bold">Google Map:</span> <a href="https://maps.google.com/?q=ภูป่าเปาะ"
+                                    target="_blank" class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 45 km</p>
+                            <p><span class="font-bold">Travel time:</span> 45 mins (Near Suan Hin)</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 9. Phra That Sri Song Rak -->
+                <div id="phra-that-si-song-rak" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/7.webp')">
+                        <img src="./assets/Recommended places to visit/7.webp" alt="Phra That Sri Song Rak"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">9. Phra That Sri Song Rak</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">A sacred stupa symbolizing friendship and unity.
+                            Caution: Do not wear red clothing within the stupa area.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 08.00-16.30</p>
+                            <p><span class="font-bold">Address:</span> Dan Sai, Loei</p>
+                            <p><span class="font-bold">Rule:</span> No red clothing allowed</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=พระธาตุศรีสองรัก" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 83 km</p>
+                            <p><span class="font-bold">Travel time:</span> 1 hour 20 mins</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 10. Phi Ta Khon Museum -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/10. พิพิธภัณฑ์ผีตาโขน.jpg')">
+                        <img src="./assets/destinations/10. พิพิธภัณฑ์ผีตาโขน.jpg" alt="Phi Ta Khon Museum"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">10. Phi Ta Khon Museum</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Located at Wat Phon Chai in Dan Sai. It exhibits
+                            the history of the Phi Ta Khon festival, models, and mask-painting demonstrations.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 08.00-17.00</p>
+                            <p><span class="font-bold">Address:</span> Wat Phon Chai, Dan Sai, Loei</p>
+                            <p><span class="font-bold">Fee:</span> Free entry</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=พิพิธภัณฑ์ผีตาโขน+วัดโพนชัย" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 83 km</p>
+                            <p><span class="font-bold">Travel time:</span> 1 hour 20 mins</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 11. Huai Krathing -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/11. อ่างเก็บน้ำห้วยกระทิง.jpg')">
+                        <img src="./assets/destinations/11. อ่างเก็บน้ำห้วยกระทิง.jpg" alt="Huai Krathing"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">11. Huai Krathing Reservoir</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">A natural tourist spot with a peaceful atmosphere.
+                            Perfect for bamboo rafting, dining, and relaxing with family.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 09.00-18.00</p>
+                            <p><span class="font-bold">Address:</span> Mueang Loei, Loei</p>
+                            <p><span class="font-bold">Activity:</span> Rafting, Dining</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=อ่างเก็บน้ำห้วยกระทิง" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 25 km</p>
+                            <p><span class="font-bold">Travel time:</span> 30 mins</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 12. Wat Neramit Wipatsana -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/12. วัดเนรมิตวิปัสสนา.jpg')">
+                        <img src="./assets/destinations/12. วัดเนรมิตวิปัสสนา.jpg" alt="Wat Neramit Wipatsana"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">12. Wat Neramit Wipatsana</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">A beautiful temple on a hill, built entirely of
+                            laterite stone. Inside houses a replica of Phra Buddha Chinnarat.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 06.00-18.00</p>
+                            <p><span class="font-bold">Address:</span> Dan Sai, Loei</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=วัดเนรมิตวิปัสสนา" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 82 km</p>
+                            <p><span class="font-bold">Travel time:</span> 1 hour 20 mins</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 13. Phu Luang -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/13. เขตรักษาพันธุ์สัตว์ป่าภูหลวง.jpeg')">
+                        <img src="./assets/destinations/13. เขตรักษาพันธุ์สัตว์ป่าภูหลวง.jpeg" alt="Phu Luang"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">13. Phu Luang Wildlife Sanctuary</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Known as the "Emerald of Isan," featuring rich
+                            nature, lush forests, and various wild orchids (especially white rhododendrons). Cool
+                            weather all year.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 08.00-16.00 (Check seasons)</p>
+                            <p><span class="font-bold">Address:</span> Phu Ruea, Loei</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=เขตรักษาพันธุ์สัตว์ป่าภูหลวง" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 40 km</p>
+                            <p><span class="font-bold">Travel time:</span> 45 mins</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 14. Namtok Pla Ba -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/14. น้ำตกปลาบ่า.jpg')">
+                        <img src="./assets/destinations/14. น้ำตกปลาบ่า.jpg" alt="Pla Ba Waterfall"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">14. Pla Ba Waterfall</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">A beautiful waterfall surrounded by nature,
+                            suitable for swimming and picnicking. Peaceful atmosphere near Phu Ruea.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 08.00-17.00</p>
+                            <p><span class="font-bold">Address:</span> Ban Pla Ba, Phu Ruea, Loei</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=น้ำตกปลาบ่า" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 60 km</p>
+                            <p><span class="font-bold">Travel time:</span> 1 hour</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 15. Phu Pha Man -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/15. อุทยานแห่งชาติภูผาม่าน.jpg')">
+                        <img src="./assets/destinations/15. อุทยานแห่งชาติภูผาม่าน.jpg" alt="Phu Pha Man National Park"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">15. Phu Pha Man National Park</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">Outstanding limestone cliffs against the sky. The
+                            highlight is the bat cave with millions of bats flying out in a continuous stream during the
+                            evening.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 06.00-18.00</p>
+                            <p><span class="font-bold">Address:</span> Phu Pha Man, Khon Kaen (Connects to Loei)</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=อุทยานแห่งชาติภูผาม่าน" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 80 km</p>
+                            <p><span class="font-bold">Travel time:</span> 1 hour 15 mins</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 16. Phra That Satja -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/16. พระธาตุสัจจะ.jpg')">
+                        <img src="./assets/destinations/16. พระธาตุสัจจะ.jpg" alt="Phra That Satja"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">16. Phra That Satja</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">A sacred stupa of Tha Li people, built in the
+                            style of Phra That Phanom. The white stupa with gold motifs is very beautiful.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 06.00-18.00</p>
+                            <p><span class="font-bold">Address:</span> Wat Lat Pu Song Tham, Tha Li, Loei</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=พระธาตุสัจจะ+ท่าลี่" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 45 km</p>
+                            <p><span class="font-bold">Travel time:</span> 50 mins</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 17. Wat Pa Huay Lad -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/17. วัดป่าห้วยลาด.jpg')">
+                        <img src="./assets/destinations/17. วัดป่าห้วยลาด.jpg" alt="Wat Pa Huay Lad"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">17. Wat Pa Huay Lad</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">A monastery with many beautiful sculptures,
+                            including Naga, Trimurti, and various sacred items. Peaceful atmosphere.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 07.00-18.00</p>
+                            <p><span class="font-bold">Address:</span> Phu Ruea, Loei</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=วัดป่าห้วยลาด+ภูเรือ" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 55 km</p>
+                            <p><span class="font-bold">Travel time:</span> 1 hour</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 18. TSA Flower Garden -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/18. สวนดาว TSA Flower Garden.jpg')">
+                        <img src="./assets/destinations/18. สวนดาว TSA Flower Garden.jpg" alt="TSA Flower Garden"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">18. TSA Flower Garden</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">A winter flower garden with various species. A
+                            popular check-in spot for photos in winter (Open only in season).</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 08.00-17.00 (Check before visit)</p>
+                            <p><span class="font-bold">Address:</span> Phu Ruea, Loei</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=TSA+Flower+Garden" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 52 km</p>
+                            <p><span class="font-bold">Travel time:</span> 55 mins</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 19. Suan Kut Pong -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/19. สวนสาธารณะกุดป่อง.webp')">
+                        <img src="./assets/destinations/19. สวนสาธารณะกุดป่อง.webp" alt="Kut Pong Public Park"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">19. Kut Pong Public Park</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">The lung of the city. Shady atmosphere with large
+                            trees. Suitable for walking, exercising, or picknicking in the evening.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 05.00-20.00</p>
+                            <p><span class="font-bold">Address:</span> Kut Pong, Mueang Loei (Behind City Pillar Shrine)
+                            </p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=สวนสาธารณะกุดป่อง" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 0 km</p>
+                            <p><span class="font-bold">Travel time:</span> 1-5 mins</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- 20. Loei Night Bazaar -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/20. ตลาดไนท์บาซาร์เมืองเลย.webp')">
+                        <img src="./assets/destinations/20. ตลาดไนท์บาซาร์เมืองเลย.webp" alt="Loei Night Bazaar"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">20. Loei Night Bazaar</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">A hub for local food, clothes, and souvenirs with
+                            friendly prices. Lively atmosphere at night in the city center.</p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">Open:</span> 17.00-22.00</p>
+                            <p><span class="font-bold">Address:</span> Mueang Loei, Loei</p>
+                            <p><span class="font-bold">Google Map:</span> <a
+                                    href="https://maps.google.com/?q=ตลาดไนท์บาซาร์+เมืองเลย" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">View Map</a></p>
+                            <p><span class="font-bold">Distance from city:</span> 0 km</p>
+                            <p><span class="font-bold">Travel time:</span> 5 mins</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="pt-20 pb-10">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-20">
+            <div class="lg:col-span-2 space-y-6">
+                <a href="#" class="text-3xl font-bold flex items-center gap-2 mb-4">
+                    <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+                </a>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-xs">This website is created for educational
+                    purposes as part of a vocational certificate project.</p>
+            </div>
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">About Site</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="about-en.html" class="hover:text-brand-orange transition-colors">About Us</a></li>
+                    <li><a href="destinations-en.html"
+                            class="hover:text-brand-orange transition-colors">Destinations</a></li>
+                    <li><a href="trip-planner-en.html" class="hover:text-brand-orange transition-colors">Trip
+                            Planner</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">Contact</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="contact-en.html" class="hover:text-brand-orange transition-colors">Contact Us</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">Credits & Sources</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="#" class="hover:text-brand-orange transition-colors">Image Credits</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="container mx-auto px-6 text-center border-t border-gray-100 pt-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-gray-400 text-sm">© 2025 Travel Loei360°</span>
+                <div class="flex gap-8">
+                    <a href="terms-en.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">Terms of
+                        Service</a>
+                    <a href="privacy-en.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">Privacy
+                        Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="imageModal" class="fixed inset-0 z-[60] bg-black/90 hidden flex items-center justify-center p-4"
+        onclick="closeModal()">
+        <span class="absolute top-5 right-5 text-white text-4xl cursor-pointer hover:text-brand-orange">&times;</span>
+        <img id="expandedImg"
+            class="max-w-full max-h-screen rounded-lg shadow-2xl transform scale-95 transition-transform duration-300"
+            src="" alt="Expanded Image">
+    </div>
+    <script>
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const expandedImg = document.getElementById('expandedImg');
+            expandedImg.src = imgSrc;
+            modal.classList.remove('hidden');
+            setTimeout(() => { expandedImg.classList.remove('scale-95'); expandedImg.classList.add('scale-100'); }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            const expandedImg = document.getElementById('expandedImg');
+            expandedImg.classList.remove('scale-100');
+            expandedImg.classList.add('scale-95');
+            setTimeout(() => { modal.classList.add('hidden'); document.body.style.overflow = 'auto'; }, 300);
+        }
+    </script>
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) { navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3'); navbar.classList.remove('py-6'); }
+            else { navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3'); navbar.classList.add('py-6'); }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,775 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>สถานที่ท่องเที่ยว - Travel LOEI 360°</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@400;500;600;700&family=Sarabun:wght@300;400;500;600;700&family=Volkhov:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#DF6951',
+                            yellow: '#F1A501',
+                            navy: '#181E4B',
+                            light: '#FFF1DA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Sarabun', 'sans-serif'],
+                        serif: ['Volkhov', 'serif'],
+                        cursive: ['Dancing Script', 'cursive'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #DF6951;
+            border-radius: 4px;
+        }
+
+        /* Custom list style regarding the mock */
+        .detail-label {
+            font-weight: 700;
+            color: #181E4B;
+            min-width: 100px;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-navy antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 top-0 py-6 transition-all duration-300">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-bold flex items-center gap-2">
+                <img src="./assets/logo.png" alt="Logo" class="h-16 w-auto object-contain">
+                <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-12 font-medium text-xl">
+                <a href="index.html" class="hover:text-brand-orange transition-colors">หน้าแรก</a>
+                <a href="recommend.html" class="hover:text-brand-orange transition-colors">แนะนำ</a>
+                <a href="trip-planner.html" class="hover:text-brand-orange transition-colors">เคล็ดลับ</a>
+                <a href="about.html" class="hover:text-brand-orange transition-colors">เกี่ยวกับ</a>
+                <a href="contact.html" class="hover:text-brand-orange transition-colors">ติดต่อ</a>
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="hidden md:flex items-center gap-6">
+                <div class="relative group">
+                    <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')"
+                        class="flex items-center gap-2 font-medium text-xl hover:text-brand-orange transition-colors focus:outline-none">
+                        <span>TH</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div id="lang-dropdown"
+                        class="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl py-2 hidden border border-gray-100 z-50">
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors text-brand-orange font-bold">ไทย</a>
+                        <a href="destinations-en.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">English</a>
+                        <a href="index-cn.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">中文</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-brand-navy focus:outline-none"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full left-0 top-full p-6 space-y-4">
+            <a href="index.html" class="block hover:text-brand-orange">หน้าแรก</a>
+            <a href="recommend.html" class="block hover:text-brand-orange">แนะนำ</a>
+            <a href="trip-planner.html" class="block hover:text-brand-orange">เคล็ดลับ</a>
+            <a href="about.html" class="block hover:text-brand-orange">เกี่ยวกับ</a>
+            <a href="contact.html" class="block hover:text-brand-orange">ติดต่อ</a>
+
+            <!-- Mobile Language Switcher -->
+            <div class="border-t border-gray-100 pt-4 flex items-center gap-4 font-medium">
+                <span class="text-gray-400 text-sm">ภาษา:</span>
+                <a href="#" class="text-brand-orange">TH</a>
+                <span class="text-gray-300">|</span>
+                <a href="destinations-en.html" class="text-gray-500 hover:text-brand-orange">EN</a>
+                <span class="text-gray-300">|</span>
+                <a href="index-cn.html" class="text-gray-500 hover:text-brand-orange">CN</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-40 pb-20 relative bg-brand-light/30">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="font-serif text-5xl lg:text-6xl font-bold text-brand-navy mb-6">สถานที่ท่องเที่ยวทั้งหมด</h1>
+            <p class="text-gray-500 text-lg max-w-2xl mx-auto">รวมข้อมูลสถานที่ท่องเที่ยว เวลาเปิด-ปิด และการเดินทาง
+                ครบจบในที่เดียว</p>
+        </div>
+    </section>
+
+    <!-- All Attractions (List View) -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+
+                <!-- 1. Chiang Khan Walking Street -->
+                <div id="chiang-khan" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/3.jpg')">
+                        <img src="./assets/Recommended places to visit/3.jpg" alt="ถนนคนเดินเชียงคาน"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">1. ถนนคนเดินเชียงคาน</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            ถนนคนเดินเชียงคาน หรือ ถนนชายโขง ตั้งอยู่บริเวณถนนชายโขงในตัวอำเภอเมืองเชียงคาน
+                            อยู่ห่างจากตัวเมืองเลยประมาณ 47 กิโลเมตร มีลักษณะเป็นตลาดนัดกลางคืนติดถนนริมแม่น้ำโขง
+                            ยาวตั้งแต่ทิศตะวันตกจนถึงทิศตะวันออก บรรยากาศบ้านไม้เก่าแก่อายุกว่า 100 ปี
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> เปิดทุกวัน 17.00-22.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> ถนนชายโขง อำเภอเชียงคาน จังหวัดเลย 42110</p>
+                            <p><span class="font-bold">ที่จอดรถ :</span> มีลานจอดรถวัดท่าคก หรือลานจอดเอกชนใกล้เคียง</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=ถนนคนเดินเชียงคาน" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 47 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 50 นาทีโดยรถยนต์</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Phu Tok -->
+                <div id="phu-thok" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/4.webp')">
+                        <img src="./assets/Recommended places to visit/4.webp" alt="ภูทอก"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">2. ภูทอก (เชียงคาน)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            ภูทอก (เชียงคาน) มีลักษณะเป็นภูเขาสูง ตั้งอยู่ริมแม่น้ำโขง
+                            เป็นจุดชมวิวทะเลหมอกที่สวยงามที่สุดแห่งหนึ่งในอำเภอเชียงคาน
+                            สามารถชมพระอาทิตย์ขึ้นและทะเลหมอกหนาๆ ในยามเช้า และชมวิวแม่น้ำโขงได้แบบพาโนรามา
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> เปิดทุกวัน 05.00-17.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> ตำบลเชียงคาน อำเภอเชียงคาน จังหวัดเลย 42110</p>
+                            <p><span class="font-bold">ค่าบริการ :</span> รถรับส่งขึ้น-ลง ภูทอก คนละ 20-30 บาท</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=ภูทอก+เชียงคาน" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 52 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 55 นาทีโดยรถยนต์</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Skywalk Chiang Khan -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/3. Skywalk Chiang Khan.jpg')">
+                        <img src="./assets/destinations/3. Skywalk Chiang Khan.jpg" alt="สกายวอล์คเชียงคาน"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">3. Skywalk Chiang Khan (ภูคกงิ้ว)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            สกายวอล์ค เชียงคาน หรือ สกายวอล์ค ภูคกงิ้ว ตั้งอยู่ที่ ต.ปากตม อ.เชียงคาน จ.เลย
+                            เป็นจุดชมวิวแม่น้ำสองสี (แม่น้ำเหืองไหลมาบรรจบแม่น้ำโขง) ทางเดินทำด้วยกระจกใส
+                            สูงจากระดับแม่น้ำโขงประมาณ 80 เมตร
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> เปิดทุกวัน 07.00-18.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> บ้านท่าดีหมี ตำบลปากตม อำเภอเชียงคาน จังหวัดเลย
+                            </p>
+                            <p><span class="font-bold">ค่าบริการ :</span> รถรับส่ง+รองเท้าสวม 60 บาท</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=Skywalk+เชียงคาน" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 70 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 1 ชั่วโมง 10 นาที</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. Kaeng Khut Khu -->
+                <div id="kaeng-khut-khu" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/6.webp')">
+                        <img src="./assets/Recommended places to visit/6.webp" alt="แก่งคุดคู้"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">4. แก่งคุดคู้</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            แก่งหินขนาดใหญ่ขวางกลางแม่น้ำโขง ประกอบด้วยหินก้อนใหญ่ ๆ เป็นจำนวนมาก
+                            ตัวแก่งกว้างใหญ่เกือบจรดสองฝั่งแม่น้ำโขง มีกระแสน้ำไหลเชี่ยว
+                            เหมาะแก่การนั่งเรือชมวิว (แนะนำช่วงหน้าแล้ง ก.พ.-พ.ค. สวยสุด)
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 08.00-18.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> ต.เชียงคาน อ.เชียงคาน จ.เลย</p>
+                            <p><span class="font-bold">ที่จอดรถ :</span> มีลานจอดรถกว้างขวาง</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=แก่งคุดคู้" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 50 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 55 นาที</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5. Phu Ruea National Park -->
+                <div id="phu-ruea" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/2.jpg')">
+                        <img src="./assets/Recommended places to visit/2.jpg" alt="อุทยานแห่งชาติภูเรือ"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">5. อุทยานแห่งชาติภูเรือ</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            หนาวสุดในสยาม บนยอดภูเรือมีอากาศหนาวเย็นตลอดปี เป็นจุดชมวิวพระอาทิตย์ขึ้นที่สวยงาม
+                            มีดอกไม้เมืองหนาวให้ชมมากมาย โดยเฉพาะในช่วงฤดูหนาว
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 05.00-18.00 น. (จุดชมวิว)</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> อ.ภูเรือ จ.เลย</p>
+                            <p><span class="font-bold">ค่าบริการ :</span> ผู้ใหญ่ 40 บาท เด็ก 20 บาท</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=อุทยานแห่งชาติภูเรือ" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 50 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 1 ชั่วโมง</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. Phu Kradueng -->
+                <div id="phu-kradueng" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/1.jpg')">
+                        <img src="./assets/Recommended places to visit/1.jpg" alt="ภูกระดึง"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">6. ภูกระดึง</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            หนึ่งในขุนเขาที่เป็นตำนานของนักเดินทาง ต้องเดินเท้าขึ้นเขาเพื่อพิสูจน์ความแข็งแกร่ง
+                            ชมพระอาทิตย์ขึ้นที่ผานกแอ่น และพระอาทิตย์ตกที่ผาหล่มสัก
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> เปิดฤดูกาล ต.ค.-พ.ค. (ปิดช่วงหน้าฝน)</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> อ.ภูกระดึง จ.เลย</p>
+                            <p><span class="font-bold">ค่าบริการ :</span> ค่าเข้าอุทยาน + ค่าลูกหาบ (ถ้าใช้)</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=อุทยานแห่งชาติภูกระดึง" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 75 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 1 ชั่วโมง 15 นาที</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7. Suan Hin Pha Ngam -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/7. สวนหินผางาม.jpg')">
+                        <img src="./assets/destinations/7. สวนหินผางาม.jpg" alt="สวนหินผางาม"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">7. สวนหินผางาม</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            หรือ "คุนหมิงเมืองเลย" เป็นแนวผาหินปูนสูงใหญ่ทอดตัวเป็นแนวยาว
+                            สลับซับซ้อนสวยงามดั่งภูเขาในนิยาย มีเส้นทางเดินศึกษาธรรมชาติที่สนุกและตื่นเต้น
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 08.00-18.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> อ.หนองหิน จ.เลย</p>
+                            <p><span class="font-bold">ค่าบริการ :</span> รถอีแต๊กนำเที่ยว 20-30 บาท</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=สวนหินผางาม" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 45 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 45 นาที</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8. Phu Pa Poh -->
+                <div id="phu-pa-po" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/5.jpg')">
+                        <img src="./assets/Recommended places to visit/5.jpg" alt="ภูป่าเปาะ"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">8. ภูป่าเปาะ (ฟูจิเมืองเลย)</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            จุดชมวิวที่สามารถมองเห็นภูหอที่มีลักษณะคล้ายภูเขาไฟฟูจิ ได้รับฉายาว่า "ฟูจิเมืองเลย"
+                            ต้องนั่งรถอีแต๊กของชาวบ้านขึ้นไปชมวิว 360 องศา
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 05.00-18.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> ต.ปวนพุ อ.หนองหิน จ.เลย</p>
+                            <p><span class="font-bold">ค่าบริการ :</span> ค่ารถอีแต๊ก 50-60 บาท</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=ภูป่าเปาะ" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 45 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 45 นาที (ใกล้สวนหิน)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9. Phra That Sri Song Rak -->
+                <div id="phra-that-si-song-rak" class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/Recommended places to visit/7.webp')">
+                        <img src="./assets/Recommended places to visit/7.webp" alt="พระธาตุศรีสองรัก"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">9. พระธาตุศรีสองรัก</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            ปูชนียสถานคู่บ้านคู่เมืองของจังหวัดเลย สร้างขึ้นเพื่อเป็นสักขีพยานแห่งความรักใคร่ปรองดอง
+                            ข้อควรระวัง: ห้ามสวมเสื้อผ้าสีแดงเข้าในบริเวณองค์พระธาตุ
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 08.00-16.30 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> อ.ด่านซ้าย จ.เลย</p>
+                            <p><span class="font-bold">ข้อปฏิบัติ :</span> ห้ามใส่ชุดสีแดง</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=พระธาตุศรีสองรัก" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 83 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 1 ชั่วโมง 20 นาที</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 10. Phi Ta Khon Museum -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/10. พิพิธภัณฑ์ผีตาโขน.jpg')">
+                        <img src="./assets/destinations/10. พิพิธภัณฑ์ผีตาโขน.jpg" alt="พิพิธภัณฑ์ผีตาโขน"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">10. พิพิธภัณฑ์ผีตาโขน</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            ตั้งอยู่ในวัดโพนชัย อ.ด่านซ้าย จัดแสดงเรื่องราวประวัติความเป็นมาของประเพณีผีตาโขน หุ่นจำลอง
+                            และการสาธิตวาดหน้ากาก
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 08.00-17.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> วัดโพนชัย อ.ด่านซ้าย จ.เลย</p>
+                            <p><span class="font-bold">ค่าเข้าชม :</span> เข้าชมฟรี</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=พิพิธภัณฑ์ผีตาโขน+วัดโพนชัย" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 83 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 1 ชั่วโมง 20 นาที</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 11. Huai Krathing -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/11. อ่างเก็บน้ำห้วยกระทิง.jpg')">
+                        <img src="./assets/destinations/11. อ่างเก็บน้ำห้วยกระทิง.jpg" alt="อ่างเก็บน้ำห้วยกระทิง"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">11. อ่างเก็บน้ำห้วยกระทิง</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            แหล่งท่องเที่ยวทางธรรมชาติ บรรยากาศเงียบสงบ เหมาะแก่การล่องแพไม้ไผ่กลางน้ำ รับประทานอาหาร
+                            และพักผ่อนกับครอบครัว
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 09.00-18.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> อ.เมือง จ.เลย</p>
+                            <p><span class="font-bold">กิจกรรม :</span> ล่องแพ, ทานอาหาร</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=อ่างเก็บน้ำห้วยกระทิง" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 25 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 30 นาที</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 12. Wat Neramit Wipatsana -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/12. วัดเนรมิตวิปัสสนา.jpg')">
+                        <img src="./assets/destinations/12. วัดเนรมิตวิปัสสนา.jpg" alt="วัดเนรมิตวิปัสสนา"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">12. วัดเนรมิตวิปัสสนา</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            วัดสวยตั้งอยู่บนเนินเขา วิหารสร้างด้วยศิลาแลงทั้งหลัง สวยงามและวิจิตรบรรจง
+                            ภายในประดิษฐานพระพุทธชินราชจำลอง
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 06.00-18.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> อ.ด่านซ้าย จ.เลย</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=วัดเนรมิตวิปัสสนา" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 82 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 1 ชั่วโมง 20 นาที</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 13. Phu Luang -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/13. เขตรักษาพันธุ์สัตว์ป่าภูหลวง.jpeg')">
+                        <img src="./assets/destinations/13. เขตรักษาพันธุ์สัตว์ป่าภูหลวง.jpeg" alt="ภูหลวง"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">13. เขตรักษาพันธุ์สัตว์ป่าภูหลวง</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            เจ้าของฉายา "มรกตแห่งอีสาน" โดดเด่นด้วยธรรมชาติที่สมบูรณ์ ป่าไม้ร่มรื่น
+                            และกล้วยไม้ป่านานาชนิด (โดยเฉพาะกุหลาบขาว) อากาศเย็นสบายตลอดปี
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 08.00-16.00 น. (เช็คเป็นรอบ/ฤดูกาล)</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> อ.ภูเรือ จ.เลย</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=เขตรักษาพันธุ์สัตว์ป่าภูหลวง" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 40 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 45 นาที</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 14. Namtok Pla Ba -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/14. น้ำตกปลาบ่า.jpg')">
+                        <img src="./assets/destinations/14. น้ำตกปลาบ่า.jpg" alt="น้ำตกปลาบ่า"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">14. น้ำตกปลาบ่า</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            น้ำตกสวยโอบล้อมด้วยธรรมชาติ เหมาะกับการแวะเล่นน้ำและปิกนิก บรรยากาศเงียบสงบใกล้ภูเรือ
+                            เดินทางสะดวก
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 08.00-17.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> บ้านปลาบ่า อ.ภูเรือ จ.เลย</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=น้ำตกปลาบ่า" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 60 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 1 ชั่วโมง</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 15. Phu Pha Man -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/15. อุทยานแห่งชาติภูผาม่าน.jpg')">
+                        <img src="./assets/destinations/15. อุทยานแห่งชาติภูผาม่าน.jpg" alt="อุทยานแห่งชาติภูผาม่าน"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">15. อุทยานแห่งชาติภูผาม่าน</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            โดดเด่นด้วยเทือกเขาหินปูนสูงชันตัดกับฉากหลังท้องฟ้า
+                            ไฮไลท์คือถ้ำค้างคาวที่มีค้างคากบินออกจากถ้ำนับล้านตัวในช่วงเย็น
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 06.00-18.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> อ.ภูผาม่าน จ.ขอนแก่น (เชื่อมต่อ จ.เลย)</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=อุทยานแห่งชาติภูผาม่าน" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 80 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 1 ชั่วโมง 15 นาที</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 16. Phra That Satja -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/16. พระธาตุสัจจะ.jpg')">
+                        <img src="./assets/destinations/16. พระธาตุสัจจะ.jpg" alt="พระธาตุสัจจะ"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">16. พระธาตุสัจจะ</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            ปูชนียสถานศักดิ์สิทธิ์ของชาวท่าลี่ สร้างเลียนแบบพระธาตุพนม
+                            องค์พระธาตุสีขาวตัดกับลวดลายสีทองงดงาม
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 06.00-18.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> วัดลาดปู่ทรงธรรม อ.ท่าลี่ จ.เลย</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=พระธาตุสัจจะ+ท่าลี่" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 45 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 50 นาที</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 17. Wat Pa Huay Lad -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/17. วัดป่าห้วยลาด.jpg')">
+                        <img src="./assets/destinations/17. วัดป่าห้วยลาด.jpg" alt="วัดป่าห้วยลาด"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">17. วัดป่าห้วยลาด</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            สำนักสงฆ์ที่มีประติมากรรมสวยงามมากมาย ทั้งองค์พญานาค พระตรีมูรติ และสิ่งศักดิ์สิทธิ์ต่าง ๆ
+                            บรรยากาศร่มรื่น
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 07.00-18.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> อ.ภูเรือ จ.เลย</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=วัดป่าห้วยลาด+ภูเรือ" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 55 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 1 ชั่วโมง</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 18. TSA Flower Garden -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/18. สวนดาว TSA Flower Garden.jpg')">
+                        <img src="./assets/destinations/18. สวนดาว TSA Flower Garden.jpg" alt="สวนดาว TSA"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">18. สวนดาว TSA Flower Garden</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            สวนดอกไม้เมืองหนาวนานาพันธุ์ จุดเช็คอินถ่ายรูปยอดฮิตในช่วงหน้าหนาว
+                            มีแปลงดอกไม้หลากสีสันสวยงาม (เปิดเฉพาะฤดูกาล)
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 08.00-17.00 น. (กรุณาเช็กก่อนเดินทาง)</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> อ.ภูเรือ จ.เลย</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=TSA+Flower+Garden" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 52 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 55 นาที</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 19. Suan Kut Pong -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/19. สวนสาธารณะกุดป่อง.webp')">
+                        <img src="./assets/destinations/19. สวนสาธารณะกุดป่อง.webp" alt="สวนสาธารณะกุดป่อง"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">19. สวนสาธารณะกุดป่อง</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            ปอดใจกลางเมืองเลย บรรยากาศร่มรื่นด้วยต้นไม้ใหญ่ เหมาะสำหรับมาเดินเล่น ออกกำลังกาย
+                            หรือนั่งปิกนิกชิล ๆ ยามเย็น
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 05.00-20.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> ต.กุดป่อง อ.เมือง จ.เลย (หลังศาลหลักเมือง)</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=สวนสาธารณะกุดป่อง" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 0 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 1-5 นาที</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 20. Loei Night Bazaar -->
+                <div class="flex flex-col gap-6 group">
+                    <div class="overflow-hidden rounded-xl shadow-md h-64 relative cursor-pointer"
+                        onclick="openModal('./assets/destinations/20. ตลาดไนท์บาซาร์เมืองเลย.webp')">
+                        <img src="./assets/destinations/20. ตลาดไนท์บาซาร์เมืองเลย.webp" alt="ตลาดไนท์บาซาร์เมืองเลย"
+                            class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold text-brand-navy mb-3">20. ตลาดไนท์บาซาร์เมืองเลย</h3>
+                        <p class="text-gray-600 mb-6 leading-relaxed">
+                            แหล่งรวมอาหารพื้นเมือง เสื้อผ้า และของฝาก ราคาเป็นกันเอง บรรยากาศคึกคักยามค่ำคืนใจกลางเมือง
+                        </p>
+                        <div class="text-sm text-brand-navy space-y-2">
+                            <p><span class="font-bold">เวลาเปิด-ปิด :</span> 17.00-22.00 น.</p>
+                            <p><span class="font-bold">ที่อยู่ :</span> อ.เมือง จ.เลย</p>
+                            <p><span class="font-bold">Google Map :</span> <a
+                                    href="https://maps.google.com/?q=ตลาดไนท์บาซาร์+เมืองเลย" target="_blank"
+                                    class="text-brand-orange font-bold hover:underline">คลิกเพื่อดูแผนที่</a></p>
+                            <p><span class="font-bold">ระยะทางจากตัวเมือง :</span> 0 กม.</p>
+                            <p><span class="font-bold">เวลาเดินทาง :</span> 5 นาที</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as recommend.html) -->
+    <footer class="pt-20 pb-10">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-20">
+            <!-- Brand -->
+            <div class="lg:col-span-2 space-y-6">
+                <a href="#" class="text-3xl font-bold flex items-center gap-2 mb-4">
+                    <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+                </a>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
+                    เว็บไซต์นี้จัดทำขึ้นเพื่อใช้ประกอบโครงการจบการศึกษา ระดับประกาศนียบัตรวิชาชีพ (ปวช.)
+                </p>
+            </div>
+
+            <!-- Links 1 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">เกี่ยวกับเว็บไซต์</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="about.html" class="hover:text-brand-orange transition-colors">เกี่ยวกับเรา</a></li>
+                    <li><a href="destinations.html" class="hover:text-brand-orange transition-colors">ที่เที่ยวแนะนำ</a>
+                    </li>
+                    <li><a href="trip-planner.html" class="hover:text-brand-orange transition-colors">เคล็ดลับ</a></li>
+                </ul>
+            </div>
+
+            <!-- Links 2 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">ติดต่อ</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="contact.html" class="hover:text-brand-orange transition-colors">ติดต่อเรา</a></li>
+                    <li><a href="contact.html" class="hover:text-brand-orange transition-colors">แจ้งแก้ไขข้อมูล</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Links 3 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">เครดิต & แหล่งข้อมูล</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+
+                    <li><a href="#" class="hover:text-brand-orange transition-colors">เครดิตรูปภาพ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center border-t border-gray-100 pt-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-gray-400 text-sm">© 2025 เที่ยวเลย360° | Travel Loei360°</span>
+                <div class="flex gap-8">
+                    <a href="terms.html"
+                        class="text-gray-400 hover:text-brand-navy text-sm font-medium">ข้อตกลงการใช้งาน</a>
+                    <a href="privacy.html"
+                        class="text-gray-400 hover:text-brand-navy text-sm font-medium">นโยบายความเป็นส่วนตัว</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Lightbox Modal -->
+    <div id="imageModal" class="fixed inset-0 z-[60] bg-black/90 hidden flex items-center justify-center p-4"
+        onclick="closeModal()">
+        <span class="absolute top-5 right-5 text-white text-4xl cursor-pointer hover:text-brand-orange">&times;</span>
+        <img id="expandedImg"
+            class="max-w-full max-h-screen rounded-lg shadow-2xl transform scale-95 transition-transform duration-300"
+            src="" alt="Expanded Image">
+    </div>
+
+    <script>
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const expandedImg = document.getElementById('expandedImg');
+            expandedImg.src = imgSrc;
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                expandedImg.classList.remove('scale-95');
+                expandedImg.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            const expandedImg = document.getElementById('expandedImg');
+            expandedImg.classList.remove('scale-100');
+            expandedImg.classList.add('scale-95');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+    </script>
+    <!-- Scroll Script -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.add('py-6');
+            }
+        });
+    </script>
+
+</body>
+
+</html>

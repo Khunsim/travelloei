@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>วางแผนเที่ยว - Travel LOEI 360°</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@400;500;600;700&family=Volkhov:wght@700&family=Sarabun:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#DF6951',
+                            yellow: '#F1A501',
+                            navy: '#181E4B',
+                            light: '#FFF1DA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Sarabun', 'sans-serif'],
+                        serif: ['Volkhov', 'serif'],
+                        cursive: ['Dancing Script', 'cursive'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('./assets/hero.png')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #DF6951;
+            border-radius: 4px;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-navy antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 top-0 py-6 transition-all duration-300">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-bold flex items-center gap-2">
+                <img src="./assets/logo.png" alt="Logo" class="h-16 w-auto object-contain">
+                <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-12 font-medium text-xl">
+                <a href="index.html" class="hover:text-brand-orange transition-colors">หน้าแรก</a>
+                <a href="recommend.html" class="hover:text-brand-orange transition-colors">แนะนำ</a>
+                <a href="trip-planner.html" class="text-brand-orange transition-colors">เคล็ดลับ</a>
+                <a href="about.html" class="hover:text-brand-orange transition-colors">เกี่ยวกับ</a>
+                <a href="contact.html" class="hover:text-brand-orange transition-colors">ติดต่อ</a>
+            </div>
+
+            <!-- Language Switcher -->
+            <!-- Language Switcher -->
+            <div class="hidden md:flex items-center gap-6">
+                <div class="relative group">
+                    <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')"
+                        class="flex items-center gap-2 font-medium text-xl hover:text-brand-orange transition-colors focus:outline-none">
+                        <span>TH</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div id="lang-dropdown"
+                        class="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl py-2 hidden border border-gray-100 z-50">
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors text-brand-orange font-bold">ไทย</a>
+                        <a href="trip-planner-en.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">English</a>
+                        <a href="index-cn.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">中文</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-brand-navy focus:outline-none"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white shadow-lg absolute w-full left-0 top-full p-6 space-y-4 z-50">
+            <a href="index.html" class="block hover:text-brand-orange">หน้าแรก</a>
+            <a href="recommend.html" class="block hover:text-brand-orange">แนะนำ</a>
+            <a href="trip-planner.html" class="block text-brand-orange font-bold">เคล็ดลับ</a>
+            <a href="about.html" class="block hover:text-brand-orange">เกี่ยวกับ</a>
+            <a href="contact.html" class="block hover:text-brand-orange">ติดต่อ</a>
+
+            <!-- Mobile Language Switcher -->
+            <!-- Mobile Language Switcher -->
+            <div class="border-t border-gray-100 pt-4 flex items-center gap-4 font-medium">
+                <span class="text-gray-400 text-sm">ภาษา:</span>
+                <a href="#" class="text-brand-orange">TH</a>
+                <span class="text-gray-300">|</span>
+                <a href="trip-planner-en.html" class="text-gray-500 hover:text-brand-orange">EN</a>
+                <span class="text-gray-300">|</span>
+                <a href="index-cn.html" class="text-gray-500 hover:text-brand-orange">CN</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Scroll Script -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.add('py-6');
+            }
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="min-h-[60vh] flex items-center pt-32 pb-20 relative bg-brand-light/30 overflow-hidden">
+        <!-- Decor -->
+        <div class="absolute -top-20 -right-20 w-[500px] h-[500px] bg-brand-orange/10 rounded-full blur-3xl"></div>
+        <div class="absolute bottom-0 left-0 w-full h-32 bg-gradient-to-t from-white to-transparent"></div>
+
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <span
+                class="inline-block py-1 px-3 rounded-full bg-brand-orange/10 text-brand-orange font-bold text-sm tracking-widest mb-4">TRIP
+                PLANNER</span>
+            <h1 class="font-serif text-5xl lg:text-7xl font-bold text-brand-navy mb-8 leading-tight">
+                ออกแบบทริปเที่ยวเลย<br><span class="text-brand-orange">ในสไตล์ของคุณ</span>
+            </h1>
+            <p class="text-gray-500 text-lg max-w-2xl mx-auto mb-12">
+                ไม่ว่าจะมีเวลากี่วัน เราช่วยคุณวางแผนได้ เลือกจำนวนวันแล้วแพ็คกระเป๋าเที่ยวกันเลย!
+            </p>
+
+            <!-- Planning Form -->
+            <div
+                class="max-w-4xl mx-auto bg-white p-4 rounded-[2rem] shadow-2xl flex flex-col md:flex-row gap-4 items-center border border-gray-100 relative">
+
+                <div class="flex-1 w-full md:w-auto p-4">
+                    <label class="block text-left text-gray-500 text-sm font-bold mb-2 ml-2">เลือกสไตล์ทริป</label>
+                    <div class="relative">
+                        <select id="tripStyle"
+                            class="w-full appearance-none bg-gray-50 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:bg-white focus:border-brand-orange font-medium">
+                            <option>คนเดียว (Solo)</option>
+                            <option>แฟน (Couple)</option>
+                            <option>ครอบครัว (Family)</option>
+                            <option>เพื่อน (Friends)</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="w-px h-16 bg-gray-200 hidden md:block"></div>
+
+                <div class="flex-1 w-full md:w-auto p-4">
+                    <label class="block text-left text-gray-500 text-sm font-bold mb-2 ml-2">📅 จำนวนวันเดินทาง</label>
+                    <div class="relative">
+                        <select id="tripDays"
+                            class="w-full appearance-none bg-gray-50 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded-xl leading-tight focus:outline-none focus:bg-white focus:border-brand-orange font-medium">
+                            <option value="1">1 วัน (One Day Trip)</option>
+                            <option value="2">2 วัน 1 คืน</option>
+                            <option value="3" selected>3 วัน 2 คืน (แนะนำ)</option>
+                            <option value="4">4 วัน 3 คืน</option>
+                            <option value="5">5 วัน 4 คืน</option>
+                            <option value="6">6 วัน 5 คืน</option>
+                            <option value="7">7 วัน (Full Experience)</option>
+                        </select>
+                        <div
+                            class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                            <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">
+                                <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+
+                <button onclick="generateTrip()"
+                    class="w-full md:w-auto bg-brand-orange text-white font-bold py-4 px-10 rounded-xl shadow-lg hover:shadow-xl hover:bg-orange-600 transition-all transform hover:-translate-y-1">
+                    สร้างแผนเที่ยว
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Itinerary Result Section -->
+    <section id="resultSection" class="py-20 hidden">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-brand-orange uppercase tracking-widest font-semibold text-sm">YOUR ITINERARY</span>
+                <h2 class="font-serif text-4xl font-bold text-brand-navy mt-3">แผนการเดินทางของคุณ</h2>
+            </div>
+
+            <!-- Timeline Container -->
+            <div id="itineraryContainer" class="max-w-4xl mx-auto space-y-12 relative">
+
+
+                <!-- Content injected by JS -->
+            </div>
+
+            <div class="mt-20 text-center">
+                <button onclick="window.print()"
+                    class="bg-brand-navy text-white font-bold py-3 px-8 rounded-xl shadow-lg hover:shadow-xl hover:bg-navy-900 transition-all flex items-center gap-2 mx-auto">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z">
+                        </path>
+                    </svg>
+                    พิมพ์แผนการเดินทาง
+                </button>
+            </div>
+        </div>
+    </section>
+
+
+    <footer class="pt-20 pb-10">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-20">
+            <!-- Brand -->
+            <div class="lg:col-span-2 space-y-6">
+                <a href="#" class="text-3xl font-bold flex items-center gap-2 mb-4">
+                    <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+                </a>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
+                    เว็บไซต์นี้จัดทำขึ้นเพื่อใช้ประกอบโครงการจบการศึกษา ระดับประกาศนียบัตรวิชาชีพ (ปวช.)
+                </p>
+            </div>
+
+            <!-- Links 1 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">เกี่ยวกับเว็บไซต์</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="about.html" class="hover:text-brand-orange transition-colors">เกี่ยวกับเรา</a></li>
+                    <li><a href="destinations.html" class="hover:text-brand-orange transition-colors">ที่เที่ยวแนะนำ</a>
+                    </li>
+                    <li><a href="trip-planner.html" class="hover:text-brand-orange transition-colors">เคล็ดลับ</a></li>
+                </ul>
+            </div>
+
+            <!-- Links 2 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">ติดต่อ</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="contact.html" class="hover:text-brand-orange transition-colors">ติดต่อเรา</a></li>
+                    <li><a href="contact.html" class="hover:text-brand-orange transition-colors">แจ้งแก้ไขข้อมูล</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Links 3 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">เครดิต & แหล่งข้อมูล</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+
+                    <li><a href="#" class="hover:text-brand-orange transition-colors">เครดิตรูปภาพ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center border-t border-gray-100 pt-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-gray-400 text-sm">© 2025 เที่ยวเลย360° | Travel Loei360°</span>
+                <div class="flex gap-8">
+                    <a href="terms.html"
+                        class="text-gray-400 hover:text-brand-navy text-sm font-medium">ข้อตกลงการใช้งาน</a>
+                    <a href="privacy.html"
+                        class="text-gray-400 hover:text-brand-navy text-sm font-medium">นโยบายความเป็นส่วนตัว</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        // Data for attractions
+        const attractions = {
+            phu_kradueng: { name: "อุทยานแห่งชาติภูกระดึง", img: "./assets/Recommended places to visit/1.jpg", desc: "เดินป่าขึ้นภู ชมพระอาทิตย์ขึ้นผานกแอ่น" },
+            phu_ruea: { name: "อุทยานแห่งชาติภูเรือ", img: "./assets/Recommended places to visit/2.jpg", desc: "สัมผัสอากาศหนาว ชมสวนดอกไม้เมืองหนาว" },
+            chiang_khan: { name: "ถนนคนเดินเชียงคาน", img: "./assets/Recommended places to visit/3.jpg", desc: "เดินเล่นริมโขง ชิมของอร่อย ซื้อของฝาก", creditName: "TripAdvisor", creditUrl: "https://www.tripadvisor.com/Attraction_Review-g2044822-d10063744-Reviews-or10-Chiang_Khan_Walking_Street-Chiang_Khan_Loei_Province.html" },
+            skywalk: { name: "สกายวอล์คเชียงคาน", img: "https://thailandtourismdirectory.go.th/assets/upload/2021/11/1/2021110189037471.jpg", desc: "จุดชมวิวแม่น้ำสองสี เดินบนกระจกใส" },
+            phu_tok: { name: "ภูทอก", img: "./assets/Recommended places to visit/4.webp", desc: "ชมทะเลหมอกยามเช้าที่เชียงคาน" },
+            phu_pa_po: { name: "ฟูจิเมืองเลย (ภูป่าเปาะ)", img: "./assets/Recommended places to visit/5.jpg", desc: "นั่งรถอีแต๊กชมวิวภูเขาไฟฟูจิเมืองไทย", creditName: "TrueID Travel", creditUrl: "https://travel.trueid.net/detail/VMlYrgv13egb" },
+            kaeng_khut_khu: { name: "แก่งคุดคู้", img: "./assets/Recommended places to visit/6.webp", desc: "ชมแก่งหินกลางล้าน้ำโขง นั่งเรือชมวิว", creditName: "Airial Travel", creditUrl: "https://airial.travel/attractions/thailand/chiang-khan/kaeng-khut-khu-chiang-khan-Xlgmah7O" },
+            phra_that: { name: "พระธาตุศรีสองรัก", img: "./assets/Recommended places to visit/7.webp", desc: "สักการะพระธาตุคู่บ้านคู่เมือง (ห้ามใส่สีแดง)" },
+            phi_ta_khon: { name: "พิพิธภัณฑ์ผีตาโขน", img: "https://thai.tourismthailand.org/Articles/844", desc: "เรียนรู้ประวัติศาสตร์และวาดหน้ากากผีตาโขน", creditName: "CBT Thailand", creditUrl: "https://cbtthailand.dasta.or.th/webapp/relattraction/content/2165/" },
+            huai_krathing: { name: "ห้วยกระทิง", img: "https://i.ytimg.com/vi/Q2jB1GfE5Fk/maxresdefault.jpg", desc: "ล่องแพ ทานอาหาร ชมวิวภูเขากลางน้ำ" },
+            suan_hin_pha_ngam: { name: "สวนหินผางาม (คุนหมิงเมืองเลย)", img: "https://thai.tourismthailand.org/Attraction/Suan-Hin-Pha-Ngam", desc: "ชมภูเขาหินปูนรูปร่างแปลกตา", creditName: "CBT Thailand", creditUrl: "https://cbtthailand.dasta.or.th/webapp/relattraction/content/3188/" },
+
+            // New items for specific styles
+            cafe_muang: { name: "คาเฟ่ในเมืองเลย", img: "./assets/trip-planner-images/solo_0830_1000.jpg", desc: "เริ่มต้นวันด้วยกาแฟดีๆ ในเมือง" },
+            travel_ck: { name: "เดินทาง เมืองเลย → เชียงคาน", img: "./assets/Recommended places to visit/3.jpg", desc: "ระยะทาง ~45 กม. ใช้เวลาประมาณ 45-60 นาที" },
+            ck_relax: { name: "กิน + เดินเล่นริมน้ำโขง + พัก", img: "./assets/Recommended places to visit/6.webp", desc: "พักผ่อนสบายๆ ริมโขง ทานอาหารพื้นถิ่น" },
+            skywalk_evening: { name: "Sky Walk เชียงคาน", img: "https://thailandtourismdirectory.go.th/assets/upload/2021/11/1/2021110189037471.jpg", desc: "ชมวิวมุมสูงช่วงเย็น" },
+
+            alms_walking: { name: "ใส่บาตร + เดินถนนคนเดิน", img: "./assets/Recommended places to visit/3.jpg", desc: "ตื่นเช้าสัมผัสวิถีชีวิตชาวเชียงคาน" },
+            ck_to_loei: { name: "เดินทาง: เชียงคาน → เมืองเลย", img: "./assets/Recommended places to visit/3.jpg", desc: "เดินทางกลับเข้าเมือง" },
+            lunch_cafe: { name: "กลางวัน + คาเฟ่", img: "./assets/trip-planner-images/solo_1100_1400.jpg", desc: "ทานมื้อเที่ยงและแวะคาเฟ่ชิลๆ" },
+            suan_kut_pong: { name: "สวนกุดป่อง", img: "./assets/trip-planner-images/solo_1500_1700.webp", desc: "เดินเล่นพักผ่อนหย่อนใจกลางเมือง" },
+
+            mekong_cafe: { name: "คาเฟ่ริมน้ำ", img: "https://images.unsplash.com/photo-1544078751-bb3c7ce449f1?q=80&w=1000&auto=format&fit=crop", desc: "จิบกาแฟชมวิวแม่น้ำโขง บรรยากาศชิลๆ", creditName: "BucketListly Blog", creditUrl: "https://www.bucketlistly.blog/posts/chiang-khan-best-things-to-do" },
+            lunch_nap: { name: "กลางวัน + พัก", img: "./assets/Recommended places to visit/3.jpg", desc: "ทานอาหารอร่อยๆ และพักผ่อนตามอัธยาศัย" },
+            skywalk_photo: { name: "Sky Walk + ถ่ายรูป", img: "https://thailandtourismdirectory.go.th/assets/upload/2021/11/1/2021110189037471.jpg", desc: "ไฮไลท์ห้ามพลาด ได้รูปสวยแน่นอน" },
+
+            alms_only: { name: "ใส่บาตร", img: "https://thai.tourismthailand.org/Articles/844", desc: "ตื่นเช้าใส่บาตรข้าวเหนียว" },
+            walking_street_day: { name: "เดินถนนคนเดิน", img: "./assets/Recommended places to visit/3.jpg", desc: "เดินเล่นชมเมืองเก่าช่วงเช้า" },
+            cafe_chill: { name: "คาเฟ่ + ชิล", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1000&auto=format&fit=crop", desc: "ใช้เวลาช้าๆ ไม่ต้องรีบ" },
+            return_loei: { name: "กลับเมืองเลย", img: "./assets/Recommended places to visit/3.jpg", desc: "เดินทางกลับโดยสวัสดิภาพ" },
+
+            // Family & Friends specific
+            drive_dansai: { name: "เดินทาง: เมืองเลย → ด่านซ้าย", img: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1000&auto=format&fit=crop", desc: "ระยะทาง ~80 กม. ใช้เวลา ~1.15 ชม. ขับรอบเดียวตอนเช้า จบ" },
+            dansai_local_food: { name: "ร้านอาหารพื้นบ้านด่านซ้าย", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop", desc: "กินยาว ไม่รีบ พักผ่อนจริง ลดอาการงอแงของเด็ก", creditName: "Lemon8", creditUrl: "https://www.lemon8-app.com/experience/%E0%B8%A3%E0%B9%89%E0%B8%B2%E0%B8%99%E0%B8%AD%E0%B8%B2%E0%B8%AB%E0%B8%B2%E0%B8%A3%E0%B8%94%E0%B9%88%E0%B8%B2%E0%B8%99%E0%B8%8B%E0%B9%89%E0%B8%B2%E0%B8%A2?region=th" },
+            dansai_relax: { name: "กลับที่พัก / ร้านกาแฟ / งีบ", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1000&auto=format&fit=crop", desc: "ช่วงนี้สำคัญมาก ทำให้ทริปไม่พังตอนเย็น" },
+            wat_neramit: { name: "วัดเนรมิตวิปัสสนา / เดินเล่น", img: "https://thai.tourismthailand.org/Articles/844", desc: "ระยะทางสั้น ๆ ภายในด่านซ้าย", creditName: "Wongnai", creditUrl: "https://www.wongnai.com/reviews/1daebd73ec7f42d3948bd85392991350" },
+            drive_back_loei: { name: "เดินทางกลับ: ด่านซ้าย → เมืองเลย", img: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1000&auto=format&fit=crop", desc: "เดินทางกลับ (ถ้าไม่ค้างคืน)" },
+
+            cafe_morning_market: { name: "คาเฟ่ / ตลาดเช้า", img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop", desc: "หาของกินยามเช้า" },
+            lunch_general: { name: "กลางวัน", img: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?q=80&w=1000&auto=format&fit=crop", desc: "ทานอาหารกลางวันอร่อยๆ" },
+            dansai_to_loei: { name: "เดินทาง: ด่านซ้าย → เมืองเลย", img: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1000&auto=format&fit=crop", desc: "เดินทางกลับเข้าเมือง" },
+            evening_market_loei: { name: "ตลาดเย็นเมืองเลย", img: "./assets/Recommended places to visit/3.jpg", desc: "เดินหาของกินมื้อเย็น" },
+
+            drive_pa_po: { name: "เดินทาง: เมืองเลย → ภูป่าเปาะ", img: "./assets/Recommended places to visit/5.jpg", desc: "ระยะทาง ~80 กม. มีช่วงขึ้นเขา + ทางสวนเลน (ขับช้าได้ ไม่ต้องรีบ)" },
+            drive_back_loei_from_papo: { name: "เดินทางกลับ: ภูป่าเปาะ → เมืองเลย", img: "./assets/Recommended places to visit/5.jpg", desc: "ใช้เวลาใกล้เคียงขาไป" },
+            back_loei_eat_rest: { name: "กลับเมืองเลย กิน + พัก", img: "./assets/Recommended places to visit/3.jpg", desc: "กลับมาพักผ่อนในเมือง" },
+            lunch_chill: { name: "กินข้าว + คาเฟ่ + พักยาว", img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop", desc: "ตัดกิจกรรมหนักช่วงบ่าย = รอด" },
+            night_hangout: { name: "ถนนคนเดิน / ร้านนั่งชิลในเมือง", img: "./assets/Recommended places to visit/3.jpg", desc: "ปิดท้ายวันแบบชิลๆ กับเพื่อน" },
+            walking_street_loei: { name: "ถนนคนเดิน", img: "./assets/Recommended places to visit/3.jpg", desc: "เดินเล่นชิลๆ ในเมือง" },
+
+            cafe_only: { name: "คาเฟ่", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1000&auto=format&fit=crop", desc: "Hopping ร้านกาแฟ" },
+            lunch_chill_friend: { name: "กลางวัน + พัก", img: "https://images.unsplash.com/photo-1554118811-1e0d58224f24?q=80&w=1000&auto=format&fit=crop", desc: "กินข้าวและพักผ่อน" },
+            walk_city: { name: "เดินเล่นเมือง", img: "./assets/Recommended places to visit/3.jpg", desc: "ชมบรรยากาศเมืองเลย" },
+
+            // 3D2N Specific
+            // Solo
+            drive_loei_phu_ruea: { name: "เดินทาง: เมืองเลย → ภูเรือ", img: "./assets/Recommended places to visit/2.jpg", desc: "ระยะทาง ~50 กม." },
+            phu_ruea_park: { name: "อุทยานแห่งชาติภูเรือ", img: "./assets/Recommended places to visit/2.jpg", desc: "เดินชมธรรมชาติ สูดอากาศบริสุทธิ์" },
+            viewpoint_phu_ruea: { name: "จุดชมวิวภูเรือ", img: "./assets/Recommended places to visit/2.jpg", desc: "ชมพระอาทิตย์ตก" },
+            drive_phu_ruea_suan_hin: { name: "เดินทาง: ภูเรือ → สวนหินผางาม", img: "https://thai.tourismthailand.org/Attraction/Suan-Hin-Pha-Ngam", desc: "เดินทางสู่คุนหมิงเมืองเลย" },
+            nature_walk_suan_hin: { name: "เดินเส้นธรรมชาติ", img: "https://thai.tourismthailand.org/Attraction/Suan-Hin-Pha-Ngam", desc: "ชมหินรูปร่างแปลกตา" },
+
+            // Couple
+            cafe_view_kha: { name: "คาเฟ่วิวเขา", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1000&auto=format&fit=crop", desc: "จิบกาแฟชมวิวภูเขา" },
+            sunset_view: { name: "ชมพระอาทิตย์ตก", img: "./assets/Recommended places to visit/2.jpg", desc: "บรรยากาศโรแมนติก" },
+            morning_mist: { name: "หมอกเช้า", img: "./assets/Recommended places to visit/4.webp", desc: "สัมผัสอากาศหนาวและสายหมอก" },
+            park_walk: { name: "เดินอุทยาน", img: "./assets/Recommended places to visit/2.jpg", desc: "เดินเล่นถ่ายรูปคู่" },
+            photo_suan_hin: { name: "ถ่ายรูปสวนหิน", img: "https://thai.tourismthailand.org/Attraction/Suan-Hin-Pha-Ngam", desc: "หามุมสวยๆ ถ่ายรูป" },
+
+            // Family
+            drive_na_haeo: { name: "เดินทาง: เมืองเลย → นาแห้ว", img: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1000&auto=format&fit=crop", desc: "ระยะทาง ~85 กม." },
+            nature_walk_na_haeo: { name: "เดินธรรมชาติ", img: "https://thai.tourismthailand.org/Articles/844", desc: "เรียนรู้ธรรมชาติ เด็กๆ เดินได้" },
+            viewpoint_na_haeo: { name: "จุดชมวิวนาแห้ว", img: "https://thai.tourismthailand.org/Articles/844", desc: "ชมวิวมุมสูง" },
+            phu_suan_sai: { name: "อุทยานภูสวนทราย", img: "https://thai.tourismthailand.org/Articles/844", desc: "สัมผัสธรรมชาติป่าเขา" },
+            drive_back_na_haeo: { name: "เดินทางกลับ: นาแห้ว → เมืองเลย", img: "https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?q=80&w=1000&auto=format&fit=crop", desc: "เดินทางกลับเข้าเมือง" },
+
+            // Friends
+            drive_phu_tok: { name: "เดินทาง: เมืองเลย → ภูทอก", img: "./assets/Recommended places to visit/4.webp", desc: "ระยะทาง ~75 กม." },
+            phu_tok_morning: { name: "ภูทอก", img: "./assets/Recommended places to visit/4.webp", desc: "ชมทะเลหมอกและวิวมุมสูง" },
+            drive_phu_tok_phu_ruea: { name: "เดินทาง: ภูทอก → ภูเรือ", img: "./assets/Recommended places to visit/2.jpg", desc: "ไปเที่ยวต่อที่ภูเรือ" },
+            explore_phu_ruea: { name: "เที่ยวภูเรือ", img: "./assets/Recommended places to visit/2.jpg", desc: "เดินเล่น ถ่ายรูปกลุ่ม" },
+            chill_party: { name: "ปาร์ตี้ชิลๆ", img: "./assets/Recommended places to visit/3.jpg", desc: "สังสรรค์ยามเย็น" },
+            morning_view_phu_ruea: { name: "วิวเช้าภูเรือ", img: "./assets/Recommended places to visit/2.jpg", desc: "ดูพระอาทิตย์ขึ้นก่อนกลับ" },
+
+            // 4D3N Specific
+            border_view_walk: { name: "เดินชมวิวชายแดน", img: "https://thai.tourismthailand.org/Articles/844", desc: "ชมทิวทัศน์ชายแดนไทย-ลาว" },
+            drive_suan_hin_na_haeo: { name: "เดินทาง: สวนหินผางาม → นาแห้ว", img: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=1000&auto=format&fit=crop", desc: "เดินทางเลาะชายแดน" },
+            drive_phu_tok_phu_ruea_4d: { name: "เดินทาง: ภูทอก → ภูเรือ", img: "./assets/Recommended places to visit/2.jpg", desc: "เดินทางไปสัมผัสความหนาว" },
+            suan_hin_stay_area: { name: "พัก: ใกล้สวนหินผางาม", img: "https://thai.tourismthailand.org/Attraction/Suan-Hin-Pha-Ngam", desc: "พักผ่อนท่ามกลางธรรมชาติ" },
+
+            // 5D4N Specific
+            nature_border: { name: "ธรรมชาติชายแดน", img: "https://thai.tourismthailand.org/Articles/844", desc: "สัมผัสวิถีชีวิตริมโขง" },
+            dansai_market_morning: { name: "ตลาดเช้าด่านซ้าย", img: "https://thai.tourismthailand.org/Articles/844", desc: "เดินตลาดเช้าสัมผัสวิถีชุมชน" },
+
+            // 6D5N Specific
+            na_haeo_community: { name: "ชุมชนนาแห้ว", img: "https://thai.tourismthailand.org/Articles/844", desc: "เรียนรู้วิถีชุมชน" },
+
+            // 7D6N Specific
+            quiet_cafe: { name: "คาเฟ่เงียบ ๆ", img: "https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?q=80&w=1000&auto=format&fit=crop", desc: "จิบกาแฟ ท่ามกลางความเงียบสงบ" },
+            stone_walk: { name: "เดินเส้นทางหิน", img: "https://thai.tourismthailand.org/Attraction/Suan-Hin-Pha-Ngam", desc: "ชมธรรมชาติสวนหินผางาม" },
+            shopping_local: { name: "ซื้อของฝาก", img: "https://thai.tourismthailand.org/Articles/844", desc: "ช้อปปิ้งของที่ระลึกก่อนกลับ" }
+
+
+        };
+
+        // Default templates (Legacy/Fallback)
+        const defaultTemplates = {
+            1: [
+                { time: "08:00", place: "phu_pa_po" },
+                { time: "11:00", place: "suan_hin_pha_ngam" },
+                { time: "15:00", place: "huai_krathing", note: "ล่องแพทานมื้อเย็น" }
+            ],
+            2: [
+                { time: "05:30", place: "phu_tok", note: "ชมทะเลหมอก" },
+                { time: "09:00", place: "skywalk" },
+                { time: "11:00", place: "kaeng_khut_khu" },
+                { time: "17:00", place: "chiang_khan", note: "เดินถนนคนเดิน พักเชียงคาน" }
+            ],
+            3: [
+                { time: "09:00", place: "phra_that" },
+                { time: "11:00", place: "phi_ta_khon" },
+                { time: "14:00", place: "phu_ruea", note: "แวะม่อนแกะ หรือ คาเฟ่ระหว่างทาง" }
+            ],
+            4: [
+                { time: "07:00", place: "phu_kradueng", note: "เตรียมตัวขึ้นภูกระดึง (ใช้เวลาเดิน 4-6 ชม.)" },
+                { time: "14:00", place: "phu_kradueng", note: "ถึงหลังแป พักผ่อน ชมพระอาทิตย์ตกผาหมากดูก" }
+            ],
+            5: [
+                { time: "05:00", place: "phu_kradueng", note: "ชมพระอาทิตย์ขึ้นผานกแอ่น" },
+                { time: "09:00", place: "phu_kradueng", note: "เดินเที่ยวเส้นทางน้ำตก" },
+                { time: "16:00", place: "phu_kradueng", note: "ชมพระอาทิตย์ตกผาหล่มสัก" }
+            ],
+            6: [
+                { time: "07:00", place: "phu_kradueng", note: "เดินลงจากภูกระดึง" },
+                { time: "14:00", place: "huai_krathing", note: "แวะพักผ่อนคลายกล้ามเนื้อ ล่องแพ" }
+            ],
+            7: [
+                { time: "09:00", place: "phu_ruea", note: "ซื้อของฝาก ตลาดดอกไม้" },
+                { time: "12:00", place: "kaeng_khut_khu", note: "ซื้อ๋มะพร้าวแก้ว" },
+                { time: "15:00", note: "เดินทางกลับโดยสวัสดิภาพ" }
+            ]
+        };
+
+        // Specific Style Templates
+        const styleItineraries = {
+            "คนเดียว (Solo)": {
+                // 1 Day
+                "1": {
+                    zone: "โซน: เมืองเลย (One Day Trip)",
+                    days: {
+                        1: [
+                            { time: "08:30-10:00", place: "cafe_muang" },
+                            { time: "11:00-14:00", place: "lunch_cafe" },
+                            { time: "15:00-17:00", place: "suan_kut_pong" }
+                        ]
+                    }
+                },
+                // 2D1N (Existing)
+                "2": {
+                    zone: "โซน: เมืองเลย → เชียงคาน",
+                    days: {
+                        1: [
+                            { time: "08:30-10:00", place: "cafe_muang" },
+                            { time: "10:00-11:00", place: "travel_ck" },
+                            { time: "11:00-15:00", place: "ck_relax" },
+                            { time: "17:00-18:30", place: "skywalk_evening" }
+                        ],
+                        2: [
+                            { time: "07:00-08:30", place: "alms_walking" },
+                            { time: "09:30-10:30", place: "ck_to_loei" },
+                            { time: "11:00-14:00", place: "lunch_cafe" },
+                            { time: "16:00-18:00", place: "suan_kut_pong" }
+                        ]
+                    }
+                },
+                // 3D2N (New)
+                "3": {
+                    zone: "โซน: เมืองเลย → ภูเรือ → สวนหินผางาม",
+                    days: {
+                        1: [
+                            { time: "09:00-10:30", place: "cafe_muang" },
+                            { time: "11:00-14:30", place: "lunch_nap" },
+                            { time: "16:00-18:00", place: "suan_kut_pong", note: "พัก: เมืองเลย" }
+                        ],
+                        2: [
+                            { time: "08:00-09:00", place: "drive_loei_phu_ruea" },
+                            { time: "09:00-12:00", place: "phu_ruea_park" },
+                            { time: "12:00-15:00", place: "lunch_nap", note: "อาหารกลางวัน + พักผ่อน" },
+                            { time: "16:00-18:00", place: "viewpoint_phu_ruea", note: "พัก: ภูเรือ" }
+                        ],
+                        3: [
+                            { time: "08:30-09:15", place: "drive_phu_ruea_suan_hin" },
+                            { time: "09:15-11:30", place: "nature_walk_suan_hin" },
+                            { time: "12:30-15:00", place: "lunch_general" },
+                            { time: "16:00", place: "return_loei", note: "เดินทางกลับ" }
+                        ]
+                    }
+                },
+                // 4D3N (New)
+                "4": {
+                    zone: "โซน: เมืองเลย → ภูเรือ → สวนหินผางาม → นาแห้ว",
+                    days: {
+                        1: [
+                            { time: "09:00-10:30", place: "cafe_muang" },
+                            { time: "11:00-14:30", place: "lunch_nap" },
+                            { time: "16:00-18:00", place: "suan_kut_pong", note: "พัก: เมืองเลย" }
+                        ],
+                        2: [
+                            { time: "08:00-09:00", place: "drive_loei_phu_ruea" },
+                            { time: "09:00-12:00", place: "phu_ruea_park" },
+                            { time: "13:00-15:30", place: "lunch_nap", note: "อาหาร + พักผ่อน" },
+                            { time: "16:30-18:30", place: "viewpoint_phu_ruea", note: "พัก: ภูเรือ" }
+                        ],
+                        3: [
+                            { time: "08:30-09:15", place: "drive_phu_ruea_suan_hin" },
+                            { time: "09:30-11:30", place: "nature_walk_suan_hin" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "อาหาร + พัก (พัก: ใกล้สวนหินผางาม)" }
+                        ],
+                        4: [
+                            { time: "08:30-10:00", place: "drive_suan_hin_na_haeo" },
+                            { time: "10:00-12:00", place: "border_view_walk" },
+                            { time: "13:00-15:00", place: "lunch_general" },
+                            { time: "16:00", place: "return_loei", note: "เดินทางกลับ" }
+                        ]
+                    }
+                },
+                // 5D4N (New)
+                "5": {
+                    zone: "โซน: เมืองเลย → ภูเรือ → สวนหินผางาม → นาแห้ว → ภูสวนทราย",
+                    days: {
+                        1: [
+                            { time: "09:00-10:30", place: "cafe_muang" },
+                            { time: "11:00-14:30", place: "lunch_nap" },
+                            { time: "16:00-18:00", place: "suan_kut_pong", note: "พัก: เมืองเลย" }
+                        ],
+                        2: [
+                            { time: "08:00-09:00", place: "drive_loei_phu_ruea" },
+                            { time: "09:00-12:00", place: "phu_ruea_park" },
+                            { time: "13:00-15:30", place: "lunch_nap", note: "อาหาร + พักผ่อน" },
+                            { time: "16:30-18:30", place: "viewpoint_phu_ruea", note: "พัก: ภูเรือ" }
+                        ],
+                        3: [
+                            { time: "08:30-09:15", place: "drive_phu_ruea_suan_hin" },
+                            { time: "09:30-11:30", place: "nature_walk_suan_hin" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "อาหาร + พัก (พัก: ใกล้สวนหินผางาม)" }
+                        ],
+                        4: [
+                            { time: "08:30-10:00", place: "drive_suan_hin_na_haeo" },
+                            { time: "10:00-12:00", place: "nature_border" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "อาหาร + พัก (พัก: นาแห้ว)" }
+                        ],
+                        5: [
+                            { time: "08:30-09:30", place: "drive_na_haeo", note: "ไปภูสวนทราย" },
+                            { time: "09:30-12:00", place: "phu_suan_sai" },
+                            { time: "13:00-15:00", place: "lunch_general" },
+                            { time: "16:00", place: "return_loei", note: "เดินทางกลับ" }
+                        ]
+                    }
+                },
+                // 6D5N (New)
+                "6": {
+                    zone: "โซน: เมืองเลย → ภูเรือ → สวนหินผางาม → ภูทอก → นาแห้ว → ภูสวนทราย",
+                    days: {
+                        1: [
+                            { time: "09:00-10:30", place: "cafe_muang" },
+                            { time: "11:00-14:30", place: "lunch_nap" },
+                            { time: "16:00-18:00", place: "suan_kut_pong", note: "พัก: เมืองเลย" }
+                        ],
+                        2: [
+                            { time: "08:00-09:00", place: "drive_loei_phu_ruea" },
+                            { time: "09:00-12:00", place: "phu_ruea_park" },
+                            { time: "13:00-15:30", place: "lunch_nap", note: "พักผ่อน" },
+                            { time: "16:30-18:30", place: "viewpoint_phu_ruea", note: "พัก: ภูเรือ" }
+                        ],
+                        3: [
+                            { time: "08:30-09:15", place: "drive_phu_ruea_suan_hin" },
+                            { time: "09:30-11:30", place: "nature_walk_suan_hin" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "อาหาร + พัก (พัก: ใกล้สวนหินผางาม)" }
+                        ],
+                        4: [
+                            { time: "07:00-08:30", place: "drive_suan_hin_na_haeo", note: "เดินทางไปภูทอก" },
+                            { time: "08:30-11:00", place: "phu_tok_morning" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: ใกล้ภูทอก)" }
+                        ],
+                        5: [
+                            { time: "09:00-10:30", place: "drive_phu_tok_phu_ruea_4d", note: "เดินทางไปนาแห้ว" },
+                            { time: "10:30-12:00", place: "nature_border" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: นาแห้ว)" }
+                        ],
+                        6: [
+                            { time: "08:30-09:30", place: "drive_na_haeo", note: "ไปภูสวนทราย" },
+                            { time: "09:30-12:00", place: "phu_suan_sai" },
+                            { time: "13:00-15:00", place: "lunch_general" },
+                            { time: "16:00", place: "return_loei", note: "เดินทางกลับ" }
+                        ]
+                    }
+                },
+                // 7D6N (New)
+                "7": {
+                    zone: "โซน: เมืองเลย → ภูเรือ → สวนหินผางาม → ภูทอก → นาแห้ว → ภูสวนทราย → เชียงคาน",
+                    days: {
+                        1: [
+                            { time: "09:00-11:00", place: "quiet_cafe" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "กลางวัน + พัก" },
+                            { time: "17:00-18:30", place: "suan_kut_pong", note: "พัก: เมืองเลย" }
+                        ],
+                        2: [
+                            { time: "08:00-09:00", place: "drive_loei_phu_ruea" },
+                            { time: "09:00-12:00", place: "phu_ruea_park" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: ภูเรือ)" }
+                        ],
+                        3: [
+                            { time: "09:00-10:00", place: "drive_phu_ruea_suan_hin" },
+                            { time: "10:00-12:00", place: "stone_walk" },
+                            { time: "13:30-16:00", place: "lunch_nap", note: "พัก (พัก: ใกล้สวนหิน)" }
+                        ],
+                        4: [
+                            { time: "07:00-08:30", place: "drive_suan_hin_na_haeo", note: "เดินทางไปภูทอก" },
+                            { time: "08:30-11:00", place: "phu_tok_morning" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: ใกล้ภูทอก)" }
+                        ],
+                        5: [
+                            { time: "09:00-10:30", place: "drive_phu_tok_phu_ruea_4d", note: "เดินทางไปนาแห้ว" },
+                            { time: "10:30-12:00", place: "nature_border" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: นาแห้ว)" }
+                        ],
+                        6: [
+                            { time: "08:30-09:30", place: "drive_na_haeo", note: "ไปภูสวนทราย" },
+                            { time: "09:30-12:00", place: "phu_suan_sai" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: นาแห้ว)" }
+                        ],
+                        7: [
+                            { time: "09:00-11:00", place: "drive_back_na_haeo", note: "เดินทางไปเชียงคาน" },
+                            { time: "16:00-19:00", place: "walking_street_day", note: "เดินถนนคนเดิน" },
+                            { time: "19:30", place: "return_loei", note: "เดินทางกลับ" }
+                        ]
+                    }
+                }
+            },
+            "แฟน (Couple)": {
+                "1": {
+                    zone: "โซน: เชียงคาน (One Day Trip)",
+                    days: {
+                        1: [
+                            { time: "09:00-12:00", place: "mekong_cafe" },
+                            { time: "13:00-15:00", place: "kaeng_khut_khu" },
+                            { time: "16:00-18:00", place: "chiang_khan" }
+                        ]
+                    }
+                },
+                "2": {
+                    zone: "โซน: เชียงคานล้วน ๆ",
+                    days: {
+                        1: [
+                            { time: "09:00-10:30", place: "mekong_cafe" },
+                            { time: "11:00-14:00", place: "lunch_nap" },
+                            { time: "16:30-18:30", place: "skywalk_photo" }
+                        ],
+                        2: [
+                            { time: "07:00-08:30", place: "alms_only" },
+                            { time: "09:00-11:30", place: "walking_street_day" },
+                            { time: "12:00-15:00", place: "cafe_chill" },
+                            { time: "16:00", place: "return_loei" }
+                        ]
+                    }
+                },
+                "3": {
+                    zone: "โซน: ภูเรือ → สวนหินผางาม",
+                    days: {
+                        1: [
+                            { time: "10:00-12:00", place: "cafe_view_kha" },
+                            { time: "12:00-15:00", place: "lunch_nap" },
+                            { time: "16:30-18:30", place: "sunset_view", note: "พัก: ภูเรือ" }
+                        ],
+                        2: [
+                            { time: "07:00-08:30", place: "morning_mist" },
+                            { time: "09:30-12:00", place: "park_walk" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "อาหารกลางวัน + พักผ่อนยาวๆ (พัก: ภูเรือ)" }
+                        ],
+                        3: [
+                            { time: "09:00-10:00", place: "drive_phu_ruea_suan_hin" },
+                            { time: "10:00-12:00", place: "photo_suan_hin" },
+                            { time: "13:00-15:00", place: "cafe_suan_hin", note: "คาเฟ่" },
+                            { time: "16:00", place: "return_loei", note: "กลับ" }
+                        ]
+                    }
+                },
+                "4": {
+                    zone: "โซน: ภูเรือ → สวนหินผางาม → นาแห้ว",
+                    days: {
+                        1: [
+                            { time: "10:00-12:00", place: "cafe_view_kha" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พักผ่อน (พัก: ภูเรือ)" },
+                            { time: "16:30-18:30", place: "sunset_view" }
+                        ],
+                        2: [
+                            { time: "07:00-08:30", place: "morning_mist" },
+                            { time: "09:30-12:00", place: "park_walk" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พักยาว (พัก: ภูเรือ)" }
+                        ],
+                        3: [
+                            { time: "09:00-10:00", place: "drive_phu_ruea_suan_hin" },
+                            { time: "10:00-12:00", place: "photo_suan_hin" },
+                            { time: "13:00-16:00", place: "cafe_suan_hin", note: "คาเฟ่ (พัก: ใกล้สวนหินผางาม)" }
+                        ],
+                        4: [
+                            { time: "09:00-10:30", place: "drive_suan_hin_na_haeo" },
+                            { time: "10:30-13:00", place: "viewpoint_na_haeo" },
+                            { time: "14:00-16:00", place: "lunch_general", note: "ก่อนกลับ" }
+                        ]
+                    }
+                },
+                "5": {
+                    zone: "โซน: ภูเรือ → สวนหินผางาม → นาแห้ว → ภูสวนทราย",
+                    days: {
+                        1: [
+                            { time: "10:00-12:00", place: "cafe_view_kha" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พักผ่อน (พัก: ภูเรือ)" },
+                            { time: "16:30-18:30", place: "sunset_view" }
+                        ],
+                        2: [
+                            { time: "07:00-08:30", place: "morning_mist" },
+                            { time: "09:30-12:00", place: "park_walk" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พักยาว (พัก: ภูเรือ)" }
+                        ],
+                        3: [
+                            { time: "09:00-10:00", place: "drive_phu_ruea_suan_hin" },
+                            { time: "10:00-12:00", place: "photo_suan_hin" },
+                            { time: "13:00-16:00", place: "cafe_suan_hin", note: "คาเฟ่ (พัก: ใกล้สวนหินผางาม)" }
+                        ],
+                        4: [
+                            { time: "09:00-10:30", place: "drive_suan_hin_na_haeo" },
+                            { time: "10:30-13:00", place: "viewpoint_na_haeo" },
+                            { time: "14:00-16:30", place: "lunch_nap", note: "พัก (พัก: นาแห้ว)" }
+                        ],
+                        5: [
+                            { time: "08:30-10:30", place: "nature_walk_na_haeo", note: "เดินเล่นธรรมชาติ" },
+                            { time: "11:30-14:00", place: "lunch_general" },
+                            { time: "15:30", place: "return_loei", note: "เดินทางกลับ" }
+                        ]
+                    }
+                },
+                "6": {
+                    zone: "โซน: ภูเรือ → สวนหินผางาม → เชียงคาน → นาแห้ว",
+                    days: {
+                        1: [
+                            { time: "10:00-12:00", place: "cafe_view_kha" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พักผ่อน (พัก: ภูเรือ)" },
+                            { time: "16:30-18:30", place: "sunset_view" }
+                        ],
+                        2: [
+                            { time: "07:00-08:30", place: "morning_mist" },
+                            { time: "09:30-12:00", place: "park_walk" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พักยาว (พัก: ภูเรือ)" }
+                        ],
+                        3: [
+                            { time: "09:00-10:00", place: "drive_phu_ruea_suan_hin" },
+                            { time: "10:00-12:00", place: "photo_suan_hin" },
+                            { time: "13:00-16:00", place: "cafe_suan_hin", note: "คาเฟ่ (พัก: ใกล้สวนหินผางาม)" }
+                        ],
+                        4: [
+                            { time: "09:00-10:30", place: "drive_suan_hin_na_haeo", note: "เดินทางไปเชียงคาน" },
+                            { time: "11:00-15:00", place: "ck_relax", note: "ริมโขง + พัก" },
+                            { time: "16:30-18:30", place: "skywalk_photo" }
+                        ],
+                        5: [
+                            { time: "07:00-08:30", place: "alms_only", note: "ใส่บาตร" },
+                            { time: "10:00-14:00", place: "walking_street_day", note: "เดินเล่น (พัก: เชียงคาน)" }
+                        ],
+                        6: [
+                            { time: "08:00-10:00", place: "drive_loei_phu_ruea", note: "เดินทางไปนาแห้ว" },
+                            { time: "10:30-13:00", place: "nature_walk_na_haeo" },
+                            { time: "14:00", place: "return_loei", note: "เดินทางกลับ" }
+                        ]
+                    }
+                },
+                "7": {
+                    zone: "โซน: ภูเรือ → สวนหินผางาม → เชียงคาน → ภูป่าเปาะ → นาแห้ว",
+                    days: {
+                        1: [
+                            { time: "10:00-12:00", place: "cafe_view_kha" },
+                            { time: "16:30-18:30", place: "sunset_view" },
+                            { time: "19:00", place: "suan_hin_stay_area", note: "พัก: ภูเรือ" }
+                        ],
+                        2: [
+                            { time: "07:00-08:30", place: "morning_mist" },
+                            { time: "10:00-14:00", place: "park_walk" },
+                            { time: "15:00", place: "suan_hin_stay_area", note: "พัก: ภูเรือ" }
+                        ],
+                        3: [
+                            { time: "09:00-10:00", place: "drive_phu_ruea_suan_hin" },
+                            { time: "10:00-12:00", place: "photo_suan_hin" },
+                            { time: "13:00", place: "suan_hin_stay_area", note: "พัก: ใกล้สวนหิน" }
+                        ],
+                        4: [
+                            { time: "09:00-10:30", place: "drive_suan_hin_na_haeo", note: "เดินทางไปเชียงคาน" },
+                            { time: "16:00-20:00", place: "walking_street_day", note: "ถนนคนเดิน (พัก: เชียงคาน)" }
+                        ],
+                        5: [
+                            { time: "07:00-08:30", place: "alms_only", note: "ใส่บาตร" },
+                            { time: "10:00-14:00", place: "ck_relax", note: "ริมโขง (พัก: เชียงคาน)" }
+                        ],
+                        6: [
+                            { time: "06:30-08:00", place: "drive_pa_po", note: "เดินทางไปภูป่าเปาะ" },
+                            { time: "08:00-10:30", place: "phu_pa_po" },
+                            { time: "12:00", place: "return_loei", note: "พัก: เมืองเลย" }
+                        ],
+                        7: [
+                            { time: "09:00-11:00", place: "drive_dansai", note: "เดินทางไปนาแห้ว" },
+                            { time: "11:00-14:00", place: "nature_walk_na_haeo" },
+                            { time: "15:00", place: "return_loei", note: "กลับ" }
+                        ]
+                    }
+                }
+            },
+            "ครอบครัว (Family)": {
+                "1": {
+                    zone: "โซน: ด่านซ้าย (One Day Trip)",
+                    days: {
+                        1: [
+                            { time: "08:30-10:00", place: "phi_ta_khon" },
+                            { time: "11:00-13:00", place: "dansai_local_food" },
+                            { time: "14:00-16:00", place: "wat_neramit" }
+                        ]
+                    }
+                },
+                "2": {
+                    zone: "โซน: ด่านซ้าย",
+                    days: {
+                        1: [
+                            { time: "07:30-08:45", place: "drive_dansai" },
+                            { time: "09:00-10:30", place: "phi_ta_khon", note: "เดินสบาย เด็กดูได้ ผู้ใหญ่ไม่เบื่อ" },
+                            { time: "11:00-14:30", place: "dansai_local_food" },
+                            { time: "16:00-18:00", place: "wat_neramit" }
+                        ],
+                        2: [
+                            { time: "08:30-10:00", place: "cafe_morning_market" },
+                            { time: "10:30-12:00", place: "lunch_general" },
+                            { time: "13:00-14:30", place: "dansai_to_loei" },
+                            { time: "16:00-18:00", place: "evening_market_loei" }
+                        ]
+                    }
+                },
+                "3": {
+                    zone: "โซน: นาแห้ว → ภูสวนทราย",
+                    days: {
+                        1: [
+                            { time: "07:30-09:00", place: "drive_na_haeo" },
+                            { time: "09:30-11:00", place: "nature_walk_na_haeo" },
+                            { time: "11:30-15:00", place: "lunch_nap", note: "อาหารกลางวัน + พัก" },
+                            { time: "16:00-18:00", place: "viewpoint_na_haeo", note: "พัก: นาแห้ว" }
+                        ],
+                        2: [
+                            { time: "08:30-09:00", place: "drive_na_haeo", note: "ขับรถไปภูสวนทราย" },
+                            { time: "09:00-12:00", place: "phu_suan_sai" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "อาหารกลางวัน + พัก (พัก: นาแห้ว)" }
+                        ],
+                        3: [
+                            { time: "09:00-10:30", place: "drive_back_na_haeo" },
+                            { time: "11:00-15:00", place: "lunch_general" },
+                            { time: "16:00-18:00", place: "evening_market_loei" }
+                        ]
+                    }
+                },
+                "4": {
+                    zone: "โซน: ด่านซ้าย → นาแห้ว → ภูสวนทราย",
+                    days: {
+                        1: [
+                            { time: "07:30-08:45", place: "drive_dansai" },
+                            { time: "09:00-10:30", place: "phi_ta_khon", note: "พิพิธภัณฑ์ผีตาโขน" },
+                            { time: "11:00-15:00", place: "lunch_nap", note: "อาหาร + พัก (พัก: ด่านซ้าย)" },
+                            { time: "16:00-18:00", place: "wat_neramit" }
+                        ],
+                        2: [
+                            { time: "09:00-10:00", place: "drive_dansai", note: "เดินทางไปนาแห้ว" },
+                            { time: "10:30-12:00", place: "nature_walk_na_haeo" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: นาแห้ว)" }
+                        ],
+                        3: [
+                            { time: "08:30-09:00", place: "drive_na_haeo", note: "ไปภูสวนทราย" },
+                            { time: "09:00-12:00", place: "phu_suan_sai" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: นาแห้ว)" }
+                        ],
+                        4: [
+                            { time: "09:00-10:30", place: "drive_back_na_haeo" },
+                            { time: "11:00-15:00", place: "lunch_general" },
+                            { time: "16:00-18:00", place: "evening_market_loei" }
+                        ]
+                    }
+                },
+                "5": {
+                    zone: "โซน: ด่านซ้าย → นาแห้ว → ภูสวนทราย",
+                    days: {
+                        1: [
+                            { time: "07:30-08:45", place: "drive_dansai" },
+                            { time: "09:00-10:30", place: "phi_ta_khon", note: "พิพิธภัณฑ์ผีตาโขน" },
+                            { time: "11:00-15:00", place: "lunch_nap", note: "อาหาร + พัก (พัก: ด่านซ้าย)" },
+                            { time: "16:00-18:00", place: "wat_neramit" }
+                        ],
+                        2: [
+                            { time: "09:00-10:00", place: "drive_dansai", note: "เดินทางไปนาแห้ว" },
+                            { time: "10:30-12:00", place: "nature_walk_na_haeo" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: นาแห้ว)" }
+                        ],
+                        3: [
+                            { time: "08:30-09:00", place: "drive_na_haeo", note: "ไปภูสวนทราย" },
+                            { time: "09:00-12:00", place: "phu_suan_sai" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: นาแห้ว)" }
+                        ],
+                        4: [
+                            { time: "08:30-09:00", place: "drive_na_haeo", note: "ไปภูสวนทราย" },
+                            { time: "09:00-12:00", place: "phu_suan_sai" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: นาแห้ว)" }
+                        ],
+                        5: [
+                            { time: "09:00-10:30", place: "drive_back_na_haeo" },
+                            { time: "11:00-15:00", place: "lunch_general" },
+                            { time: "16:00-18:00", place: "evening_market_loei" }
+                        ]
+                    }
+                },
+                "6": {
+                    zone: "โซน: ด่านซ้าย → นาแห้ว → ภูสวนทราย → เมืองเลย",
+                    days: {
+                        1: [
+                            { time: "07:30-08:45", place: "drive_dansai" },
+                            { time: "09:00-10:30", place: "phi_ta_khon", note: "พิพิธภัณฑ์ผีตาโขน" },
+                            { time: "11:00-15:00", place: "lunch_nap", note: "อาหาร + พัก (พัก: ด่านซ้าย)" },
+                            { time: "16:00-18:00", place: "wat_neramit" }
+                        ],
+                        2: [
+                            { time: "09:00-11:00", place: "dansai_market_morning" },
+                            { time: "11:30-15:00", place: "lunch_nap", note: "พัก (พัก: ด่านซ้าย)" }
+                        ],
+                        3: [
+                            { time: "09:00-10:00", place: "drive_dansai", note: "เดินทางไปนาแห้ว" },
+                            { time: "10:30-12:00", place: "nature_walk_na_haeo" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: นาแห้ว)" }
+                        ],
+                        4: [
+                            { time: "08:30-09:00", place: "drive_na_haeo", note: "ไปภูสวนทราย" },
+                            { time: "09:00-12:00", place: "phu_suan_sai" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: นาแห้ว)" }
+                        ],
+                        5: [
+                            { time: "09:00-12:00", place: "na_haeo_community" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: นาแห้ว)" }
+                        ],
+                        6: [
+                            { time: "09:00-10:30", place: "drive_back_na_haeo" },
+                            { time: "11:00-15:00", place: "lunch_general" },
+                            { time: "16:00-18:00", place: "evening_market_loei" }
+                        ]
+                    }
+                },
+                "7": {
+                    zone: "โซน: ด่านซ้าย → นาแห้ว → ภูสวนทราย → เมืองเลย → เชียงคาน",
+                    days: {
+                        1: [
+                            { time: "08:00-09:15", place: "drive_dansai" },
+                            { time: "09:30-11:00", place: "phi_ta_khon" },
+                            { time: "12:00", place: "suan_hin_stay_area", note: "พัก: ด่านซ้าย" }
+                        ],
+                        2: [
+                            { time: "09:00-11:00", place: "wat_neramit" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พักผ่อน" }
+                        ],
+                        3: [
+                            { time: "09:00-10:00", place: "drive_dansai", note: "เดินทางไปนาแห้ว" },
+                            { time: "10:30-12:00", place: "nature_walk_na_haeo" },
+                            { time: "13:00", place: "suan_hin_stay_area", note: "พัก: นาแห้ว" }
+                        ],
+                        4: [
+                            { time: "09:00-12:00", place: "phu_suan_sai" },
+                            { time: "13:00", place: "suan_hin_stay_area", note: "พัก: นาแห้ว" }
+                        ],
+                        5: [
+                            { time: "09:00-10:30", place: "drive_back_na_haeo" },
+                            { time: "11:00-15:00", place: "lunch_nap", note: "พัก (พัก: เมืองเลย)" }
+                        ],
+                        6: [
+                            { time: "09:00-10:00", place: "drive_loei_phu_ruea", note: "เดินทางไปเชียงคาน" },
+                            { time: "16:00-19:00", place: "walking_street_day", note: "เดินเล่น (พัก: เชียงคาน)" }
+                        ],
+                        7: [
+                            { time: "07:00-08:30", place: "alms_only", note: "ใส่บาตร" },
+                            { time: "10:00-14:00", place: "shopping_local" },
+                            { time: "15:00", place: "return_loei", note: "กลับ" }
+                        ]
+                    }
+                }
+            },
+            "เพื่อน (Friends)": {
+                "1": {
+                    zone: "โซน: ภูป่าเปาะ (One Day Trip)",
+                    days: {
+                        1: [
+                            { time: "06:00-09:00", place: "phu_pa_po" },
+                            { time: "10:00-12:00", place: "suan_hin_pha_ngam" },
+                            { time: "13:00-15:00", place: "lunch_chill_friend" }
+                        ]
+                    }
+                },
+                "2": {
+                    zone: "โซน: เมืองเลย → ภูป่าเปาะ",
+                    days: {
+                        1: [
+                            { time: "06:30-08:00", place: "drive_pa_po" },
+                            { time: "08:00-10:30", place: "phu_pa_po", note: "ถ่ายรูป ชมวิว (เวลานี้อากาศยังดี คนไม่แน่น)" },
+                            { time: "11:30-14:00", place: "back_loei_eat_rest" },
+                            { time: "17:00-19:00", place: "walking_street_loei" }
+                        ],
+                        2: [
+                            { time: "09:00-11:00", place: "cafe_only" },
+                            { time: "11:30-14:30", place: "lunch_chill_friend" },
+                            { time: "16:00-18:00", place: "walk_city" }
+                        ]
+                    }
+                },
+                "3": {
+                    zone: "โซน: ภูทอก → ภูเรือ",
+                    days: {
+                        1: [
+                            { time: "06:30-08:00", place: "drive_phu_tok" },
+                            { time: "08:00-10:30", place: "phu_tok_morning" },
+                            { time: "11:30-14:30", place: "lunch_nap", note: "อาหาร + พัก (พัก: ใกล้ภูทอก)" }
+                        ],
+                        2: [
+                            { time: "09:00-10:30", place: "drive_phu_tok_phu_ruea" },
+                            { time: "11:00-15:00", place: "explore_phu_ruea" },
+                            { time: "17:00-19:00", place: "chill_party", note: "พัก: ภูเรือ" }
+                        ],
+                        3: [
+                            { time: "08:00-10:00", place: "morning_view_phu_ruea" },
+                            { time: "11:00-14:00", place: "lunch_general" },
+                            { time: "16:00", place: "return_loei", note: "กลับ" }
+                        ]
+                    }
+                },
+                "4": {
+                    zone: "โซน: ภูป่าเปาะ → ภูทอก → ภูเรือ → สวนหินผางาม",
+                    days: {
+                        1: [
+                            { time: "06:30-08:00", place: "drive_pa_po" },
+                            { time: "08:00-10:30", place: "phu_pa_po" },
+                            { time: "12:00-15:00", place: "lunch_nap", note: "อาหาร + พัก (พัก: เมืองเลย)" }
+                        ],
+                        2: [
+                            { time: "07:00-08:30", place: "drive_phu_tok" },
+                            { time: "08:30-11:00", place: "phu_tok_morning" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: ใกล้ภูทอก)" }
+                        ],
+                        3: [
+                            { time: "09:00-10:30", place: "drive_phu_tok_phu_ruea_4d" },
+                            { time: "11:00-15:00", place: "explore_phu_ruea" },
+                            { time: "17:00-19:00", place: "chill_party", note: "สังสรรค์ (พัก: ภูเรือ)" }
+                        ],
+                        4: [
+                            { time: "09:00-10:00", place: "drive_phu_ruea_suan_hin" },
+                            { time: "10:00-12:00", place: "nature_walk_suan_hin" },
+                            { time: "13:00-15:00", place: "lunch_general" },
+                            { time: "16:00", place: "return_loei", note: "กลับ" }
+                        ]
+                    }
+                },
+                "5": {
+                    zone: "โซน: ภูป่าเปาะ → ภูทอก → ภูเรือ → สวนหินผางาม → นาแห้ว",
+                    days: {
+                        1: [
+                            { time: "06:30-08:00", place: "drive_pa_po" },
+                            { time: "08:00-10:30", place: "phu_pa_po" },
+                            { time: "12:00-15:00", place: "lunch_nap", note: "อาหาร + พัก (พัก: เมืองเลย)" }
+                        ],
+                        2: [
+                            { time: "07:00-08:30", place: "drive_phu_tok" },
+                            { time: "08:30-11:00", place: "phu_tok_morning" },
+                            { time: "13:00-16:00", place: "lunch_nap", note: "พัก (พัก: ใกล้ภูทอก)" }
+                        ],
+                        3: [
+                            { time: "09:00-10:30", place: "drive_phu_tok_phu_ruea_4d" },
+                            { time: "11:00-15:00", place: "explore_phu_ruea" },
+                            { time: "17:00-19:00", place: "chill_party", note: "สังสรรค์ (พัก: ภูเรือ)" }
+                        ],
+                        4: [
+                            { time: "09:00-10:00", place: "drive_phu_ruea_suan_hin" },
+                            { time: "10:00-12:00", place: "nature_walk_suan_hin" },
+                            { time: "13:00-16:00", place: "cafe_suan_hin", note: "พัก: ใกล้สวนหินผางาม" }
+                        ],
+                        5: [
+                            { time: "09:00-10:30", place: "drive_suan_hin_na_haeo", note: "เดินทางไปเชียงคาน" },
+                            { time: "11:00-15:00", place: "ck_relax", note: "ริมโขง" },
+                            { time: "17:00-19:00", place: "chill_party", note: "ชิล (พัก: เชียงคาน)" }
+                        ],
+                        6: [
+                            { time: "07:00-08:30", place: "alms_only", note: "ใส่บาตร" },
+                            { time: "10:00-14:00", place: "walking_street_day" },
+                            { time: "15:00", place: "return_loei", note: "เดินทางกลับ" }
+                        ]
+                    }
+                },
+                "7": {
+                    zone: "โซน: ภูป่าเปาะ → ภูทอก → ภูเรือ → สวนหินผางาม → เชียงคาน",
+                    days: {
+                        1: [
+                            { time: "06:30-08:00", place: "drive_pa_po" },
+                            { time: "08:00-10:30", place: "phu_pa_po" },
+                            { time: "13:00", place: "suan_hin_stay_area", note: "พัก: เมืองเลย" }
+                        ],
+                        2: [
+                            { time: "07:00-08:30", place: "drive_phu_tok" },
+                            { time: "08:30-11:00", place: "phu_tok_morning" },
+                            { time: "13:00", place: "suan_hin_stay_area", note: "พัก: ใกล้ภูทอก" }
+                        ],
+                        3: [
+                            { time: "09:00-10:30", place: "drive_phu_tok_phu_ruea_4d" },
+                            { time: "11:00-16:00", place: "explore_phu_ruea", note: "เที่ยวจัด" },
+                            { time: "17:00", place: "suan_hin_stay_area", note: "พัก: ภูเรือ" }
+                        ],
+                        4: [
+                            { time: "07:00-09:00", place: "morning_mist" },
+                            { time: "10:00-14:00", place: "cafe_view_kha" },
+                            { time: "15:00", place: "suan_hin_stay_area", note: "พัก: ภูเรือ" }
+                        ],
+                        5: [
+                            { time: "09:00-10:00", place: "drive_phu_ruea_suan_hin" },
+                            { time: "10:00-12:00", place: "stone_walk" },
+                            { time: "13:00", place: "suan_hin_stay_area", note: "พัก: ใกล้สวนหิน" }
+                        ],
+                        6: [
+                            { time: "09:00-10:30", place: "drive_suan_hin_na_haeo", note: "เดินทางไปเชียงคาน" },
+                            { time: "16:00-20:00", place: "walking_street_day" },
+                            { time: "21:00", place: "suan_hin_stay_area", note: "พัก: เชียงคาน" }
+                        ],
+                        7: [
+                            { time: "07:00-08:30", place: "alms_only", note: "ใส่บาตร" },
+                            { time: "10:00-14:00", place: "ck_relax", note: "ชิล" },
+                            { time: "15:00", place: "return_loei", note: "กลับ" }
+                        ]
+                    }
+                }
+            }
+        };
+
+        function generateTrip() {
+            const days = parseInt(document.getElementById('tripDays').value);
+            const tripStyle = document.getElementById('tripStyle').value;
+            const container = document.getElementById('itineraryContainer');
+            const resultSection = document.getElementById('resultSection');
+
+            container.innerHTML = '';
+
+            resultSection.classList.remove('hidden');
+            resultSection.scrollIntoView({ behavior: 'smooth' });
+
+            // 1. Get Plan based on Style AND Duration
+            const stylePlan = styleItineraries[tripStyle] ? styleItineraries[tripStyle][days.toString()] : null;
+
+            // Display Zone info if exists
+            const zoneText = stylePlan ? stylePlan.zone : null;
+            if (zoneText) {
+                const zoneDiv = document.createElement('div');
+                zoneDiv.className = "text-center mb-8 relative z-10";
+                zoneDiv.innerHTML = `<span class="inline-block bg-brand-light text-brand-navy border border-brand-orange/30 px-4 py-2 rounded-lg font-bold text-lg shadow-sm">📍 ${zoneText}</span>`;
+                container.appendChild(zoneDiv);
+            }
+
+            for (let day = 1; day <= days; day++) {
+                let activities = [];
+
+                // 1. Check if specific style has specific plan for this duration
+                if (stylePlan && stylePlan.days && stylePlan.days[day]) {
+                    activities = stylePlan.days[day];
+                }
+                // 2. Logic for Multi-day mixing (Same as before but checking defaults)
+                else {
+                    // Fallback logic for days not explicitly defined in style
+                    if (days === 1) activities = defaultTemplates[1];
+                    else if (days === 2) {
+                        if (day === 1) activities = defaultTemplates[2];
+                        if (day === 2) activities = defaultTemplates[1];
+                    }
+                    else if (days === 3) {
+                        if (day === 1) activities = defaultTemplates[3];
+                        if (day === 2) activities = defaultTemplates[2];
+                        if (day === 3) activities = defaultTemplates[1];
+                    }
+                    else {
+                        // 4-7 Days Fallback
+                        let templateIndex = day;
+                        if (days >= 5) {
+                            if (day === 1) activities = defaultTemplates[3];
+                            else if (day === 2) activities = defaultTemplates[2];
+                            else if (day === 3) activities = defaultTemplates[4];
+                            else if (day === 4) activities = defaultTemplates[5];
+                            else if (day === 5) activities = defaultTemplates[6];
+                            else if (day === 6) activities = defaultTemplates[1];
+                            else if (day === 7) activities = defaultTemplates[7];
+                        } else {
+                            if (day === 1) activities = defaultTemplates[3];
+                            else if (day === 2) activities = defaultTemplates[2];
+                            else if (day === 3) activities = defaultTemplates[1];
+                            else if (day === 4) activities = defaultTemplates[7];
+                        }
+                    }
+                }
+
+                // Render Day Header
+                const dayHeader = document.createElement('div');
+                dayHeader.className = "relative z-10 text-center mb-8";
+                dayHeader.innerHTML = `
+                    <span class="inline-block bg-brand-navy text-white px-6 py-2 rounded-full font-bold text-xl shadow-lg border-4 border-white">
+                        วันที่ ${day}
+                    </span>
+                `;
+                container.appendChild(dayHeader);
+
+                // Render Activities
+                if (activities && activities.length > 0) {
+                    activities.forEach((act, index) => {
+                        const place = attractions[act.place] || { name: act.note || "พักผ่อน", img: "./assets/logo.png", desc: "" };
+                        const time = act.time || "";
+                        // If place has note, use it to override or append? 
+                        // Current logic: place.desc is from attaractions. act.note is specific override.
+                        // Let's use act.note if available, else place.desc
+                        const description = act.note ? act.note : place.desc;
+
+                        const card = document.createElement('div');
+                        card.className = `flex flex-col md:flex-row items-center gap-8 mb-12 fade-in`;
+                        card.style.animationDelay = `${index * 0.2}s`;
+
+                        const content = `
+                            <!-- Time & Dot -->
+                            <div class="md:w-1/2 flex justify-end md:pr-12 relative order-1 ${index % 2 !== 0 ? 'md:order-3 md:justify-start md:pl-12 md:pr-0' : ''}">
+                               <div class="bg-white p-6 rounded-2xl shadow-xl w-full max-w-sm border border-brand-light hover:scale-105 transition-transform">
+                                    <span class="bg-brand-orange/10 text-brand-orange px-3 py-1 rounded-lg text-sm font-bold mb-3 inline-block">⏰ ${time}</span>
+                                    <h3 class="font-bold text-xl text-brand-navy mb-2">${place.name}</h3>
+                                    <p class="text-gray-500 text-sm mb-4">${description}</p>
+
+                               </div>
+                               
+                               <!-- Dot on Line -->
+                               <div class="absolute top-8 ${index % 2 !== 0 ? 'left-[-3.5rem] md:left-0 md:-translate-x-1/2' : 'right-[-3.5rem] md:right-0 md:translate-x-1/2'} hidden md:flex w-8 h-8 bg-brand-orange rounded-full border-4 border-white shadow-lg items-center justify-center z-10 text-white text-xs">
+                                   ${index + 1}
+                               </div>
+                            </div>
+
+                            <!-- Empty Space for Zig Zag -->
+                            <div class="w-8 md:w-0 order-2"></div>
+                            
+                            <div class="md:w-1/2 order-3 ${index % 2 !== 0 ? 'md:order-1' : ''}"></div>
+                        `;
+
+                        card.innerHTML = content;
+                        container.appendChild(card);
+                    });
+                } else {
+                    // No activities defined for this day/style combo yet
+                    const noPlan = document.createElement('div');
+                    noPlan.className = "text-center text-gray-500 mb-8";
+                    noPlan.innerText = "- ยังไม่มีแผนสำหรับวันที่เลือกในสไตล์นี้ (ใช้แผนตารางเดิม) -";
+                    container.appendChild(noPlan);
+                    // Note: We could fallback to default templates inside the loop if null, but up there we handle it.
+                }
+
+
+            }
+        }
+    </script>
+</body>
+
+</html>

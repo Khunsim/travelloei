@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ข้อมูลจังหวัดเลย - Travel LOEI 360°</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@400;500;600;700&family=Sarabun:wght@400;500;700&family=Volkhov:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#DF6951',
+                            yellow: '#F1A501',
+                            navy: '#181E4B',
+                            light: '#FFF1DA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Sarabun', 'sans-serif'],
+                        serif: ['Volkhov', 'serif'],
+                        cursive: ['Dancing Script', 'cursive'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #DF6951;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-navy antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 top-0 py-6 transition-all duration-300">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-bold flex items-center gap-2">
+                <img src="./assets/logo.png" alt="Logo" class="h-16 w-auto object-contain">
+                <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-12 font-medium text-xl">
+                <a href="index.html" class="text-brand-orange transition-colors">หน้าแรก</a>
+                <a href="recommend.html" class="hover:text-brand-orange transition-colors">แนะนำ</a>
+                <a href="trip-planner.html" class="hover:text-brand-orange transition-colors">เคล็ดลับ</a>
+                <a href="about.html" class="hover:text-brand-orange transition-colors">เกี่ยวกับ</a>
+                <a href="contact.html" class="hover:text-brand-orange transition-colors">ติดต่อ</a>
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="hidden md:flex items-center gap-6">
+                <div class="relative group">
+                    <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')"
+                        class="flex items-center gap-2 font-medium text-xl hover:text-brand-orange transition-colors focus:outline-none">
+                        <span>TH</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div id="lang-dropdown"
+                        class="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl py-2 hidden border border-gray-100 z-50">
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors text-brand-orange font-bold">ไทย</a>
+                        <a href="loei-info-en.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">English</a>
+                        <a href="index-cn.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">中文</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-brand-navy focus:outline-none"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full left-0 top-full p-6 space-y-4">
+            <a href="index.html" class="block text-brand-orange font-bold">หน้าแรก</a>
+            <a href="recommend.html" class="block hover:text-brand-orange">แนะนำ</a>
+            <a href="trip-planner.html" class="block hover:text-brand-orange">เคล็ดลับ</a>
+            <a href="about.html" class="block hover:text-brand-orange">เกี่ยวกับ</a>
+            <a href="contact.html" class="block hover:text-brand-orange">ติดต่อ</a>
+
+            <!-- Mobile Language Switcher -->
+            <div class="border-t border-gray-100 pt-4 flex items-center gap-4 font-medium">
+                <span class="text-gray-400 text-sm">ภาษา:</span>
+                <a href="#" class="text-brand-orange">TH</a>
+                <span class="text-gray-300">|</span>
+                <a href="loei-info-en.html" class="text-gray-500 hover:text-brand-orange">EN</a>
+                <span class="text-gray-300">|</span>
+                <a href="index-cn.html" class="text-gray-500 hover:text-brand-orange">CN</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Scroll Script -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.add('py-6');
+            }
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="pt-40 pb-20 relative bg-brand-light/30">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="font-serif text-5xl lg:text-6xl font-bold text-brand-navy mb-6">ข้อมูลจังหวัดเลย</h1>
+            <p class="text-gray-500 text-lg max-w-2xl mx-auto">รู้จักเมืองเลยให้มากขึ้น ดินแดนแห่งขุนเขาและวัฒนธรรม</p>
+        </div>
+    </section>
+
+    <!-- Content Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-4xl space-y-20">
+
+            <!-- Intro -->
+            <div class="space-y-6">
+                <h2 class="font-serif text-3xl font-bold text-brand-navy border-l-4 border-brand-orange pl-4">
+                    แนะนำจังหวัดเลย</h2>
+                <p class="text-gray-600 leading-relaxed text-lg text-justify">
+                    จังหวัดเลยเป็นจังหวัดที่มีความโดดเด่นด้านธรรมชาติ ภูเขา และอากาศที่บริสุทธิ์ มีบรรยากาศเงียบสงบ
+                    เหมาะสำหรับการท่องเที่ยวพักผ่อนและสัมผัสวิถีชีวิตที่เรียบง่ายของชุมชนท้องถิ่น
+                    จังหวัดเลยยังมีแหล่งท่องเที่ยวที่หลากหลาย ทั้งทางธรรมชาติ วัฒนธรรม และประเพณีที่มีเอกลักษณ์เฉพาะตัว
+                    ซึ่งสะท้อนถึงเสน่ห์ของเมืองเล็ก ๆ ที่เต็มไปด้วยความอบอุ่นและความงดงาม
+                </p>
+            </div>
+
+            <!-- Attractions -->
+            <div class="grid md:grid-cols-2 gap-10 items-center">
+                <div class="space-y-6">
+                    <h2 class="font-serif text-3xl font-bold text-brand-navy border-l-4 border-brand-orange pl-4">
+                        แหล่งท่องเที่ยวที่น่าสนใจในจังหวัดเลย</h2>
+                    <p class="text-gray-600 leading-relaxed text-lg text-justify">
+                        จังหวัดเลยมีแหล่งท่องเที่ยวที่หลากหลายและเหมาะกับนักท่องเที่ยวทุกกลุ่ม
+                        ไม่ว่าจะเป็นแหล่งท่องเที่ยวทางธรรมชาติ จุดชมวิว หรือสถานที่ท่องเที่ยวเชิงวัฒนธรรม
+                        โดยสถานที่ท่องเที่ยวส่วนใหญ่มีความอุดมสมบูรณ์ของธรรมชาติและบรรยากาศที่เงียบสงบ
+                        เหมาะสำหรับการพักผ่อนและถ่ายภาพ รวมถึงการเรียนรู้เรื่องราวของท้องถิ่น
+                    </p>
+                </div>
+                <div class="rounded-3xl overflow-hidden shadow-xl h-64">
+                    <img src="./assets/Recommended places to visit/1.jpg" alt="Phu Kradueng"
+                        class="w-full h-full object-cover">
+                </div>
+            </div>
+
+            <!-- Culture -->
+            <div class="grid md:grid-cols-2 gap-10 items-center md:flex-row-reverse">
+                <div class="rounded-3xl overflow-hidden shadow-xl h-64 order-2 md:order-1">
+                    <img src="./assets/Phi Ta Khon.webp" alt="Phi Ta Khon" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-6 order-1 md:order-2">
+                    <h2 class="font-serif text-3xl font-bold text-brand-navy border-l-4 border-brand-orange pl-4">
+                        วัฒนธรรมและวิถีชีวิตท้องถิ่น</h2>
+                    <p class="text-gray-600 leading-relaxed text-lg text-justify">
+                        วัฒนธรรมของจังหวัดเลยมีความเรียบง่ายและสะท้อนถึงวิถีชีวิตของชุมชนท้องถิ่น
+                        ประชาชนมีความเป็นมิตรและยังคงรักษาขนบธรรมเนียมประเพณีดั้งเดิมไว้ เช่น ประเพณีท้องถิ่น ความเชื่อ
+                        และการใช้ชีวิตที่ใกล้ชิดธรรมชาติ
+                        วัฒนธรรมเหล่านี้ถือเป็นเสน่ห์สำคัญที่ช่วยสร้างเอกลักษณ์ให้กับจังหวัดเลยและดึงดูดนักท่องเที่ยวให้เข้ามาเรียนรู้และสัมผัสประสบการณ์ใหม่
+                        ๆ
+                    </p>
+                </div>
+            </div>
+
+            <!-- Nature -->
+            <div class="space-y-6">
+                <h2 class="font-serif text-3xl font-bold text-brand-navy border-l-4 border-brand-orange pl-4">
+                    ธรรมชาติและสิ่งแวดล้อม</h2>
+                <p class="text-gray-600 leading-relaxed text-lg text-justify">
+                    จังหวัดเลยมีทรัพยากรธรรมชาติที่อุดมสมบูรณ์ ทั้งภูเขา ป่าไม้ และแหล่งท่องเที่ยวทางธรรมชาติที่สวยงาม
+                    เหมาะสำหรับการท่องเที่ยวเชิงอนุรักษ์ นักท่องเที่ยวสามารถสัมผัสอากาศที่บริสุทธิ์
+                    ชมวิวทิวทัศน์ของภูเขาและทะเลหมอก
+                    รวมถึงเรียนรู้การท่องเที่ยวที่คำนึงถึงการอนุรักษ์สิ่งแวดล้อมและทรัพยากรธรรมชาติ
+                </p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+                    <img src="./assets/Recommended places to visit/2.jpg"
+                        class="rounded-xl shadow-md h-48 w-full object-cover">
+                    <img src="./assets/Recommended places to visit/4.webp"
+                        class="rounded-xl shadow-md h-48 w-full object-cover">
+                    <img src="./assets/Recommended places to visit/5.jpg"
+                        class="rounded-xl shadow-md h-48 w-full object-cover">
+                </div>
+            </div>
+
+            <!-- Travel Info & Best Time -->
+            <div class="grid md:grid-cols-2 gap-10">
+                <div class="bg-brand-light/30 p-8 rounded-3xl space-y-4">
+                    <h3 class="font-bold text-2xl text-brand-navy">🚗 ข้อมูลการเดินทางเบื้องต้น</h3>
+                    <p class="text-gray-600 leading-relaxed text-justify">
+                        นักท่องเที่ยวสามารถเดินทางมายังจังหวัดเลยได้ทั้งรถยนต์ส่วนตัวและรถโดยสารประจำทาง
+                        โดยสามารถเดินทางจากจังหวัดใกล้เคียงหรือจากกรุงเทพมหานครได้อย่างสะดวก
+                        ภายในจังหวัดมีเส้นทางคมนาคมที่สามารถเดินทางไปยังแหล่งท่องเที่ยวสำคัญได้ง่าย
+                        ทำให้นักท่องเที่ยวสามารถวางแผนการเดินทางได้อย่างเหมาะสม
+                    </p>
+                </div>
+                <div class="bg-blue-50 p-8 rounded-3xl space-y-4">
+                    <h3 class="font-bold text-2xl text-brand-navy">📅 ช่วงเวลาที่เหมาะสมในการท่องเที่ยว</h3>
+                    <p class="text-gray-600 leading-relaxed text-justify">
+                        จังหวัดเลยสามารถท่องเที่ยวได้ตลอดทั้งปี แต่ช่วงเวลาที่ได้รับความนิยมมากที่สุดคือฤดูหนาว
+                        เนื่องจากอากาศเย็นสบายและมีโอกาสชมทะเลหมอกในหลายพื้นที่
+                        ส่วนฤดูฝนธรรมชาติจะมีความเขียวชอุ่ม เหมาะสำหรับผู้ที่ชื่นชอบบรรยากาศธรรมชาติและความสงบ
+                    </p>
+                </div>
+            </div>
+
+            <!-- Objective -->
+            <div class="bg-[#2581c4] text-white p-10 rounded-[2.5rem] text-center space-y-4 relative overflow-hidden">
+                <!-- Decor -->
+                <div
+                    class="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2">
+                </div>
+
+                <h2 class="font-serif text-3xl font-bold relative z-10">วัตถุประสงค์ของเว็บไซต์</h2>
+                <p class="text-gray-300 leading-relaxed text-lg max-w-2xl mx-auto relative z-10">
+                    เว็บไซต์นี้จัดทำขึ้นเพื่อส่งเสริมการท่องเที่ยวในจังหวัดเลย
+                    โดยมุ่งเน้นการเผยแพร่ข้อมูลแหล่งท่องเที่ยว
+                    วัฒนธรรม และธรรมชาติ เพื่อให้ผู้ที่สนใจสามารถเข้าถึงข้อมูลได้ง่าย
+                    และนำไปใช้ประกอบการวางแผนการท่องเที่ยว
+                    รวมถึงช่วยประชาสัมพันธ์เสน่ห์ของจังหวัดเลยให้เป็นที่รู้จักมากยิ่งขึ้น
+                </p>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="pt-20 pb-10">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-20">
+            <!-- Brand -->
+            <div class="lg:col-span-2 space-y-6">
+                <a href="#" class="text-3xl font-bold flex items-center gap-2 mb-4">
+                    <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+                </a>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
+                    เว็บไซต์นี้จัดทำขึ้นเพื่อใช้ประกอบโครงการจบการศึกษา ระดับประกาศนียบัตรวิชาชีพ (ปวช.)
+                </p>
+            </div>
+
+            <!-- Links 1 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">เกี่ยวกับเว็บไซต์</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="about.html" class="hover:text-brand-orange transition-colors">เกี่ยวกับเรา</a></li>
+                    <li><a href="destinations.html" class="hover:text-brand-orange transition-colors">ที่เที่ยวแนะนำ</a>
+                    </li>
+                    <li><a href="trip-planner.html" class="hover:text-brand-orange transition-colors">เคล็ดลับ</a></li>
+                </ul>
+            </div>
+
+            <!-- Links 2 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">ติดต่อ</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="contact.html" class="hover:text-brand-orange transition-colors">ติดต่อเรา</a></li>
+                    <li><a href="contact.html" class="hover:text-brand-orange transition-colors">แจ้งแก้ไขข้อมูล</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Links 3 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">เครดิต & แหล่งข้อมูล</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+
+                    <li><a href="#" class="hover:text-brand-orange transition-colors">เครดิตรูปภาพ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center border-t border-gray-100 pt-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-gray-400 text-sm">© 2025 เที่ยวเลย360° | Travel Loei360°</span>
+                <div class="flex gap-8">
+                    <a href="terms.html"
+                        class="text-gray-400 hover:text-brand-navy text-sm font-medium">ข้อตกลงการใช้งาน</a>
+                    <a href="privacy.html"
+                        class="text-gray-400 hover:text-brand-navy text-sm font-medium">นโยบายความเป็นส่วนตัว</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+</body>
+
+</html>

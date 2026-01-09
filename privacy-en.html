@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - Travel LOEI 360°</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@400;500;600;700&family=Volkhov:wght@700&family=Sarabun:wght@400;500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#DF6951',
+                            yellow: '#F1A501',
+                            navy: '#181E4B',
+                            light: '#FFF1DA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Sarabun', 'sans-serif'],
+                        serif: ['Volkhov', 'serif'],
+                        cursive: ['Dancing Script', 'cursive'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('./assets/hero.png')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for premium feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #DF6951;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-navy antialiased flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav id="navbar"
+        class="fixed w-full z-50 top-0 py-6 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index-en.html" class="text-2xl font-bold flex items-center gap-2">
+                <img src="./assets/logo.png" alt="Logo" class="h-16 w-auto object-contain">
+                <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-12 font-medium text-xl">
+                <a href="index-en.html" class="hover:text-brand-orange transition-colors">Home</a>
+                <a href="recommend-en.html" class="hover:text-brand-orange transition-colors">Recommend</a>
+                <a href="trip-planner-en.html" class="hover:text-brand-orange transition-colors">Trip Tips</a>
+                <a href="about-en.html" class="hover:text-brand-orange transition-colors">About</a>
+                <a href="contact-en.html" class="hover:text-brand-orange transition-colors">Contact</a>
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="hidden md:flex items-center gap-6">
+                <div class="relative group">
+                    <button class="flex items-center gap-2 font-medium text-xl text-brand-orange transition-colors">
+                        <span>EN</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown -->
+                    <div
+                        class="absolute right-0 top-full mt-2 w-32 bg-white rounded-xl shadow-xl py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform origin-top-right z-50">
+                        <a href="privacy.html"
+                            class="block px-6 py-3 hover:bg-orange-50 hover:text-brand-orange transition-colors text-gray-600">TH
+                            - Thai</a>
+                        <a href="privacy-en.html" class="block px-6 py-3 bg-orange-50 text-brand-orange font-medium">EN
+                            - English</a>
+                        <a href="index-cn.html"
+                            class="block px-6 py-3 hover:bg-orange-50 hover:text-brand-orange transition-colors text-gray-600">CN
+                            - Chinese</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-brand-navy focus:outline-none"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu"
+            class="hidden md:hidden bg-white shadow-lg absolute w-full left-0 top-full p-6 space-y-4 z-50">
+            <a href="index-en.html" class="block hover:text-brand-orange">Home</a>
+            <a href="recommend-en.html" class="block hover:text-brand-orange">Recommend</a>
+            <a href="trip-planner-en.html" class="block hover:text-brand-orange">Trip Tips</a>
+            <a href="about-en.html" class="block hover:text-brand-orange">About</a>
+            <a href="contact-en.html" class="block hover:text-brand-orange">Contact</a>
+
+            <!-- Mobile Language Switcher -->
+            <div class="border-t border-gray-100 pt-4 flex items-center gap-4 font-medium">
+                <span class="text-gray-400 text-sm">Language:</span>
+                <a href="privacy.html" class="text-gray-500 hover:text-brand-orange">TH</a>
+                <span class="text-gray-300">|</span>
+                <a href="#" class="text-brand-orange">EN</a>
+                <span class="text-gray-300">|</span>
+                <a href="index-cn.html" class="text-gray-500 hover:text-brand-orange">CN</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="pt-32 pb-16 bg-brand-light/30">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="font-serif text-4xl md:text-5xl font-bold text-brand-navy mb-4">Privacy Policy</h1>
+            <p class="text-gray-600 text-lg">Privacy Policy</p>
+        </div>
+    </header>
+
+    <!-- Content Section -->
+    <main class="flex-grow py-16">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-xl border border-gray-100">
+
+                <div class="space-y-10 text-gray-600 leading-relaxed">
+
+                    <!-- Intro -->
+                    <section>
+                        <p class="mb-4">
+                            The website <span class="font-bold text-brand-navy">Travel LOEI 360°</span>
+                            is created as part of a Vocational Certificate graduation project.
+                        </p>
+                        <p>
+                            We value the privacy of our users and would like to clarify our policy regarding the
+                            collection,
+                            use, and protection of personal data as follows:
+                        </p>
+                    </section>
+
+                    <hr class="border-gray-200">
+
+                    <!-- Collection -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">Collection of Personal Data</h2>
+                        <p class="mb-2">The website may collect some information from users, such as:</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4 mb-4">
+                            <li>Name or display name (if any)</li>
+                            <li>Email (in case of contact via contact form)</li>
+                            <li>General website usage data, such as number of visitors, pages visited</li>
+                        </ul>
+                        <div class="bg-green-50 p-4 rounded-xl border border-green-200">
+                            <p class="font-medium text-green-800">
+                                The website does NOT collect confidential information such as passwords or financial
+                                information.
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Objectives -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">Objectives of Data Use</h2>
+                        <p class="mb-2">The collected information will be used to:</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4 mb-4">
+                            <li>Improve and develop the website to suit users</li>
+                            <li>Contact back in case users send messages or suggestions</li>
+                            <li>Use as data for education and project development only</li>
+                        </ul>
+                        <p class="font-bold text-brand-navy">No information will be used for commercial purposes.</p>
+                    </section>
+
+                    <hr class="border-gray-200">
+
+                    <!-- Disclosure -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">
+                            Disclosure to Third Parties</h2>
+                        <p>
+                            The website will not disclose or forward users' personal information to third parties,
+                            except when required by law or with user consent.
+                        </p>
+                    </section>
+
+                    <!-- Cookies -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">Use of Cookies</h2>
+                        <p class="mb-2">
+                            The website may use cookies to collect website usage information
+                            to help make usage more convenient and appropriate.
+                        </p>
+                        <p>
+                            Users can disable cookies through their web browser settings.
+                        </p>
+                    </section>
+
+                    <hr class="border-gray-200">
+
+                    <!-- Links -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">Links to Other Websites
+                        </h2>
+                        <p class="mb-2">
+                            The website may contain links to external websites such as Google Maps or social media.
+                        </p>
+                        <p>
+                            The website cannot be responsible for the privacy policy or content of those external
+                            websites.
+                        </p>
+                    </section>
+
+                    <!-- Security -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">Data Security</h2>
+                        <p class="mb-2">
+                            The website organizers try to take care of and protect users' information appropriately
+                            to prevent unauthorized access, use, or disclosure.
+                        </p>
+                        <p class="text-gray-500 text-sm">
+                            However, 100% security cannot be guaranteed.
+                        </p>
+                    </section>
+
+                    <hr class="border-gray-200">
+
+                    <!-- Updates -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">
+                            Changes to Privacy Policy</h2>
+                        <p class="mb-2">
+                            The website reserves the right to update or modify this privacy policy
+                            to suit project development without prior notice.
+                        </p>
+                        <p>
+                            Continued use of the website is considered acceptance of the modified policy.
+                        </p>
+                    </section>
+
+                    <!-- Contact -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">Contact</h2>
+                        <p>
+                            If you have questions or suggestions regarding the privacy policy,
+                            you can contact the website organizers via the
+                            <a href="contact-en.html" class="text-brand-orange font-bold hover:underline">Contact Us</a>
+                            page.
+                        </p>
+                    </section>
+
+                    <!-- Footer Note -->
+                    <div class="mt-12 pt-6 border-t border-dashed border-gray-300 text-center">
+                        <p class="text-sm text-gray-500 font-medium bg-gray-50 inline-block px-4 py-2 rounded-lg">
+                            📌 This privacy policy is prepared for a Vocational Certificate graduation project.
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-20 pb-10">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-20">
+            <!-- Brand -->
+            <div class="lg:col-span-2 space-y-6">
+                <a href="index-en.html" class="text-3xl font-bold flex items-center gap-2 mb-4">
+                    <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+                </a>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
+                    This website was created for a Vocational Certificate graduation project.
+                </p>
+            </div>
+
+            <!-- Links 1 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">About Website</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="about-en.html" class="hover:text-brand-orange transition-colors">About Us</a></li>
+                    <li><a href="destinations-en.html" class="hover:text-brand-orange transition-colors">Recommended
+                            Destinations</a>
+                    </li>
+                    <li><a href="trip-planner-en.html" class="hover:text-brand-orange transition-colors">Tips</a></li>
+                </ul>
+            </div>
+
+            <!-- Links 2 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">Contact</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="contact-en.html" class="hover:text-brand-orange transition-colors">Contact Us</a></li>
+                    <li><a href="contact-en.html" class="hover:text-brand-orange transition-colors">Report Issues</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Links 3 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">Credits & Resources</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+
+                    <li><a href="#" class="hover:text-brand-orange transition-colors">Image Credits</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center border-t border-gray-100 pt-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-gray-400 text-sm">© 2025 Travel Loei360° | Travel Loei360°</span>
+                <div class="flex gap-8">
+                    <a href="terms-en.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">Terms of
+                        Use</a>
+                    <a href="privacy-en.html" class="text-brand-navy font-bold text-sm">Privacy
+                        Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

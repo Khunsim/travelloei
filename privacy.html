@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>นโยบายความเป็นส่วนตัว - Travel LOEI 360°</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@400;500;600;700&family=Sarabun:wght@400;500;700&family=Volkhov:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#DF6951',
+                            yellow: '#F1A501',
+                            navy: '#181E4B',
+                            light: '#FFF1DA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Sarabun', 'sans-serif'],
+                        serif: ['Volkhov', 'serif'],
+                        cursive: ['Dancing Script', 'cursive'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('./assets/hero.png')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for premium feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #DF6951;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-navy antialiased flex flex-col min-h-screen">
+
+    <!-- Navbar -->
+    <nav id="navbar"
+        class="fixed w-full z-50 top-0 py-6 transition-all duration-300 bg-white/90 backdrop-blur-md shadow-sm">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="index.html" class="text-2xl font-bold flex items-center gap-2">
+                <img src="./assets/logo.png" alt="Logo" class="h-16 w-auto object-contain">
+                <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-12 font-medium text-xl">
+                <a href="index.html" class="hover:text-brand-orange transition-colors">หน้าแรก</a>
+                <a href="recommend.html" class="hover:text-brand-orange transition-colors">แนะนำ</a>
+                <a href="trip-planner.html" class="hover:text-brand-orange transition-colors">เคล็ดลับ</a>
+                <a href="about.html" class="hover:text-brand-orange transition-colors">เกี่ยวกับ</a>
+                <a href="contact.html" class="hover:text-brand-orange transition-colors">ติดต่อ</a>
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="hidden md:flex items-center gap-6">
+                <div class="relative group">
+                    <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')"
+                        class="flex items-center gap-2 font-medium text-xl hover:text-brand-orange transition-colors focus:outline-none">
+                        <span>TH</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div id="lang-dropdown"
+                        class="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl py-2 hidden border border-gray-100 z-50">
+                        <a href="#"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors text-brand-orange font-bold">ไทย</a>
+                        <a href="privacy-en.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">English</a>
+                        <a href="index-cn.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">中文</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-brand-navy focus:outline-none"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full left-0 top-full p-6 space-y-4">
+            <a href="index.html" class="block hover:text-brand-orange">หน้าแรก</a>
+            <a href="recommend.html" class="block hover:text-brand-orange">แนะนำ</a>
+            <a href="trip-planner.html" class="block hover:text-brand-orange">เคล็ดลับ</a>
+            <a href="about.html" class="block hover:text-brand-orange">เกี่ยวกับ</a>
+            <a href="contact.html" class="block hover:text-brand-orange">ติดต่อ</a>
+
+            <!-- Mobile Language Switcher -->
+            <div class="border-t border-gray-100 pt-4 flex items-center gap-4 font-medium">
+                <span class="text-gray-400 text-sm">ภาษา:</span>
+                <a href="#" class="text-brand-orange">TH</a>
+                <span class="text-gray-300">|</span>
+                <a href="privacy-en.html" class="text-gray-500 hover:text-brand-orange">EN</a>
+                <span class="text-gray-300">|</span>
+                <a href="index-cn.html" class="text-gray-500 hover:text-brand-orange">CN</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <header class="pt-32 pb-16 bg-brand-light/30">
+        <div class="container mx-auto px-6 text-center">
+            <h1 class="font-serif text-4xl md:text-5xl font-bold text-brand-navy mb-4">นโยบายความเป็นส่วนตัว</h1>
+            <p class="text-gray-600 text-lg">Privacy Policy</p>
+        </div>
+    </header>
+
+    <!-- Content Section -->
+    <main class="flex-grow py-16">
+        <div class="container mx-auto px-6 max-w-4xl">
+            <div class="bg-white p-8 md:p-12 rounded-[2rem] shadow-xl border border-gray-100">
+
+                <div class="space-y-10 text-gray-600 leading-relaxed">
+
+                    <!-- Intro -->
+                    <section>
+                        <p class="mb-4">
+                            เว็บไซต์ <span class="font-bold text-brand-navy">Travel LOEI 360°</span>
+                            จัดทำขึ้นเป็นส่วนหนึ่งของโครงการจบการศึกษา ระดับประกาศนียบัตรวิชาชีพ (ปวช.)
+                        </p>
+                        <p>
+                            ผู้จัดทำให้ความสำคัญกับความเป็นส่วนตัวของผู้ใช้งาน และขอชี้แจงนโยบายเกี่ยวกับการเก็บรวบรวม
+                            การใช้ และการคุ้มครองข้อมูลส่วนบุคคลดังต่อไปนี้
+                        </p>
+                    </section>
+
+                    <hr class="border-gray-200">
+
+                    <!-- Collection -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">การเก็บรวบรวมข้อมูลส่วนบุคคล</h2>
+                        <p class="mb-2">เว็บไซต์อาจมีการเก็บข้อมูลบางส่วนจากผู้ใช้งาน เช่น</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4 mb-4">
+                            <li>ชื่อ หรือชื่อที่ใช้แสดงความคิดเห็น (ถ้ามี)</li>
+                            <li>อีเมล (กรณีติดต่อผ่านแบบฟอร์มติดต่อ)</li>
+                            <li>ข้อมูลการใช้งานเว็บไซต์ทั่วไป เช่น จำนวนผู้เข้าชม หน้าเว็บที่เข้าชม</li>
+                        </ul>
+                        <div class="bg-green-50 p-4 rounded-xl border border-green-200">
+                            <p class="font-medium text-green-800">
+                                เว็บไซต์ไม่มีการเก็บข้อมูลที่เป็นความลับ เช่น รหัสผ่าน หรือข้อมูลทางการเงิน
+                            </p>
+                        </div>
+                    </section>
+
+                    <!-- Objectives -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">วัตถุประสงค์ในการใช้ข้อมูล</h2>
+                        <p class="mb-2">ข้อมูลที่เก็บรวบรวมจะถูกนำไปใช้เพื่อ</p>
+                        <ul class="list-disc list-inside space-y-2 ml-4 mb-4">
+                            <li>ปรับปรุงและพัฒนาเว็บไซต์ให้เหมาะสมกับผู้ใช้งาน</li>
+                            <li>ใช้ในการติดต่อกลับ กรณีผู้ใช้งานส่งข้อความหรือข้อเสนอแนะ</li>
+                            <li>ใช้เป็นข้อมูลประกอบการศึกษาและพัฒนาโครงการเท่านั้น</li>
+                        </ul>
+                        <p class="font-bold text-brand-navy">ไม่มีการนำข้อมูลไปใช้ในเชิงพาณิชย์</p>
+                    </section>
+
+                    <hr class="border-gray-200">
+
+                    <!-- Disclosure -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">
+                            การเปิดเผยข้อมูลแก่บุคคลภายนอก</h2>
+                        <p>
+                            เว็บไซต์จะไม่เปิดเผย หรือส่งต่อข้อมูลส่วนบุคคลของผู้ใช้งานให้กับบุคคลภายนอก
+                            ยกเว้นกรณีที่จำเป็นตามกฎหมาย หรือได้รับความยินยอมจากผู้ใช้งาน
+                        </p>
+                    </section>
+
+                    <!-- Cookies -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">การใช้คุกกี้ (Cookies)</h2>
+                        <p class="mb-2">
+                            เว็บไซต์อาจมีการใช้คุกกี้เพื่อเก็บข้อมูลการใช้งานเว็บไซต์
+                            เพื่อช่วยให้การใช้งานสะดวกและเหมาะสมยิ่งขึ้น
+                        </p>
+                        <p>
+                            ผู้ใช้งานสามารถตั้งค่าปิดการใช้งานคุกกี้ได้ผ่านเว็บเบราว์เซอร์ของตนเอง
+                        </p>
+                    </section>
+
+                    <hr class="border-gray-200">
+
+                    <!-- Links -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">การเชื่อมโยงไปยังเว็บไซต์อื่น
+                        </h2>
+                        <p class="mb-2">
+                            เว็บไซต์อาจมีลิงก์เชื่อมโยงไปยังเว็บไซต์ภายนอก เช่น Google Maps หรือโซเชียลมีเดีย
+                        </p>
+                        <p>
+                            เว็บไซต์ไม่สามารถรับผิดชอบต่อนโยบายความเป็นส่วนตัวหรือเนื้อหาของเว็บไซต์ภายนอกเหล่านั้นได้
+                        </p>
+                    </section>
+
+                    <!-- Security -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">ความปลอดภัยของข้อมูล</h2>
+                        <p class="mb-2">
+                            ผู้จัดทำเว็บไซต์พยายามดูแลและป้องกันข้อมูลของผู้ใช้งานอย่างเหมาะสม
+                            เพื่อไม่ให้ข้อมูลถูกเข้าถึง ใช้งาน หรือเปิดเผยโดยไม่ได้รับอนุญาต
+                        </p>
+                        <p class="text-gray-500 text-sm">
+                            อย่างไรก็ตาม ไม่สามารถรับประกันความปลอดภัยได้ 100%
+                        </p>
+                    </section>
+
+                    <hr class="border-gray-200">
+
+                    <!-- Updates -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">
+                            การเปลี่ยนแปลงนโยบายความเป็นส่วนตัว</h2>
+                        <p class="mb-2">
+                            เว็บไซต์ขอสงวนสิทธิ์ในการปรับปรุงหรือแก้ไขนโยบายความเป็นส่วนตัวนี้
+                            ให้เหมาะสมกับการพัฒนาโครงการ โดยไม่จำเป็นต้องแจ้งให้ทราบล่วงหน้า
+                        </p>
+                        <p>
+                            การใช้งานเว็บไซต์ต่อเนื่อง ถือว่าผู้ใช้งานยอมรับนโยบายที่แก้ไขแล้ว
+                        </p>
+                    </section>
+
+                    <!-- Contact -->
+                    <section>
+                        <h2 class="text-2xl font-bold text-brand-navy mb-4 font-serif">การติดต่อ</h2>
+                        <p>
+                            หากมีข้อสงสัยหรือข้อเสนอแนะเกี่ยวกับนโยบายความเป็นส่วนตัว
+                            สามารถติดต่อผู้จัดทำเว็บไซต์ได้ผ่านหน้า
+                            <a href="contact.html" class="text-brand-orange font-bold hover:underline">ติดต่อเรา</a>
+                        </p>
+                    </section>
+
+                    <!-- Footer Note -->
+                    <div class="mt-12 pt-6 border-t border-dashed border-gray-300 text-center">
+                        <p class="text-sm text-gray-500 font-medium bg-gray-50 inline-block px-4 py-2 rounded-lg">
+                            📌 นโยบายความเป็นส่วนตัวนี้จัดทำขึ้นเพื่อใช้ประกอบโครงการจบการศึกษา
+                            ระดับประกาศนียบัตรวิชาชีพ
+                            (ปวช.)
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="pt-20 pb-10 bg-white">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-20">
+            <!-- Brand -->
+            <div class="lg:col-span-2 space-y-6">
+                <a href="#" class="text-3xl font-bold flex items-center gap-2 mb-4">
+                    <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+                </a>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
+                    รวมสถานที่ท่องเที่ยวสวย ๆ ในจังหวัดเลย
+                    เส้นทางเที่ยว กิจกรรม และไอเดียเที่ยวตลอดปี
+                </p>
+            </div>
+
+            <!-- Links 1 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">เกี่ยวกับเว็บไซต์</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="about.html" class="hover:text-brand-orange transition-colors">เกี่ยวกับเรา</a></li>
+                    <li><a href="destinations.html" class="hover:text-brand-orange transition-colors">ที่เที่ยวแนะนำ</a>
+                    </li>
+                    <li><a href="trip-planner.html" class="hover:text-brand-orange transition-colors">เคล็ดลับ</a></li>
+                </ul>
+            </div>
+
+            <!-- Links 2 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">ติดต่อ</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="contact.html" class="hover:text-brand-orange transition-colors">ติดต่อเรา</a></li>
+                    <li><a href="contact.html" class="hover:text-brand-orange transition-colors">แจ้งแก้ไขข้อมูล</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Links 3 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">เครดิต & แหล่งข้อมูล</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+
+                    <li><a href="#" class="hover:text-brand-orange transition-colors">เครดิตรูปภาพ</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center border-t border-gray-100 pt-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-gray-400 text-sm">© 2025 เที่ยวเลย360° | Travel Loei360°</span>
+                <div class="flex gap-8">
+                    <a href="terms.html"
+                        class="text-gray-400 hover:text-brand-navy text-sm font-medium">ข้อตกลงการใช้งาน</a>
+                    <a href="privacy.html" class="text-brand-navy font-bold text-sm">นโยบายความเป็นส่วนตัว</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

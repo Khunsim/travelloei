@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TravelWorld - Travel Planning & Booking</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Poppins:wght@400;500;600;700&family=Sarabun:wght@400;500;700&family=Volkhov:wght@700&display=swap"
+        rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            orange: '#DF6951',
+                            yellow: '#F1A501',
+                            navy: '#181E4B',
+                            light: '#FFF1DA'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Poppins', 'Sarabun', 'sans-serif'],
+                        serif: ['Volkhov', 'serif'],
+                        cursive: ['Dancing Script', 'cursive'],
+                    },
+                    backgroundImage: {
+                        'hero-pattern': "url('./assets/hero.png')",
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom scrollbar for premium feel */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #DF6951;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-navy antialiased">
+
+    <!-- Navbar -->
+    <nav id="navbar" class="fixed w-full z-50 top-0 py-6 transition-all duration-300">
+        <div class="container mx-auto px-6 flex justify-between items-center">
+            <!-- Logo -->
+            <a href="#" class="text-2xl font-bold flex items-center gap-2">
+                <img src="./assets/logo.png" alt="Logo" class="h-16 w-auto object-contain">
+                <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+                <div class="w-16 h-1 bg-brand-orange rounded-full hidden"></div> <!-- Decorative -->
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex items-center space-x-12 font-medium text-xl">
+                <a href="index-en.html" class="text-brand-orange transition-colors">Home</a>
+                <a href="recommend-en.html" class="hover:text-brand-orange transition-colors">Recommend</a>
+                <a href="trip-planner-en.html" class="hover:text-brand-orange transition-colors">Tips</a>
+                <a href="about-en.html" class="hover:text-brand-orange transition-colors">About</a>
+                <a href="contact-en.html" class="hover:text-brand-orange transition-colors">Contact</a>
+            </div>
+
+            <!-- Language Switcher -->
+            <div class="hidden md:flex items-center gap-6">
+                <div class="relative group">
+                    <button onclick="document.getElementById('lang-dropdown').classList.toggle('hidden')"
+                        class="flex items-center gap-2 font-medium text-xl hover:text-brand-orange transition-colors focus:outline-none">
+                        <span>EN</span>
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                            </path>
+                        </svg>
+                    </button>
+                    <!-- Dropdown Menu -->
+                    <div id="lang-dropdown"
+                        class="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-xl py-2 hidden border border-gray-100 z-50">
+                        <a href="index.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">ไทย</a>
+                        <a href="index-en.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors text-brand-orange font-bold">English</a>
+                        <a href="index-cn.html"
+                            class="block px-4 py-2 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors">中文</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden text-brand-navy focus:outline-none"
+                onclick="document.getElementById('mobile-menu').classList.toggle('hidden')">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white shadow-lg absolute w-full left-0 top-full p-6 space-y-4">
+            <a href="index-en.html" class="block text-brand-orange font-bold">Home</a>
+            <a href="recommend-en.html" class="block hover:text-brand-orange">Recommend</a>
+            <a href="trip-planner-en.html" class="block hover:text-brand-orange">Tips</a>
+            <a href="about-en.html" class="block hover:text-brand-orange">About</a>
+            <a href="contact-en.html" class="block hover:text-brand-orange">Contact</a>
+
+            <!-- Mobile Language Switcher -->
+            <div class="border-t border-gray-100 pt-4 flex items-center gap-4 font-medium">
+                <span class="text-gray-400 text-sm">Language:</span>
+                <a href="index.html" class="text-gray-500 hover:text-brand-orange">TH</a>
+                <span class="text-gray-300">|</span>
+                <a href="index-en.html" class="text-brand-orange">EN</a>
+                <span class="text-gray-300">|</span>
+                <a href="index-cn.html" class="text-gray-500 hover:text-brand-orange">CN</a>
+            </div>
+        </div>
+    </nav>
+
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center pt-20 overflow-hidden bg-brand-light/30">
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+
+            <!-- Left Side: Content -->
+            <div class="space-y-6 z-10">
+                <div
+                    class="inline-block text-brand-orange font-bold uppercase tracking-wider text-sm bg-white/50 px-3 py-1 rounded-full backdrop-blur-sm">
+                    Escape to the Peaks: Discover the Magic of Loei
+                </div>
+                <h1 class="font-serif text-5xl lg:text-7xl font-bold leading-tight text-brand-navy">
+                    Amazing Attractions <br> in Loei Province
+                </h1>
+                <p class="text-gray-600 leading-relaxed max-w-lg">
+                    A website promoting tourism in Loei, focusing on disseminating information about tourist
+                    attractions, culture, and nature for everyone to discover.
+                </p>
+
+                <div class="flex items-center gap-6 pt-4">
+                    <a href="loei-info-en.html"
+                        class="bg-brand-yellow text-white px-8 py-4 rounded-xl font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all transform duration-300">
+                        Explore More
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Right Side: Image -->
+            <div class="relative z-10 h-full flex justify-center lg:justify-end">
+                <!-- Main Hero Image with Decos -->
+                <div class="relative w-full max-w-lg mt-10 lg:mt-0">
+                    <!-- Background Blob/Shape behind image -->
+                    <div class="absolute -top-10 -right-10 w-96 h-96 bg-brand-orange/20 rounded-full blur-3xl filter">
+                    </div>
+
+                    <!-- Slider Container -->
+                    <div class="relative group rounded-[2.5rem] shadow-2xl overflow-hidden aspect-[4/5] bg-white">
+
+                        <!-- Slides -->
+                        <div id="slider" class="w-full h-full relative">
+                            <!-- Slide 1 -->
+                            <img src="./assets/hero.png"
+                                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-100 slide-img"
+                                alt="Loei 1">
+                            <!-- Slide 2 -->
+                            <img src="/assets/hero02.png"
+                                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 slide-img"
+                                alt="Loei 2">
+                            <!-- Slide 3 -->
+                            <img src="/assets/hero03.png"
+                                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 slide-img"
+                                alt="Loei 3">
+                            <!-- Slide 4 -->
+                            <img src="/assets/hero04.png"
+                                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 slide-img"
+                                alt="Loei 4">
+                            <!-- Slide 5 -->
+                            <img src="/assets/hero05.png"
+                                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500 opacity-0 slide-img"
+                                alt="Loei 5">
+                        </div>
+
+                        <!-- Arrows -->
+                        <button onclick="changeSlide(-1)"
+                            class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/50 transition-colors opacity-0 group-hover:opacity-100">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 19l-7-7 7-7" />
+                            </svg>
+                        </button>
+                        <button onclick="changeSlide(1)"
+                            class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 bg-white/30 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-white/50 transition-colors opacity-0 group-hover:opacity-100">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 5l7 7-7 7" />
+                            </svg>
+                        </button>
+
+                        <!-- Dots -->
+                        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-2">
+                            <button onclick="goToSlide(0)"
+                                class="w-2.5 h-2.5 rounded-full bg-white transition-all dot-indicator opacity-100"></button>
+                            <button onclick="goToSlide(1)"
+                                class="w-2.5 h-2.5 rounded-full bg-white/50 transition-all dot-indicator hover:bg-white/80"></button>
+                            <button onclick="goToSlide(2)"
+                                class="w-2.5 h-2.5 rounded-full bg-white/50 transition-all dot-indicator hover:bg-white/80"></button>
+                            <button onclick="goToSlide(3)"
+                                class="w-2.5 h-2.5 rounded-full bg-white/50 transition-all dot-indicator hover:bg-white/80"></button>
+                            <button onclick="goToSlide(4)"
+                                class="w-2.5 h-2.5 rounded-full bg-white/50 transition-all dot-indicator hover:bg-white/80"></button>
+                        </div>
+                    </div>
+
+                    <!-- Floating Plane Decoration -->
+                    <img src="https://cdn-icons-png.flaticon.com/512/7893/7893979.png"
+                        class="absolute -top-12 -left-12 w-24 h-24 z-30 animate-bounce delay-700 opacity-80"
+                        alt="Plane">
+                </div>
+
+                <!-- Slider Script -->
+                <script>
+                    let currentSlide = 0;
+                    const slides = document.querySelectorAll('.slide-img');
+                    const dots = document.querySelectorAll('.dot-indicator');
+                    const totalSlides = slides.length;
+
+                    function updateSlider() {
+                        slides.forEach((slide, index) => {
+                            slide.style.opacity = index === currentSlide ? '1' : '0';
+                        });
+                        dots.forEach((dot, index) => {
+                            dot.classList.toggle('opacity-100', index === currentSlide);
+                            dot.classList.toggle('bg-white', index === currentSlide);
+                            dot.classList.toggle('opacity-50', index !== currentSlide); // Reset opacity
+                            dot.classList.toggle('bg-white/50', index !== currentSlide);
+                        });
+                    }
+
+                    function changeSlide(direction) {
+                        currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+                        updateSlider();
+                    }
+
+                    function goToSlide(index) {
+                        currentSlide = index;
+                        updateSlider();
+                    }
+
+                    // Auto slide every 5 seconds
+                    setInterval(() => {
+                        changeSlide(1);
+                    }, 5000);
+                </script>
+
+            </div>
+        </div>
+
+        <!-- Background Decorations -->
+        <div class="absolute top-0 right-0 -z-0">
+            <svg width="700" height="800" viewBox="0 0 700 800" fill="none" xmlns="http://www.w3.org/2000/svg"
+                class="opacity-40 text-brand-orange">
+                <path d="M435.5 500C535.5 300 700 0 700 0H700V800H0C0 800 235.5 700 435.5 500Z"
+                    fill="url(#paint0_linear)" />
+                <defs>
+                    <linearGradient id="paint0_linear" x1="350" y1="0" x2="350" y2="800" gradientUnits="userSpaceOnUse">
+                        <stop stop-color="#FFF1DA" />
+                        <stop offset="1" stop-color="#F1A501" stop-opacity="0" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="py-20 relative">
+        <!-- Background element -->
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16">
+                <span class="text-brand-orange uppercase tracking-widest font-semibold text-sm">Services</span>
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-brand-navy mt-3">
+                    We Gather the Best of Loei</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <!-- Service 1 -->
+                <a href="destinations-en.html"
+                    class="group bg-white p-10 rounded-[2.5rem] hover:shadow-2xl hover:shadow-gray-200 transition-all duration-300 text-center relative z-10 block cursor-pointer">
+                    <!-- Hover Background Shape -->
+
+
+                    <div class="w-20 h-20 mx-auto mb-6">
+                        <img src="https://cdn-icons-png.flaticon.com/512/2224/2224859.png"
+                            class="w-full h-full object-contain" alt="Satellite">
+                    </div>
+                    <h3 class="font-sans font-semibold text-xl text-brand-navy mb-3">Recommended Places</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">
+                        Top popular tourist attractions in Loei, including nature spots, viewpoints, temples, and
+                        photogenic locations.</p>
+                </a>
+
+                <!-- Service 2 -->
+                <a href="trip-planner-en.html"
+                    class="group bg-white p-10 rounded-[2.5rem] hover:shadow-2xl hover:shadow-gray-200 transition-all duration-300 text-center relative z-10 block cursor-pointer">
+
+                    <div class="w-20 h-20 mx-auto mb-6">
+                        <img src="https://cdn-icons-png.flaticon.com/512/201/201623.png"
+                            class="w-full h-full object-contain" alt="Plane">
+                    </div>
+                    <h3 class="font-sans font-semibold text-xl text-brand-navy mb-3">Trip Planner</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Suggested itineraries for 1, 2, or 3 days to help
+                        you plan your trip easily.</p>
+                </a>
+
+                <!-- Service 3 -->
+                <a href="recommend-en.html#festivals"
+                    class="group bg-white p-10 rounded-[2.5rem] hover:shadow-2xl hover:shadow-gray-200 transition-all duration-300 text-center relative z-10 block cursor-pointer">
+
+                    <div class="w-20 h-20 mx-auto mb-6">
+                        <img src="https://cdn-icons-png.flaticon.com/512/747/747376.png"
+                            class="w-full h-full object-contain" alt="Mic">
+                    </div>
+                    <h3 class="font-sans font-semibold text-xl text-brand-navy mb-3">Festivals & Activities</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Update on traditions, festivals, and local
+                        activities like the Ghost Festival (Phi Ta Khon).</p>
+                </a>
+
+                <!-- Service 4 -->
+                <a href="contact-en.html"
+                    class="group bg-white p-10 rounded-[2.5rem] hover:shadow-2xl hover:shadow-gray-200 transition-all duration-300 text-center relative z-10 block cursor-pointer">
+
+                    <div class="w-20 h-20 mx-auto mb-6">
+                        <img src="https://cdn-icons-png.flaticon.com/512/3059/3059502.png"
+                            class="w-full h-full object-contain" alt="Contact">
+                    </div>
+                    <h3 class="font-sans font-semibold text-xl text-brand-navy mb-3">Contact Us</h3>
+                    <p class="text-gray-500 text-sm leading-relaxed">Inquire for more info, recommend attractions,
+                        advertise, or report website issues.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Destinations Section -->
+    <section class="py-10 relative overflow-hidden">
+        <div class="container mx-auto px-6">
+            <!-- Header -->
+            <div class="mb-10 text-left">
+                <span
+                    class="bg-brand-orange text-white px-5 py-2 rounded-full text-sm font-sans font-medium uppercase tracking-wider inline-block mb-4 shadow-lg">Recommended</span>
+                <h2 class="font-sans text-4xl lg:text-5xl font-bold text-brand-navy">Must-Visit Highlights</h2>
+            </div>
+
+            <!-- Mosaic Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 min-h-[800px] lg:min-h-[600px]">
+
+                <!-- Column 1 -->
+                <div class="flex flex-col gap-6">
+                    <!-- Phu Kradueng -->
+                    <a href="destinations-en.html#phu-kradueng"
+                        class="relative flex-1 rounded-[2rem] overflow-hidden group cursor-pointer shadow-xl block">
+                        <img src="./assets/Recommended places to visit/1.jpg"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            alt="Phu Kradueng">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                        </div>
+                        <div class="absolute bottom-8 left-8 text-white z-10 text-shadow-lg">
+                            <h3 class="font-cursive text-4xl md:text-5xl mb-1">Phu Kradueng</h3>
+                            <p class="font-sans font-bold tracking-[0.2em] text-sm md:text-base uppercase">ภูกระดึง</p>
+                        </div>
+                    </a>
+                    <!-- Phu Ruea -->
+                    <a href="destinations-en.html#phu-ruea"
+                        class="relative h-64 lg:h-56 rounded-[2rem] overflow-hidden group cursor-pointer shadow-xl block">
+                        <img src="./assets/Recommended places to visit/2.jpg"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            alt="Phu Ruea">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                        </div>
+                        <div class="absolute bottom-8 left-8 text-white z-10 text-shadow-lg">
+                            <h3 class="font-cursive text-4xl md:text-5xl mb-1">Phu Ruea</h3>
+                            <p class="font-sans font-bold tracking-[0.2em] text-sm md:text-base uppercase">ภูเรือ</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Column 2 -->
+                <div class="flex flex-col gap-6">
+                    <!-- Chiang Khan -->
+                    <a href="destinations-en.html#chiang-khan"
+                        class="relative flex-[1.5] rounded-[2rem] overflow-hidden group cursor-pointer shadow-xl block">
+                        <img src="./assets/Recommended places to visit/3.jpg"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            alt="Chiang Khan">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                        </div>
+                        <div class="absolute bottom-8 left-8 text-white z-10 text-shadow-lg">
+                            <h3 class="font-cursive text-4xl md:text-5xl mb-1">Chiang Khan</h3>
+                            <p class="font-sans font-bold tracking-[0.2em] text-sm md:text-base uppercase">เชียงคาน</p>
+                        </div>
+                    </a>
+                    <!-- Phu Thok -->
+                    <a href="destinations-en.html#phu-thok"
+                        class="relative flex-1 rounded-[2rem] overflow-hidden group cursor-pointer shadow-xl block">
+                        <img src="./assets/Recommended places to visit/4.webp"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            alt="Phu Thok">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                        </div>
+                        <div class="absolute bottom-8 left-8 text-white z-10 text-shadow-lg">
+                            <h3 class="font-cursive text-4xl md:text-5xl mb-1 text-nowrap">Phu Thok</h3>
+                            <p class="font-sans font-bold tracking-[0.2em] text-sm md:text-base uppercase">ภูทอก
+                                (เชียงคาน)</p>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Column 3 & 4 Wrapper -->
+                <div class="lg:col-span-2 flex flex-col gap-6">
+                    <!-- Kaeng Khut Khu -->
+                    <a href="destinations-en.html#phu-pa-po"
+                        class="relative h-64 lg:h-72 rounded-[2rem] overflow-hidden group cursor-pointer shadow-xl block">
+                        <img src="./assets/Recommended places to visit/5.jpg"
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                            alt="Kaeng Khut Khu">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                        </div>
+                        <div class="absolute bottom-8 left-8 text-white z-10 text-shadow-lg">
+                            <h3 class="font-cursive text-4xl md:text-5xl mb-1">Phu Pa Po</h3>
+                            <p class="font-sans font-bold tracking-[0.2em] text-sm md:text-base uppercase">ภูป่าเปาะ
+                            </p>
+                        </div>
+                    </a>
+
+                    <!-- Row 2 -->
+                    <div class="flex-1 grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Phu Pa Po -->
+                        <a href="destinations-en.html#kaeng-khut-khu"
+                            class="relative w-full h-full min-h-[250px] rounded-[2rem] overflow-hidden group cursor-pointer shadow-xl block">
+                            <img src="./assets/Recommended places to visit/6.webp"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                alt="Phu Pa Po">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-8 left-8 text-white z-10 text-shadow-lg">
+                                <h3 class="font-cursive text-4xl md:text-5xl mb-1">Kaeng Khut Khu</h3>
+                                <p class="font-sans font-bold tracking-[0.2em] text-sm md:text-base uppercase">
+                                    แก่งคุดคู้
+                                </p>
+                            </div>
+                        </a>
+                        <!-- Phra That Si Song Rak -->
+                        <a href="destinations-en.html#phra-that-si-song-rak"
+                            class="relative w-full h-full min-h-[250px] rounded-[2rem] overflow-hidden group cursor-pointer shadow-xl block">
+                            <img src="./assets/Recommended places to visit/7.webp"
+                                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                                alt="Phra That Si Song Rak">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent">
+                            </div>
+                            <div class="absolute bottom-8 left-8 text-white z-10 text-shadow-lg">
+                                <h3 class="font-cursive text-4xl md:text-5xl mb-1">Phra That Si Song Rak</h3>
+                                <p class="font-sans font-bold tracking-[0.2em] text-sm md:text-base uppercase">
+                                    พระธาตุศรีสองรัก</p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Book A Trip Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <!-- Left: Text & Steps -->
+            <div>
+                <span class="text-brand-orange uppercase tracking-widest font-semibold text-sm">Tips</span>
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-brand-navy mt-3 mb-10 leading-tight">
+                    Plan Your Loei Trip <br> Easy in 3 Steps</h2>
+
+                <div class="space-y-8">
+                    <!-- Step 1 -->
+                    <div class="flex gap-6 group">
+
+                        <div>
+                            <h4 class="font-bold text-brand-navy text-lg">Choose Trip Style</h4>
+                            <p class="text-gray-500 leading-relaxed">Solo / Couple / Family / Friends</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 2 -->
+                    <div class="flex gap-6 group">
+
+                        <div>
+                            <h4 class="font-bold text-brand-navy text-lg">Duration</h4>
+                            <p class="text-gray-500 leading-relaxed">Select itineraries for 1–7 days.</p>
+                        </div>
+                    </div>
+
+                    <!-- Step 3 -->
+                    <div class="flex gap-6 group">
+
+                        <div>
+                            <h4 class="font-bold text-brand-navy text-lg">Generate Plan & Enjoy</h4>
+                            <p class="text-gray-500 leading-relaxed">Get ready and experience the charm of Loei
+                                yourself.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-10">
+                    <a href="trip-planner-en.html"
+                        class="inline-block bg-brand-yellow text-white px-8 py-4 rounded-xl font-medium shadow-lg hover:shadow-xl hover:scale-105 transition-all transform duration-300">
+                        Select Plan
+                    </a>
+                </div>
+            </div>
+
+            <!-- Right: Floating Card -->
+            <div class="relative flex justify-center lg:justify-end py-10">
+                <!-- Blue Blur -->
+                <div
+                    class="absolute top-0 right-0 w-80 h-80 bg-blue-200 rounded-full mix-blend-multiply filter blur-3xl opacity-50 animate-blob">
+                </div>
+
+                <!-- Card -->
+                <div
+                    class="bg-white p-6 rounded-[2rem] shadow-2xl relative z-10 w-full max-w-sm hover:transform hover:scale-105 transition-all duration-300">
+                    <div class="relative group mb-6">
+                        <img id="scard-img-1" src="./assets/MLT.jpg"
+                            class="w-full h-48 object-cover rounded-3xl shadow-md cursor-zoom-in hover:opacity-95 transition-opacity block"
+                            alt="Mahanakhon Loei-Asia Technological College" onclick="openModal(this.src)">
+                        <img id="scard-img-2" src="./assets/ben.gif"
+                            class="w-full h-48 object-cover rounded-3xl shadow-md cursor-zoom-in hover:opacity-95 transition-opacity hidden"
+                            alt="Ben GIF" onclick="openModal(this.src)">
+
+                        <!-- Toggle Button -->
+                        <button
+                            onclick="document.getElementById('scard-img-1').classList.toggle('hidden'); document.getElementById('scard-img-2').classList.toggle('hidden');"
+                            class="absolute top-1/2 right-2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow hover:bg-white transition-all text-brand-navy hover:text-brand-orange z-10"
+                            title="Next Image">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7">
+                                </path>
+                            </svg>
+                        </button>
+                    </div>
+                    <h3 class="font-bold text-xl text-brand-navy mb-6">Mahanakhon Loei-Asia Technological College</h3>
+
+                    <div class="flex gap-4 mb-6">
+                        <a href="https://maps.app.goo.gl/D1m9rHRvnKsYRhfS6" target="_blank"
+                            class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors"
+                            title="View Map">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z">
+                                </path>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                            </svg>
+                        </a>
+                        <a href="https://maps.app.goo.gl/wSfdg7b1AkQgRPHV6" target="_blank"
+                            class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center text-gray-500 hover:bg-brand-orange/10 hover:text-brand-orange transition-colors"
+                            title="View Map (Backup)">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
+                        </a>
+                    </div>
+
+                    <!-- Floating Widget -->
+                    <a href="https://www.facebook.com/share/p/1GM6bnqDC8/" target="_blank"
+                        class="absolute -bottom-20 left-1/2 -translate-x-1/2 md:-right-12 md:bottom-2 md:left-auto md:translate-x-0 bg-white p-4 rounded-2xl shadow-xl flex gap-4 w-60 animate-bounce delay-1000 hover:scale-105 transition-transform cursor-pointer z-20">
+                        <div class="w-12 h-12 rounded-full overflow-hidden shrink-0">
+                            <img src="/assets/logodark.png" class="w-full h-full object-cover" alt="Logo">
+                        </div>
+                        <div>
+                            <span class="text-gray-500 text-xs block mb-1">PR News</span>
+                            <h4 class="font-bold text-brand-navy text-sm">Student Admission</h4>
+                            <span class="text-xs text-brand-orange font-bold mt-1 block">Click for details ➜</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-20">
+        <div class="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+            <!-- Left: Text -->
+            <div>
+                <span class="text-brand-orange uppercase tracking-widest font-semibold text-sm">Tourist Reviews</span>
+                <h2 class="font-serif text-4xl lg:text-5xl font-bold text-brand-navy mt-3 leading-tight">
+                    Voices from Tourists <br>Visiting Loei
+                </h2>
+
+                <!-- Dots for "slider" -->
+                <div class="flex gap-4 mt-12">
+                    <button onclick="goToTestimonial(0)"
+                        class="w-3 h-3 rounded-full cursor-pointer transition-colors bg-brand-navy testimonial-dot"></button>
+                    <button onclick="goToTestimonial(1)"
+                        class="w-3 h-3 rounded-full cursor-pointer transition-colors bg-gray-300 hover:bg-brand-navy testimonial-dot"></button>
+                    <button onclick="goToTestimonial(2)"
+                        class="w-3 h-3 rounded-full cursor-pointer transition-colors bg-gray-300 hover:bg-brand-navy testimonial-dot"></button>
+                </div>
+            </div>
+
+            <!-- Right: Review Slider relative wrapper -->
+            <div class="relative py-10 h-[400px] flex items-center">
+                <!-- Decorative Background Card (Fixed) -->
+                <div
+                    class="absolute top-0 lg:left-10 left-0 bg-white border border-gray-100 p-8 rounded-[2rem] shadow-lg w-full max-w-lg transform scale-90 translate-y-20 -z-10 opacity-50">
+                    <div class="h-24"></div> <!-- Spacer to mimic height -->
+                </div>
+
+                <!-- Slides Container -->
+                <div class="relative w-full max-w-lg perspective-1000">
+
+                    <!-- Slide 1 -->
+                    <div class="bg-white p-8 rounded-[2rem] shadow-2xl w-full border border-gray-50 absolute top-0 left-0 transition-all duration-500 opacity-100 translate-y-0 z-20 testimonial-slide"
+                        style="display: block;">
+                        <div
+                            class="absolute -top-8 -left-8 w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                            <img src="/assets/profile/1.png" class="w-full h-full object-cover" alt="Mike Taylor">
+                        </div>
+                        <p class="text-gray-500 leading-relaxed mb-6 mt-4 font-medium">"Phu Kradueng is more beautiful
+                            than I imagined. Exhausting but worth the view."</p>
+                        <h4 class="font-bold text-brand-navy text-lg">Shrek</h4>
+                        <span class="text-gray-500 text-sm">Tourist, Bangkok</span>
+                    </div>
+
+                    <!-- Slide 2 -->
+                    <div class="bg-white p-8 rounded-[2rem] shadow-2xl w-full border border-gray-50 absolute top-0 left-0 transition-all duration-500 opacity-0 translate-y-10 -z-10 testimonial-slide"
+                        style="display: none;">
+                        <div
+                            class="absolute -top-8 -left-8 w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                            <img src="/assets/profile/2.png" class="w-full h-full object-cover" alt="Sarah Rose">
+                        </div>
+                        <p class="text-gray-500 leading-relaxed mb-6 mt-4 font-medium">"Chiang Khan has a great
+                            atmosphere. Walking Street food is delicious, people are lovely."</p>
+                        <h4 class="font-bold text-brand-navy text-lg">Cinderella</h4>
+                        <span class="text-gray-500 text-sm">Digital Nomad, Chiang Mai</span>
+                    </div>
+
+                    <!-- Slide 3 -->
+                    <div class="bg-white p-8 rounded-[2rem] shadow-2xl w-full border border-gray-50 absolute top-0 left-0 transition-all duration-500 opacity-0 translate-y-10 -z-10 testimonial-slide"
+                        style="display: none;">
+                        <div
+                            class="absolute -top-8 -left-8 w-16 h-16 rounded-full overflow-hidden border-4 border-white shadow-lg">
+                            <img src="/assets/profile/3.png" class="w-full h-full object-cover" alt="John Doe">
+                        </div>
+                        <p class="text-gray-500 leading-relaxed mb-6 mt-4 font-medium">"Phi Ta Khon festival is fun and
+                            colorful. A unique experience."</p>
+                        <h4 class="font-bold text-brand-navy text-lg">Somchai</h4>
+                        <span class="text-gray-500 text-sm">Wizard, Khon Kaen</span>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <script>
+            let currentTestimonial = 0;
+            const tSlides = document.querySelectorAll('.testimonial-slide');
+            const tDots = document.querySelectorAll('.testimonial-dot');
+
+            function updateTestimonial() {
+                tSlides.forEach((slide, index) => {
+                    if (index === currentTestimonial) {
+                        slide.style.display = 'block';
+                        // Small delay to allow display:block to apply before opacity transition
+                        setTimeout(() => {
+                            slide.classList.remove('opacity-0', 'translate-y-10', '-z-10');
+                            slide.classList.add('opacity-100', 'translate-y-0', 'z-20');
+                        }, 10);
+                    } else {
+                        slide.classList.remove('opacity-100', 'translate-y-0', 'z-20');
+                        slide.classList.add('opacity-0', 'translate-y-10', '-z-10');
+                        setTimeout(() => {
+                            if (index !== currentTestimonial) slide.style.display = 'none';
+                        }, 500); // Wait for transition
+                    }
+                });
+
+                tDots.forEach((dot, index) => {
+                    if (index === currentTestimonial) {
+                        dot.classList.remove('bg-gray-300');
+                        dot.classList.add('bg-brand-navy');
+                    } else {
+                        dot.classList.add('bg-gray-300');
+                        dot.classList.remove('bg-brand-navy');
+                    }
+                });
+            }
+
+            function goToTestimonial(index) {
+                currentTestimonial = index;
+                updateTestimonial();
+            }
+
+            // Auto slide testimonials every 5 seconds
+            setInterval(() => {
+                currentTestimonial = (currentTestimonial + 1) % tSlides.length;
+                updateTestimonial();
+            }, 5000);
+        </script>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="pt-20 pb-10">
+        <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 mb-20">
+            <!-- Brand -->
+            <div class="lg:col-span-2 space-y-6">
+                <a href="#" class="text-3xl font-bold flex items-center gap-2 mb-4">
+                    <span class="text-brand-navy">Travel</span><span class="text-brand-orange">LOEI 360°</span>
+                </a>
+                <p class="text-gray-500 text-sm leading-relaxed max-w-xs">
+                    This website was created as part of a vocational certificate graduation project.
+                </p>
+            </div>
+
+            <!-- Links 1 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">About Website</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="about-en.html" class="hover:text-brand-orange transition-colors">About Us</a></li>
+                    <li><a href="destinations-en.html"
+                            class="hover:text-brand-orange transition-colors">Destinations</a>
+                    </li>
+                    <li><a href="trip-planner-en.html" class="hover:text-brand-orange transition-colors">Tips</a></li>
+                </ul>
+            </div>
+
+            <!-- Links 2 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">Contact</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="contact-en.html" class="hover:text-brand-orange transition-colors">Contact Us</a></li>
+                    <li><a href="contact-en.html" class="hover:text-brand-orange transition-colors">Report Data
+                            Correction</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Links 3 -->
+            <div>
+                <h4 class="font-bold text-brand-navy text-xl mb-6">Credits & Sources</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+
+                    <li><a href="#" class="hover:text-brand-orange transition-colors">Image Credits</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-6 text-center border-t border-gray-100 pt-10">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <span class="text-gray-400 text-sm">© 2025 Travel Loei360°</span>
+                <div class="flex gap-8">
+                    <a href="terms-en.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">Terms of
+                        Service</a>
+                    <a href="privacy-en.html" class="text-gray-400 hover:text-brand-navy text-sm font-medium">Privacy
+                        Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- Lightbox Modal -->
+    <div id="imageModal" class="fixed inset-0 z-[60] bg-black/90 hidden flex items-center justify-center p-4"
+        onclick="closeModal()">
+        <span class="absolute top-5 right-5 text-white text-4xl cursor-pointer hover:text-brand-orange">&times;</span>
+        <img id="expandedImg"
+            class="max-w-full max-h-screen rounded-lg shadow-2xl transform scale-95 transition-transform duration-300"
+            src="" alt="Expanded Image">
+    </div>
+
+    <script>
+        function openModal(imgSrc) {
+            const modal = document.getElementById('imageModal');
+            const expandedImg = document.getElementById('expandedImg');
+            expandedImg.src = imgSrc;
+            modal.classList.remove('hidden');
+            // Small timeout for animation reflow
+            setTimeout(() => {
+                expandedImg.classList.remove('scale-95');
+                expandedImg.classList.add('scale-100');
+            }, 10);
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            const expandedImg = document.getElementById('expandedImg');
+
+            expandedImg.classList.remove('scale-100');
+            expandedImg.classList.add('scale-95');
+
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                document.body.style.overflow = ''; // Restore scrolling
+            }, 300);
+        }
+    </script>
+    <!-- Scroll Script -->
+    <script>
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.remove('py-6');
+            } else {
+                navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'py-3');
+                navbar.classList.add('py-6');
+            }
+        });
+    </script>
+</body>
+
+</html>
